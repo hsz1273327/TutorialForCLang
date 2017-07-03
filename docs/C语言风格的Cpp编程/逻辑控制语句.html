@@ -1,0 +1,728 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>逻辑控制语句 · C++攻略</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="author" content="hsz">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="函数.html" />
+    
+    
+    <link rel="prev" href="运算符.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"hsz1273327/TutorialForCpp","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="http://blog.hszofficial.site/" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    C语言风格的Cpp编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="Cpp的基本形式.html">
+            
+                <a href="Cpp的基本形式.html">
+            
+                    
+                    Cpp的基本形式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="数据类型与变量常量.html">
+            
+                <a href="数据类型与变量常量.html">
+            
+                    
+                    数据类型与变量常量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="运算符.html">
+            
+                <a href="运算符.html">
+            
+                    
+                    运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.4" data-path="逻辑控制语句.html">
+            
+                <a href="逻辑控制语句.html">
+            
+                    
+                    逻辑控制语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="函数.html">
+            
+                <a href="函数.html">
+            
+                    
+                    函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="数组.html">
+            
+                <a href="数组.html">
+            
+                    
+                    数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="自定义结构.html">
+            
+                <a href="自定义结构.html">
+            
+                    
+                    自定义结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="指针与引用.html">
+            
+                <a href="指针与引用.html">
+            
+                    
+                    指针与引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="头文件与多文件编译.html">
+            
+                <a href="头文件与多文件编译.html">
+            
+                    
+                    头文件与多文件编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="静态连接库和动态链接库.html">
+            
+                <a href="静态连接库和动态链接库.html">
+            
+                    
+                    静态连接库和动态链接库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >逻辑控制语句</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-anchor"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x903B;&#x8F91;&#x63A7;&#x5236;&#x8BED;&#x53E5;"><b>1. </b>&#x903B;&#x8F91;&#x63A7;&#x5236;&#x8BED;&#x53E5;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5FAA;&#x73AF;&#x8BED;&#x53E5;"><b>1.1. </b>&#x5FAA;&#x73AF;&#x8BED;&#x53E5;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#for&#x5FAA;&#x73AF;"><b>1.1.1. </b>for&#x5FAA;&#x73AF;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#while&#x5FAA;&#x73AF;"><b>1.1.2. </b>while&#x5FAA;&#x73AF;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#dowhile&#x5FAA;&#x73AF;"><b>1.1.3. </b>do...while&#x5FAA;&#x73AF;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#break&#x548C;continue"><b>1.1.4. </b>break&#x548C;continue</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6761;&#x4EF6;&#x8BED;&#x53E5;"><b>1.2. </b>&#x6761;&#x4EF6;&#x8BED;&#x53E5;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5206;&#x652F;&#x8BED;&#x53E5;"><b>1.3. </b>&#x5206;&#x652F;&#x8BED;&#x53E5;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#goto"><b>1.4. </b>goto</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x57FA;&#x4E8E;range&#x7684;for&#x5FAA;&#x73AF;c11"><b>1.5. </b>&#x57FA;&#x4E8E;Range&#x7684;for&#x5FAA;&#x73AF;[C++11]</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5F02;&#x5E38;&#x5904;&#x7406;&#x8BED;&#x53E5;"><b>2. </b>&#x5F02;&#x5E38;&#x5904;&#x7406;&#x8BED;&#x53E5;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;"><b>2.1. </b>&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;</a></li></ul></ul></div><a href="#&#x903B;&#x8F91;&#x63A7;&#x5236;&#x8BED;&#x53E5;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x903B;&#x8F91;&#x63A7;&#x5236;&#x8BED;&#x53E5;"><a name="&#x903B;&#x8F91;&#x63A7;&#x5236;&#x8BED;&#x53E5;" class="anchor-navigation-ex-anchor" href="#&#x903B;&#x8F91;&#x63A7;&#x5236;&#x8BED;&#x53E5;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x903B;&#x8F91;&#x63A7;&#x5236;&#x8BED;&#x53E5;</h1>
+<p>C++&#x4E2D;&#x7684;&#x903B;&#x8F91;&#x63A7;&#x5236;&#x8BED;&#x53E5;&#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x57FA;&#x672C;&#x7684;&#x90A3;&#x4E48;&#x51E0;&#x4E2A;,&#x4E0E;python&#x76F8;&#x6BD4;,&#x591A;&#x4E86;switch&#x8BED;&#x53E5;&#x548C;goto&#x8BED;&#x53E5;.&#x4F5C;&#x4E3A;pythoner&#x8FD9;&#x90E8;&#x5206;&#x5176;&#x5B9E;&#x6CA1;&#x5565;&#x53EF;&#x8BB2;,&#x8FD9;&#x8FB9;&#x53EA;&#x5217;&#x51FA;&#x5F62;&#x5F0F;.</p>
+<h2 id="&#x5FAA;&#x73AF;&#x8BED;&#x53E5;"><a name="&#x5FAA;&#x73AF;&#x8BED;&#x53E5;" class="anchor-navigation-ex-anchor" href="#&#x5FAA;&#x73AF;&#x8BED;&#x53E5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. &#x5FAA;&#x73AF;&#x8BED;&#x53E5;</h2>
+<h3 id="for&#x5FAA;&#x73AF;"><a name="for&#x5FAA;&#x73AF;" class="anchor-navigation-ex-anchor" href="#for&#x5FAA;&#x73AF;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.1. for&#x5FAA;&#x73AF;</h3>
+<pre><code class="lang-c"><span class="hljs-keyword">for</span>(exp1;exp2;exp3){
+    &#x4EE3;&#x7801;&#x5757;
+}
+</code></pre>
+<ul>
+<li>exp1 &#x4E00;&#x822C;&#x662F;&#x53D8;&#x91CF;&#x521D;&#x59CB;&#x5316;,&#x6CE8;&#x610F;&#x53D8;&#x91CF;&#x9700;&#x8981;&#x5148;&#x58F0;&#x660E;,&#x6807;&#x51C6;c&#x8BED;&#x8A00;&#x4E0D;&#x5141;&#x8BB8;&#x5728;exp1&#x4E2D;&#x76F4;&#x63A5;&#x58F0;&#x660E;&#x53D8;&#x91CF;,&#x4F46;&#x5176;&#x5B9E;&#x5F88;&#x591A;&#x7F16;&#x8BD1;&#x5668;&#x5DF2;&#x7ECF;&#x652F;&#x6301;&#x8FD9;&#x79CD;&#x5199;&#x6CD5;</li>
+<li>exp2 &#x7528;&#x4E8E;&#x5224;&#x65AD;&#x662F;&#x5426;&#x505C;&#x6B62;&#x5FAA;&#x73AF;,&#x5982;&#x679C;&#x4E3A;&#x4E3A;true&#x5219;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x5757;,&#x5426;&#x5219;&#x4E0D;&#x6267;&#x884C;&#x5E76;&#x4E14;&#x8BED;&#x53E5;&#x7ED3;&#x675F;</li>
+<li>exp3 &#x5982;&#x679C;exp2&#x4E3A;true,&#x5219;&#x5728;&#x6267;&#x884C;&#x5B8C;&#x4EE3;&#x7801;&#x5757;&#x540E;&#x6267;&#x884C;exp3,&#x7136;&#x540E;&#x8FDB;&#x5165;&#x4E0B;&#x4E00;&#x5FAA;&#x73AF;</li>
+</ul>
+<h3 id="while&#x5FAA;&#x73AF;"><a name="while&#x5FAA;&#x73AF;" class="anchor-navigation-ex-anchor" href="#while&#x5FAA;&#x73AF;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.2. while&#x5FAA;&#x73AF;</h3>
+<pre><code class="lang-c"><span class="hljs-keyword">while</span>(<span class="hljs-built_in">exp</span>){
+    &#x4EE3;&#x7801;&#x5757;
+}
+</code></pre>
+<ul>
+<li>exp &#x5224;&#x65AD;&#x5176;&#x662F;&#x5426;&#x4E3A;&#x771F;,&#x5982;&#x679C;&#x662F;&#x5219;&#x5FAA;&#x73AF;&#x7ED3;&#x675F;,&#x5426;&#x5219;&#x8FDB;&#x5165;&#x4EE3;&#x7801;&#x5757;&#x6267;&#x884C;,&#x7136;&#x540E;&#x8FDB;&#x5165;&#x4E0B;&#x4E00;&#x5FAA;&#x73AF;</li>
+</ul>
+<h3 id="dowhile&#x5FAA;&#x73AF;"><a name="dowhile&#x5FAA;&#x73AF;" class="anchor-navigation-ex-anchor" href="#dowhile&#x5FAA;&#x73AF;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.3. do...while&#x5FAA;&#x73AF;</h3>
+<pre><code class="lang-c"><span class="hljs-keyword">do</span>{
+    &#x4EE3;&#x7801;&#x5757;
+}<span class="hljs-keyword">while</span>(<span class="hljs-built_in">exp</span>);
+</code></pre>
+<ul>
+<li>&#x5148;&#x6267;&#x884C;do&#x4E2D;&#x4EE3;&#x7801;&#x5757;</li>
+<li>&#x5728;&#x5224;&#x65AD;while&#x4E2D;&#x8868;&#x8FBE;&#x5F0F;,&#x5982;&#x679C;&#x4E3A;&#x771F;&#x5219;&#x5FAA;&#x73AF;&#x7ED3;&#x675F;,&#x5426;&#x5219;&#x7EE7;&#x7EED;&#x5FAA;&#x73AF;&#x6267;&#x884C;do&#x4E2D;&#x4EE3;&#x7801;</li>
+</ul>
+<h3 id="break&#x548C;continue"><a name="break&#x548C;continue" class="anchor-navigation-ex-anchor" href="#break&#x548C;continue"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.4. break&#x548C;continue</h3>
+<p>&#x548C;python&#x4E2D;&#x4E00;&#x6837;,&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;break&#x548C;contiue&#x6765;&#x4E2D;&#x65AD;&#x5FAA;&#x73AF;.&#x89C4;&#x5219;&#x4E5F;&#x76F8;&#x540C;</p>
+<blockquote>
+<p>&#x4F8B;:
+&#x725B;&#x987F;&#x6CD5;&#x6C42;2&#x5F00;&#x6839;</p>
+</blockquote>
+<p>python&#x7248;&#x672C;</p>
+<pre><code class="lang-python">EPS = <span class="hljs-number">0.00001</span>
+a = <span class="hljs-number">2</span>
+X = a/<span class="hljs-number">2.0</span>
+lastX = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span>(abs(X - lastX) &gt; EPS ):
+    lastX = X
+    X = (lastX+float(a/lastX))/<span class="hljs-number">2</span>
+print(X)
+</code></pre>
+<pre><code>1.4142135623746899
+</code></pre><p>C&#x7248;&#x672C;:</p>
+<pre><code class="lang-python">%%writefile src/C4/sqrt2.cpp
+
+<span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+<span class="hljs-comment">#include &lt;math.h&gt;</span>
+const double N  = <span class="hljs-number">2.0</span>;
+
+double sqrt_my(double a,double EPS){
+    double x,last_x;
+    x = a/<span class="hljs-number">2</span>;
+    do{
+        last_x = x;
+        x = (last_x + a/last_x)/<span class="hljs-number">2</span>;
+    }<span class="hljs-keyword">while</span>(fabs(last_x - x) &gt; EPS);
+    <span class="hljs-keyword">return</span> x;
+}
+
+int main(void){
+    printf(<span class="hljs-string">&quot;&#x6839;&#x53F7;2&#x662F;%lf\n&quot;</span>,sqrt_my(N,<span class="hljs-number">0.0001</span>));
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code>Overwriting src/C4/sqrt2.cpp
+</code></pre><pre><code class="lang-python">!g++<span class="hljs-number">-7</span> -o bin/sqrt2 src/C4/sqrt2.cpp
+</code></pre>
+<pre><code class="lang-python">!bin/sqrt2
+</code></pre>
+<pre><code>&#x6839;&#x53F7;2&#x662F;1.414214
+</code></pre><h2 id="&#x6761;&#x4EF6;&#x8BED;&#x53E5;"><a name="&#x6761;&#x4EF6;&#x8BED;&#x53E5;" class="anchor-navigation-ex-anchor" href="#&#x6761;&#x4EF6;&#x8BED;&#x53E5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. &#x6761;&#x4EF6;&#x8BED;&#x53E5;</h2>
+<pre><code class="lang-c"><span class="hljs-keyword">if</span>(exp1){
+    &#x4EE3;&#x7801;&#x5757;
+}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(exp2){
+    &#x4EE3;&#x7801;&#x5757;
+}<span class="hljs-keyword">else</span>{
+    &#x4EE3;&#x7801;&#x5757;
+}
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x548C;python&#x7684;&#x5DEE;&#x4E0D;&#x591A;</p>
+<h2 id="&#x5206;&#x652F;&#x8BED;&#x53E5;"><a name="&#x5206;&#x652F;&#x8BED;&#x53E5;" class="anchor-navigation-ex-anchor" href="#&#x5206;&#x652F;&#x8BED;&#x53E5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. &#x5206;&#x652F;&#x8BED;&#x53E5;</h2>
+<p>switch&#x5728;python&#x4E2D;&#x88AB;&#x53BB;&#x6389;&#x4E86;,&#x4E3B;&#x8981;&#x4E5F;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x4E0E;if&#x8BED;&#x53E5;&#x529F;&#x80FD;&#x91CD;&#x590D;,&#x4E0D;&#x8FC7;swtich&#x8FD8;&#x662F;&#x6709;&#x7528;&#x7684;,&#x53EF;&#x4EE5;&#x8BA9;&#x4EE3;&#x7801;&#x770B;&#x8D77;&#x6765;&#x5E72;&#x51C0;&#x4E0D;&#x5C11;</p>
+<pre><code class="lang-c"><span class="hljs-keyword">switch</span>(<span class="hljs-built_in">exp</span>){
+    <span class="hljs-keyword">case</span> &#x5E38;&#x91CF;&#x8868;&#x8FBE;&#x5F0F;<span class="hljs-number">1</span>:
+        &#x8BED;&#x53E5;&#x7EC4;<span class="hljs-number">1</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> &#x5E38;&#x91CF;&#x8868;&#x8FBE;&#x5F0F;<span class="hljs-number">2</span>:
+        &#x8BED;&#x53E5;&#x7EC4;<span class="hljs-number">2</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> &#x5E38;&#x91CF;&#x8868;&#x8FBE;&#x5F0F;<span class="hljs-number">3</span>:
+        &#x8BED;&#x53E5;&#x7EC4;<span class="hljs-number">3</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        &#x8BED;&#x53E5;&#x7EC4;<span class="hljs-number">4</span>
+}
+</code></pre>
+<p>case&#x662F;&#x53EF;&#x4EE5;&#x8D2F;&#x901A;&#x7684;,&#x5982;&#x679C;case&#x4E0B;&#x9762;&#x6CA1;&#x6709;break,&#x5219;&#x5B83;&#x4F1A;&#x7A7F;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;break&#x4E4B;&#x4E0A;&#x7684;&#x4F4D;&#x7F6E;&#x624D;&#x6267;&#x884C;&#x7ED3;&#x675F;.</p>
+<h2 id="goto"><a name="goto" class="anchor-navigation-ex-anchor" href="#goto"><i class="fa fa-link" aria-hidden="true"></i></a>1.4. goto</h2>
+<p>goto&#x5C31;&#x5389;&#x5BB3;&#x4E86;,&#x8FD9;&#x4E2A;&#x4F53;&#x73B0;&#x4E86;c++&#x5BF9;&#x5E95;&#x5C42;&#x7684;&#x652F;&#x6301;,&#x5B83;&#x8868;&#x793A;&#x65E0;&#x6761;&#x4EF6;&#x8DF3;&#x8F6C;,&#x7528;&#x6CD5;&#x662F;&#x7528;<code>label:</code>&#x6807;&#x8BB0;&#x8981;&#x8DF3;&#x8F6C;&#x7684;&#x4F4D;&#x7F6E;,&#x7136;&#x540E;<code>goto label</code>&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</p>
+<p>&#x8FD9;&#x4E2A;&#x8BED;&#x53E5;&#x662F;&#x6C47;&#x7F16;&#x8BED;&#x8A00;&#x7684;&#x5E38;&#x7528;&#x8BED;&#x53E5;,&#x7528;&#x597D;&#x4E86;&#x5F88;&#x725B;,&#x7528;&#x70C2;&#x5F88;&#x70C2;,&#x5EFA;&#x8BAE;&#x4E0D;&#x8981;&#x7528;</p>
+<h2 id="&#x57FA;&#x4E8E;range&#x7684;for&#x5FAA;&#x73AF;c11"><a name="&#x57FA;&#x4E8E;range&#x7684;for&#x5FAA;&#x73AF;c11" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x4E8E;range&#x7684;for&#x5FAA;&#x73AF;c11"><i class="fa fa-link" aria-hidden="true"></i></a>1.5. &#x57FA;&#x4E8E;Range&#x7684;for&#x5FAA;&#x73AF;[C++11]</h2>
+<p>&#x57FA;&#x4E8E;Range&#x7684;for&#x5FAA;&#x73AF;&#x4E00;&#x822C;&#x914D;&#x5408;&#x53EF;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;&#x4F7F;&#x7528;,&#x6700;&#x5E38;&#x89C1;&#x7684;&#x5C31;&#x662F;vector.</p>
+<p>&#x57FA;&#x672C;&#x8BED;&#x6CD5;:</p>
+<p><code>attr(optional) for ( range_declaration : range_expression ) loop_statement</code>        </p>
+<pre><code class="lang-python">%%writefile src/C4/forrange_test.cpp
+<span class="hljs-comment">#include &lt;vector&gt;</span>
+<span class="hljs-comment">#include &lt;iostream&gt;</span>
+
+int main()
+{
+    std::vector&lt;int&gt; c { <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span> };
+    int x = <span class="hljs-number">5</span>;
+
+    std::cout &lt;&lt; <span class="hljs-string">&quot;c: &quot;</span>;
+    <span class="hljs-keyword">for</span> (auto i: c) {
+        <span class="hljs-keyword">if</span> (i%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>){
+            std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&apos; &apos;</span>;
+        }    
+    }
+    std::cout &lt;&lt; <span class="hljs-string">&apos;\n&apos;</span>;
+}
+</code></pre>
+<pre><code>Overwriting src/C4/forrange_test.cpp
+</code></pre><pre><code class="lang-python">!g++<span class="hljs-number">-7</span> -o bin/forrange_test src/C4/forrange_test.cpp
+</code></pre>
+<pre><code class="lang-python">!./bin/forrange_test
+</code></pre>
+<pre><code>c: 2 4 6 
+</code></pre><h1 id="&#x5F02;&#x5E38;&#x5904;&#x7406;&#x8BED;&#x53E5;"><a name="&#x5F02;&#x5E38;&#x5904;&#x7406;&#x8BED;&#x53E5;" class="anchor-navigation-ex-anchor" href="#&#x5F02;&#x5E38;&#x5904;&#x7406;&#x8BED;&#x53E5;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x5F02;&#x5E38;&#x5904;&#x7406;&#x8BED;&#x53E5;</h1>
+<p>C&#x8BED;&#x8A00;&#x672C;&#x8EAB;&#x4E0D;&#x652F;&#x6301;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x8BED;&#x53E5;,&#x800C;C++&#x5219;&#x539F;&#x751F;&#x7684;&#x652F;&#x6301;&#x5F02;&#x5E38;&#x5904;&#x7406;,&#x5176;&#x8BED;&#x6CD5;&#x7C7B;&#x4F3C;javascript&#x7684;&#x5F02;&#x5E38;&#x5904;&#x7406;.&#x76F8;&#x5173;&#x7684;&#x5173;&#x952E;&#x5B57;&#x6709;:</p>
+<ul>
+<li><p><code>throw</code>&#x629B;&#x51FA;&#x5F02;&#x5E38;</p>
+</li>
+<li><p><code>try/catch</code>&#x5F02;&#x5E38;&#x6355;&#x83B7;</p>
+</li>
+</ul>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;<code>catch</code>&#x770B;&#x505A;&#x4E00;&#x4E2A;&#x6CA1;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x51FD;&#x6570;,&#x5F53;&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x540E;<code>catch</code>&#x4F1A;&#x88AB;&#x8C03;&#x7528;,&#x5E76;&#x4E14;&#x4F1A;&#x63A5;&#x6536;&#x5B9E;&#x53C2;(&#x5F02;&#x5E38;&#x6570;&#x636E;)</p>
+<p>&#x4F46;&#x662F;<code>catch</code>&#x548C;&#x771F;&#x6B63;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x53C8;&#x6709;&#x533A;&#x522B;:</p>
+<p>&#x771F;&#x6B63;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;,&#x5F62;&#x53C2;&#x548C;&#x5B9E;&#x53C2;&#x7684;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x8981;&#x5339;&#x914D;,&#x6216;&#x8005;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x8F6C;&#x6362;,&#x5426;&#x5219;&#x5728;&#x7F16;&#x8BD1;&#x9636;&#x6BB5;&#x5C31;&#x62A5;&#x9519;&#x4E86;.
+&#x800C;&#x5BF9;&#x4E8E;<code>catch</code>,&#x5F02;&#x5E38;&#x662F;&#x5728;&#x8FD0;&#x884C;&#x9636;&#x6BB5;&#x4EA7;&#x751F;&#x7684;,&#x5B83;&#x53EF;&#x4EE5;&#x662F;&#x4EFB;&#x4F55;&#x7C7B;&#x578B;,&#x6CA1;&#x6CD5;&#x63D0;&#x524D;&#x9884;&#x6D4B;,&#x6240;&#x4EE5;&#x4E0D;&#x80FD;&#x5728;&#x7F16;&#x8BD1;&#x9636;&#x6BB5;&#x5224;&#x65AD;&#x7C7B;&#x578B;&#x662F;&#x5426;&#x6B63;&#x786E;,&#x53EA;&#x80FD;&#x7B49;&#x5230;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x540E;,&#x771F;&#x7684;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x4E86;,&#x518D;&#x5C06;&#x5F02;&#x5E38;&#x7C7B;&#x578B;&#x548C;<code>catch</code>&#x80FD;&#x5904;&#x7406;&#x7684;&#x7C7B;&#x578B;&#x8FDB;&#x884C;&#x5339;&#x914D;,&#x5339;&#x914D;&#x6210;&#x529F;&#x7684;&#x8BDD;&#x5C31;&quot;&#x8C03;&#x7528;&quot;&#x5F53;&#x524D;&#x7684;<code>catch</code>,&#x5426;&#x5219;&#x5C31;&#x5FFD;&#x7565;&#x5F53;&#x524D;&#x7684;<code>catch</code>.</p>
+<p>&#x603B;&#x8D77;&#x6765;&#x8BF4;<code>catch</code>&#x548C;&#x771F;&#x6B63;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x76F8;&#x6BD4;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x300C;&#x5728;&#x8FD0;&#x884C;&#x9636;&#x6BB5;&#x5C06;&#x5B9E;&#x53C2;&#x548C;&#x5F62;&#x53C2;&#x5339;&#x914D;&#x300D;&#x7684;&#x8FC7;&#x7A0B;.</p>
+<p>&#x53E6;&#x5916;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5E0C;&#x671B;<code>catch</code>&#x5904;&#x7406;&#x5F02;&#x5E38;&#x6570;&#x636E;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;<code>variable</code>&#x7701;&#x7565;&#x6389;.</p>
+<h2 id="&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;"><a name="&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;" class="anchor-navigation-ex-anchor" href="#&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;"><i class="fa fa-link" aria-hidden="true"></i></a>2.1. &#x9ED8;&#x8BA4;&#x5F02;&#x5E38;</h2>
+<p>C++&#x8BED;&#x8A00;&#x672C;&#x8EAB;&#x6216;&#x8005;&#x6807;&#x51C6;&#x5E93;&#x629B;&#x51FA;&#x7684;&#x5F02;&#x5E38;&#x90FD;&#x662F;<code>exception</code>&#x7684;&#x5B50;&#x7C7B;,&#x79F0;&#x4E3A;&#x6807;&#x51C6;&#x5F02;&#x5E38;.&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x7684;&#x8BED;&#x53E5;&#x6765;&#x6355;&#x83B7;&#x6240;&#x6709;&#x7684;&#x6807;&#x51C6;&#x5F02;&#x5E38;:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">try</span>{
+    //&#x53EF;&#x80FD;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x7684;&#x8BED;&#x53E5;
+}catch(exception &amp;e){
+    //&#x5904;&#x7406;&#x5F02;&#x5E38;&#x7684;&#x8BED;&#x53E5;
+}
+</code></pre>
+<p>&#x4E4B;&#x6240;&#x4EE5;&#x4F7F;&#x7528;&#x5F15;&#x7528;,&#x662F;&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x6548;&#x7387;.&#x5982;&#x679C;&#x4E0D;&#x4F7F;&#x7528;&#x5F15;&#x7528;,&#x5C31;&#x8981;&#x7ECF;&#x5386;&#x4E00;&#x6B21;&#x5BF9;&#x8C61;&#x62F7;&#x8D1D;(&#x8981;&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;)&#x7684;&#x8FC7;&#x7A0B;.</p>
+<p><code>exception</code>&#x7C7B;&#x4F4D;&#x4E8E;<code>&lt;exception&gt;</code>&#x5934;&#x6587;&#x4EF6;&#x4E2D;,&#x5B83;&#x88AB;&#x58F0;&#x660E;&#x4E3A;:</p>
+<pre><code class="lang-C++"><span class="hljs-keyword">class</span> exception{
+<span class="hljs-keyword">public</span>:
+    exception () <span class="hljs-keyword">throw</span>();  <span class="hljs-comment">//&#x6784;&#x9020;&#x51FD;&#x6570;</span>
+    exception (<span class="hljs-keyword">const</span> exception&amp;) <span class="hljs-keyword">throw</span>();  <span class="hljs-comment">//&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;</span>
+    exception&amp; <span class="hljs-keyword">operator</span>= (<span class="hljs-keyword">const</span> exception&amp;) <span class="hljs-keyword">throw</span>();  <span class="hljs-comment">//&#x8FD0;&#x7B97;&#x7B26;&#x91CD;&#x8F7D;</span>
+    <span class="hljs-keyword">virtual</span> ~exception() <span class="hljs-keyword">throw</span>();  <span class="hljs-comment">//&#x865A;&#x6790;&#x6784;&#x51FD;&#x6570;</span>
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* <span class="hljs-title">what</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> <span class="hljs-title">throw</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">//&#x865A;&#x51FD;&#x6570;</span>
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x8BF4;&#x660E;&#x7684;&#x662F;<code>what()</code>&#x51FD;&#x6570;.<code>what()</code>&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x80FD;&#x8BC6;&#x522B;&#x5F02;&#x5E38;&#x7684;&#x5B57;&#x7B26;&#x4E32;,&#x6B63;&#x5982;&#x5B83;&#x7684;&#x540D;&#x5B57;&apos;what&apos;&#x4E00;&#x6837;,&#x53EF;&#x4EE5;&#x7C97;&#x7565;&#x5730;&#x544A;&#x8BC9;&#x4F60;&#x8FD9;&#x662F;&#x4EC0;&#x4E48;&#x5F02;&#x5E38;.&#x4E0D;&#x8FC7;<code>C++</code>&#x6807;&#x51C6;&#x5E76;&#x6CA1;&#x6709;&#x89C4;&#x5B9A;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x683C;&#x5F0F;,&#x5404;&#x4E2A;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#x5B9E;&#x73B0;&#x4E5F;&#x4E0D;&#x540C;,&#x6240;&#x4EE5;<code>what()</code>&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4EC5;&#x4F9B;&#x53C2;&#x8003;.</p>
+<p><img src="img/exception.jpg" alt=""></p>
+<p>exception&#x7C7B;&#x7684;&#x76F4;&#x63A5;&#x6D3E;&#x751F;&#x7C7B;:</p>
+<table>
+<thead>
+<tr>
+<th>&#x5F02;&#x5E38;&#x540D;&#x79F0;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>logic_error</td>
+<td>&#x903B;&#x8F91;&#x9519;&#x8BEF;&#x3002;</td>
+</tr>
+<tr>
+<td>runtime_error</td>
+<td>&#x8FD0;&#x884C;&#x65F6;&#x9519;&#x8BEF;&#x3002;</td>
+</tr>
+<tr>
+<td>bad_alloc</td>
+<td>&#x4F7F;&#x7528; new &#x6216; new[ ] &#x5206;&#x914D;&#x5185;&#x5B58;&#x5931;&#x8D25;&#x65F6;&#x629B;&#x51FA;&#x7684;&#x5F02;&#x5E38;&#x3002;</td>
+</tr>
+<tr>
+<td>bad_typeid</td>
+<td>&#x4F7F;&#x7528; typeid &#x64CD;&#x4F5C;&#x4E00;&#x4E2A; NULL &#x6307;&#x9488;&#xFF0C;&#x800C;&#x4E14;&#x8BE5;&#x6307;&#x9488;&#x662F;&#x5E26;&#x6709;&#x865A;&#x51FD;&#x6570;&#x7684;&#x7C7B;&#xFF0C;&#x8FD9;&#x65F6;&#x629B;&#x51FA; bad_typeid &#x5F02;&#x5E38;&#x3002;</td>
+</tr>
+<tr>
+<td>bad_cast</td>
+<td>&#x4F7F;&#x7528; dynamic_cast &#x8F6C;&#x6362;&#x5931;&#x8D25;&#x65F6;&#x629B;&#x51FA;&#x7684;&#x5F02;&#x5E38;&#x3002;</td>
+</tr>
+<tr>
+<td>ios_base::failure</td>
+<td>io &#x8FC7;&#x7A0B;&#x4E2D;&#x51FA;&#x73B0;&#x7684;&#x5F02;&#x5E38;&#x3002;</td>
+</tr>
+<tr>
+<td>bad_exception</td>
+<td>&#x8FD9;&#x662F;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x5F02;&#x5E38;,&#x5982;&#x679C;&#x51FD;&#x6570;&#x7684;&#x5F02;&#x5E38;&#x5217;&#x8868;&#x91CC;&#x58F0;&#x660E;&#x4E86;<code>bad_exception</code>&#x5F02;&#x5E38;,&#x5F53;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x629B;&#x51FA;&#x4E86;&#x5F02;&#x5E38;&#x5217;&#x8868;&#x4E2D;&#x6CA1;&#x6709;&#x7684;&#x5F02;&#x5E38;&#x65F6;,&#x5982;&#x679C;&#x8C03;&#x7528;&#x7684;<code>unexpected()</code>&#x51FD;&#x6570;&#x4E2D;&#x629B;&#x51FA;&#x4E86;&#x5F02;&#x5E38;,&#x4E0D;&#x8BBA;&#x4EC0;&#x4E48;&#x7C7B;&#x578B;,&#x90FD;&#x4F1A;&#x88AB;&#x66FF;&#x6362;&#x4E3A;<code>bad_exception</code>&#x7C7B;&#x578B;.</td>
+</tr>
+</tbody>
+</table>
+<p>logic_error&#x7684;&#x6D3E;&#x751F;&#x7C7B;:</p>
+<table>
+<thead>
+<tr>
+<th>&#x5F02;&#x5E38;&#x540D;&#x79F0;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>length_error</td>
+<td>&#x8BD5;&#x56FE;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x8D85;&#x51FA;&#x8BE5;&#x7C7B;&#x578B;&#x6700;&#x5927;&#x957F;&#x5EA6;&#x7684;&#x5BF9;&#x8C61;&#x65F6;&#x629B;&#x51FA;&#x8BE5;&#x5F02;&#x5E38;&#xFF0C;&#x4F8B;&#x5982; vector &#x7684; resize &#x64CD;&#x4F5C;&#x3002;</td>
+</tr>
+<tr>
+<td>domain_error</td>
+<td>&#x53C2;&#x6570;&#x7684;&#x503C;&#x57DF;&#x9519;&#x8BEF;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x5728;&#x6570;&#x5B66;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x4F8B;&#x5982;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x8D1F;&#x503C;&#x8C03;&#x7528;&#x53EA;&#x80FD;&#x64CD;&#x4F5C;&#x975E;&#x8D1F;&#x6570;&#x7684;&#x51FD;&#x6570;&#x3002;</td>
+</tr>
+<tr>
+<td>out_of_range</td>
+<td>&#x8D85;&#x51FA;&#x6709;&#x6548;&#x8303;&#x56F4;&#x3002;</td>
+</tr>
+<tr>
+<td>invalid_argument</td>
+<td>&#x53C2;&#x6570;&#x4E0D;&#x5408;&#x9002;&#x3002;&#x5728;&#x6807;&#x51C6;&#x5E93;&#x4E2D;&#xFF0C;&#x5F53;&#x5229;&#x7528;string&#x5BF9;&#x8C61;&#x6784;&#x9020; bitset &#x65F6;&#xFF0C;&#x800C; string &#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E0D;&#x662F; 0 &#x6216;1 &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x629B;&#x51FA;&#x8BE5;&#x5F02;&#x5E38;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>runtime_error&#x7684;&#x6D3E;&#x751F;&#x7C7B;:</p>
+<table>
+<thead>
+<tr>
+<th>&#x5F02;&#x5E38;&#x540D;&#x79F0;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>range_error</td>
+<td>&#x8BA1;&#x7B97;&#x7ED3;&#x679C;&#x8D85;&#x51FA;&#x4E86;&#x6709;&#x610F;&#x4E49;&#x7684;&#x503C;&#x57DF;&#x8303;&#x56F4;&#x3002;</td>
+</tr>
+<tr>
+<td>overflow_error</td>
+<td>&#x7B97;&#x672F;&#x8BA1;&#x7B97;&#x4E0A;&#x6EA2;&#x3002;</td>
+</tr>
+<tr>
+<td>underflow_error</td>
+<td>&#x7B97;&#x672F;&#x8BA1;&#x7B97;&#x4E0B;&#x6EA2;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-python">%%writefile src/C4/exception_test.cpp
+<span class="hljs-comment">#include &lt;iostream&gt;</span>
+<span class="hljs-comment">#include &lt;string&gt;</span>
+<span class="hljs-comment">#include &lt;exception&gt;</span>
+using namespace std;
+int main(){
+    string str = <span class="hljs-string">&quot;http://c.biancheng.net&quot;</span>;
+
+    <span class="hljs-keyword">try</span>{
+        char ch1 = str[<span class="hljs-number">100</span>];
+        cout&lt;&lt;ch1&lt;&lt;endl;
+    }catch(exception e){
+        cout&lt;&lt;<span class="hljs-string">&quot;[1]out of bound!&quot;</span>&lt;&lt;endl;
+    }
+    <span class="hljs-keyword">try</span>{
+        char ch2 = str.at(<span class="hljs-number">100</span>);
+        cout&lt;&lt;ch2&lt;&lt;endl;
+    }catch(exception &amp;e){  //exception&#x7C7B;&#x4F4D;&#x4E8E;&lt;exception&gt;&#x5934;&#x6587;&#x4EF6;&#x4E2D;
+        cout&lt;&lt;<span class="hljs-string">&quot;[2]out of bound!&quot;</span>&lt;&lt;endl;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code>Overwriting src/C4/exception_test.cpp
+</code></pre><pre><code class="lang-python">!g++<span class="hljs-number">-7</span> -o bin/exception_test src/C4/exception_test.cpp
+</code></pre>
+<pre><code class="lang-python">!./bin/exception_test
+</code></pre>
+<pre><code> 
+[2]out of bound!
+</code></pre><footer class="page-footer"><span class="copyright">Copyright &#xA9; hsz 2017 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2017-07-04 00:48:14
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="运算符.html" class="navigation navigation-prev " aria-label="Previous page: 运算符">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="函数.html" class="navigation navigation-next " aria-label="Next page: 函数">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"逻辑控制语句","level":"1.2.4","depth":2,"next":{"title":"函数","level":"1.2.5","depth":2,"path":"C语言风格的Cpp编程/函数.md","ref":"C语言风格的Cpp编程/函数.md","articles":[]},"previous":{"title":"运算符","level":"1.2.3","depth":2,"path":"C语言风格的Cpp编程/运算符.md","ref":"C语言风格的Cpp编程/运算符.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","advanced-emoji","github","github-buttons","katex","splitter","expandable-chapters-small","tbfed-pagefooter","-sharing","donate","sitemap-general","anchors","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy hsz 2017","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/hsz1273327"},"splitter":{},"search-pro":{"cutWordLib":"nodejieba","defineWord":["Gitbook Use"]},"donate":{"alipay":"http://blog.hszofficial.site/img/zhifubao_donate.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"http://blog.hszofficial.site/img/wechat_donate.jpg","wechatText":"微信打赏"},"sitemap-general":{"prefix":"http://blog.hszofficial.site/TutorialForCpp/"},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true},"mode":"float","pageTop":{"showLevelIcon":false,"mode":"float","pageTop":{"showLevelIcon":false,"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right"},"level1Icon":"","showLevel":true,"level2Icon":"","level3Icon":"","associatedWithSummary":true,"float":{"showLevelIcon":true,"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right"}},"showLevel":true},"github-buttons":{"repo":"hsz1273327/TutorialForCpp","types":["star","watch","fork"],"size":"small"},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"weibo":false,"facebook":false,"twitter":false,"google":true,"instapaper":false,"vk":false,"all":["google"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"hsz","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C++攻略","language":"zh-hans","links":{"sidebar":{"Home":"http://blog.hszofficial.site/"}},"gitbook":">=2.0.0","description":"C++语法和编程方式"},"file":{"path":"C语言风格的Cpp编程/逻辑控制语句.md","mtime":"2017-07-03T16:48:14.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-07-03T17:24:52.063Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
