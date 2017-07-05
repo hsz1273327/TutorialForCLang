@@ -5,9 +5,9 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-int quadratic_sum(vector<int> &list){
+auto quadratic_sum(vector<int> &list){
     auto sum=0;
-    auto quadratic = [](int x)->decltype(sum){return pow(x,2);};
+    auto quadratic = [](auto x){return pow(x,2);};
 
     for(auto i :list){
         sum += quadratic(i);
