@@ -15,7 +15,7 @@ int main(void){
 }
 ```
 
-    Writing src/c1/helloworldc.cpp
+    Overwriting src/c1/helloworldc.cpp
 
 
 上面是名为`helloworld.cpp`的源文件,和python一样,C++语言需要有源文件,源文件就是人能看得懂的写给机器执行的文件
@@ -85,7 +85,7 @@ int main(){
 ```
 ```
 
-    Writing src/c1/helloworld.cpp:
+    Overwriting src/c1/helloworld.cpp:
 
 
 
@@ -171,6 +171,19 @@ iostream包括4个io对象:
 具体的使用方法可以看上面例子代码,其中`<<`称为输出运算符,`>>`称为输入运算符
 
 `iostream`与`stdio.h`相比,增加了可扩展性,因为是流,但同时效率相比`stdio.h`差了一些.
+
+C中通用的输出函数包括:
+
++ `printf(char content[])` **带格式控制**的字符串输出
++ `fprintf(stdxxx,char content[])` 可以指定流的带格式控制字符串输出
++ `puts(char content[])` 只用来输出字符串，没有格式控制,**会自动换行**
++ `fputs(file,char content[])` 可以指定流的puts函数
+
+与之对应的是C中通用的输入函数,包括:
+
++ `scanf('%d',&x)`将输入的内容传入某段内存地址,scanf函数需要指定能读入的字符数
++ `fscanf(file,'%d',&x)`将输入的内容传入某段内存地址,scanf函数需要指定能读入的字符数,需要指定流
++ `fgets(content, sizeof(content),stdin)` 一般配合sizeof使用,以避免缓冲区溢出的问题
 
 ## 字符串
 
