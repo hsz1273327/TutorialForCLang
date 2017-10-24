@@ -2,10 +2,12 @@
 * [Introduction](README.md)
 * [惯例的helloworld](惯例的helloworld.md)
 * [Cpp工具链](Cpp工具链/README.md)
-    + [编译与运行环境]
-    + [部署与发布]
-    + [代码风格]
-    + [调试与测试]
+    * [编译与运行环境]
+    * [包管理工具]
+    * [代码风格与风格检测工具]
+    * [调试工具]
+    * [测试框架]
+    * [文档工具]
     
 * [Cpp核心设计思想](Cpp核心设计思想/README.md)
     + [Cpp与计算资源]
