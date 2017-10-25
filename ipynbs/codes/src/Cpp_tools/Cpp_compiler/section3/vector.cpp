@@ -27,8 +27,8 @@ float Vector::BinaryVector::mod(){
     return result;
 }
 float Vector::BinaryVector::mul(const Vector::BinaryVector & that_vector){
-    float result = x*taht_vector.x+y*taht_vector.y;
-    return result
+    float result = x*that_vector.x+y*that_vector.y;
+    return result;
 }
                 
     
@@ -39,8 +39,8 @@ Vector::BinaryVector Vector::BinaryVector::add(const Vector::BinaryVector & that
 }
                             
 float Vector::BinaryVector::operator*(const Vector::BinaryVector& that_vector){
-    return mul(that_vector)
+    return mul(that_vector);
 }
 Vector::BinaryVector Vector::BinaryVector::operator+(const Vector::BinaryVector& that_vector){
-    return add(that_vector)
+    return add(that_vector);
 }

@@ -13,11 +13,11 @@ public:
     BinaryVector(float,int);
     
     float mod();
-    float mul(BinaryVector&);
-    BinaryVector add(BinaryVector&);
+    float mul(const BinaryVector&);
+    BinaryVector add(const BinaryVector&);
     
-    float operator*(BinaryVector&);
-    BinaryVector operator+(BinaryVector&);
+    float operator*(const BinaryVector&);
+    BinaryVector operator+(const BinaryVector&);
 };
 }
 
