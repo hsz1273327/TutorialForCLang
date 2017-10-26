@@ -10,5 +10,5 @@ int main(){
     printf("mod(B)=%f\n",Vector__BinaryVector_mod(B));
     printf("mul(A,B)=%f\n",Vector__BinaryVector_mul(A,B));
     Vector__BinaryVector * result = Vector__BinaryVector_add(A,B);
-    //printf("add(A,B)=<%f,%f>\n",Vector__BinaryVector_getInstanceX(result),Vector__BinaryVector_getInstanceY(result));
+    printf("add(A,B)=<%f,%f>\n",Vector__BinaryVector_getInstanceX(result),Vector__BinaryVector_getInstanceY(result));
 }
