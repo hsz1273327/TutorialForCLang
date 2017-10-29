@@ -7,10 +7,16 @@ public:
     float y;
     
     BinaryVector();
+    BinaryVector(const BinaryVector&);
+    BinaryVector operator=(const BinaryVector &);
+    BinaryVector(BinaryVector&&);
+    BinaryVector operator=(BinaryVector &&);
+    
     BinaryVector(float,float);
     BinaryVector(int,float);
     BinaryVector(int,int);
     BinaryVector(float,int);
+    
     
     float mod();
     float mul(const BinaryVector&);

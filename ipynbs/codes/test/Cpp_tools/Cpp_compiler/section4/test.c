@@ -2,6 +2,7 @@
 #include "vector.h"
 
 int main(){
+    printf("test4\n");
     Vector__BinaryVector * A = Vector__BinaryVector_GetInstance();
     Vector__BinaryVector * B = Vector__BinaryVector_GetInstance();
     Vector__BinaryVector_setInstance(A,1.0,2.0);

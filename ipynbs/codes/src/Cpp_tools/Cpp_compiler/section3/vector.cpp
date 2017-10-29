@@ -1,25 +1,53 @@
 #include <cmath>
 #include "vector.hpp"
-Vector::BinaryVector::BinaryVector(){
-    x=0.0;
-    y=0.0;
+
+Vector::BinaryVector::BinaryVector()
+:x(0.0),y(0.0){
 }
-                
-Vector::BinaryVector::BinaryVector(float in_x,float in_y){
-    x=in_x;
-    y=in_y;
+                            
+Vector::BinaryVector::BinaryVector(const Vector::BinaryVector & a)
+:x(a.x),y(a.y){
 }
-Vector::BinaryVector::BinaryVector(int in_x,int in_y){
-    x=static_cast<float>(in_x);
-    y=static_cast<float>(in_y);
+    
+Vector::BinaryVector Vector::BinaryVector::operator=(const Vector::BinaryVector & a){
+    if (this != &a) { 
+        x = a.x; 
+        y = a.y; 
+    } 
+    return *this; 
 }
-Vector::BinaryVector::BinaryVector(int in_x,float in_y){
-    x=static_cast<float>(in_x);
-    y=in_y;
+
+Vector::BinaryVector::BinaryVector(Vector::BinaryVector && a)
+:x(a.x),y(a.y){
+    a.x = 0.0;
+    a.y = 0.0;
 }
-Vector::BinaryVector::BinaryVector(float in_x,int in_y){
-    x=in_x;
-    y=static_cast<float>(in_y);
+    
+Vector::BinaryVector Vector::BinaryVector::operator=(Vector::BinaryVector && a){
+    if (this != &a) { 
+        x = a.x; 
+        y = a.y; 
+        a.x = 0.0;
+        a.y = 0.0;
+    }
+    
+    return *this; 
+}
+    
+Vector::BinaryVector::BinaryVector(float in_x,float in_y)
+:x(in_x),y(in_y){
+}
+    
+Vector::BinaryVector::BinaryVector(int in_x,int in_y)
+:x(static_cast<float>(in_x)),y(static_cast<float>(in_y)){
+}
+    
+Vector::BinaryVector::BinaryVector(int in_x,float in_y)
+:x(static_cast<float>(in_x)),y(in_y){
+}
+    
+Vector::BinaryVector::BinaryVector(float in_x,int in_y)
+:x(in_x),y(static_cast<float>(in_y)){
 }
                 
 float Vector::BinaryVector::mod(){
@@ -29,8 +57,7 @@ float Vector::BinaryVector::mod(){
 float Vector::BinaryVector::mul(const Vector::BinaryVector & that_vector){
     float result = x*that_vector.x+y*that_vector.y;
     return result;
-}
-                
+}      
     
 Vector::BinaryVector Vector::BinaryVector::add(const Vector::BinaryVector & that_vector){
     Vector::BinaryVector result(x+that_vector.x,y+that_vector.y);

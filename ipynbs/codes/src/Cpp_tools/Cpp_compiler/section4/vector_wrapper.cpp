@@ -1,5 +1,7 @@
+#include <cstdio>
+#include <stdlib.h> 
 #include "vector.h"    
-#include "vector.hpp" 
+#include "vector.hpp"
 #ifdef __cplusplus    
 extern "C" {    
 #endif 
@@ -8,13 +10,19 @@ struct _Vector__BinaryVector{
 };
 
 Vector__BinaryVector * Vector__BinaryVector_GetInstance(void){
-    return new Vector__BinaryVector;
+    //return new Vector__BinaryVector;
+    Vector__BinaryVector * p = (Vector__BinaryVector *)malloc(sizeof(Vector__BinaryVector));
+    Vector::BinaryVector v;
+    p->binary_vector = v;
+    return p;
 }
 
     
 void Vector__BinaryVector_ReleaseInstance(Vector__BinaryVector **ppInstance){
-    delete *ppInstance;    
-    *ppInstance = 0;    
+    //delete *ppInstance;    
+    //*ppInstance = 0;    
+    free(*ppInstance);
+    *ppInstance = 0;
 }
 
 float Vector__BinaryVector_getInstanceX(Vector__BinaryVector *ptr_vector){
@@ -44,7 +52,7 @@ float Vector__BinaryVector_mul(Vector__BinaryVector * ptr_this_vector, Vector__B
 }
 Vector__BinaryVector * Vector__BinaryVector_add(Vector__BinaryVector * ptr_this_vector, Vector__BinaryVector * ptr_that_vector){
     Vector::BinaryVector result_ins = ptr_this_vector->binary_vector +  ptr_that_vector->binary_vector;
-    Vector__BinaryVector * result; 
+    Vector__BinaryVector * result = Vector__BinaryVector_GetInstance(); 
     result->binary_vector = result_ins;
     return result;
 }
