@@ -4,7 +4,8 @@
 using Vector::BinaryVector;
 
 int main(){
-    BinaryVector A(1,2),B(3,4);
+    BinaryVector A(1,2);
+    BinaryVector B(3,4);
     printf("mod(A)=%f\n",A.mod());
     printf("mod(B)=%f\n",B.mod());
     printf("mul(A,B)=%f\n",A*B);
