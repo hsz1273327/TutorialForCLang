@@ -1,3 +1,0 @@
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/src/Cpp_tools/Cpp_compiler/section5/CMakeFiles/rebuild_cache.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/src/Cpp_tools/Cpp_compiler/section5/CMakeFiles/edit_cache.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/src/Cpp_tools/Cpp_compiler/section5/CMakeFiles/Demo.dir
