@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_b_i_n_a_r_y___v_e_c_t_o_r" kind="struct" language="C++" prot="public">
+    <compoundname>BINARY_VECTOR</compoundname>
+    <includes refid="binary__vector_8h" local="no">binary_vector.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_b_i_n_a_r_y___v_e_c_t_o_r_1a1c7a53e7236dca52117e86e12aa34885" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float BINARY_VECTOR::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+<para>头一位 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/binary_vector.h" line="20" column="1" bodyfile="include/binary_vector.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_b_i_n_a_r_y___v_e_c_t_o_r_1ac3333b38944c91de27316a7f0a632373" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float BINARY_VECTOR::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+<para>尾一位 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/binary_vector.h" line="21" column="1" bodyfile="include/binary_vector.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>vector结构 </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/binary_vector.h" line="19" column="1" bodyfile="include/binary_vector.h" bodystart="19" bodyend="22"/>
+    <listofallmembers>
+      <member refid="struct_b_i_n_a_r_y___v_e_c_t_o_r_1a1c7a53e7236dca52117e86e12aa34885" prot="public" virt="non-virtual"><scope>BINARY_VECTOR</scope><name>x</name></member>
+      <member refid="struct_b_i_n_a_r_y___v_e_c_t_o_r_1ac3333b38944c91de27316a7f0a632373" prot="public" virt="non-virtual"><scope>BINARY_VECTOR</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

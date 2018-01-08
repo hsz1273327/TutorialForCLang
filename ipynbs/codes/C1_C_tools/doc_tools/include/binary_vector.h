@@ -17,8 +17,8 @@
 * @brief        vector结构
 */  
 typedef struct {
-    float x; ///头一位
-    float y; ///尾一位
+    float x; ///< 头一位
+    float y; ///< 尾一位
 } BINARY_VECTOR;
 
 /** 
