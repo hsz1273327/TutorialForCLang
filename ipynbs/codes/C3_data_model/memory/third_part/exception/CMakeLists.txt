@@ -1,0 +1,6 @@
+cmake_minimum_required (VERSION 2.8)
+project (exception)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+include_directories([AFTER|BEFORE] [SYSTEM] dir1 [dir2 ...])
+aux_source_directory(src DIR_SRCS)
+add_library (exception ${DIR_SRCS})
