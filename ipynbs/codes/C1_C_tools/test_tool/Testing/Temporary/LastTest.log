@@ -1,0 +1,27 @@
+Start testing: Jan 10 19:45 CST
+----------------------------------------------------------
+1/1 Testing: DemoTestRuns
+1/1 Test: DemoTestRuns
+Command: "/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/test_tool/bin/Demo_Test"
+Directory: /Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/test_tool
+"DemoTestRuns" start time: Jan 10 19:45 CST
+Output:
+----------------------------------------------------------
+F
+test_check_modA failed:
+	/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/test_tool/test/test_main.c:7: VEC_mod(A) == 2.236068
+....
+
+4 tests, 5 assertions, 1 failures
+
+Finished in 0.00057033 seconds (real) 0.00005600 seconds (proc)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"DemoTestRuns" end time: Jan 10 19:45 CST
+"DemoTestRuns" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jan 10 19:45 CST

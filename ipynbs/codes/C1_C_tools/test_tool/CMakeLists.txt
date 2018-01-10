@@ -1,4 +1,4 @@
-﻿#项目编译环境
+#项目编译环境
 cmake_minimum_required (VERSION 2.8)
 project (binary_vector)
 include_directories(include)
@@ -15,6 +15,3 @@ link_directories(${CMAKE_BINARY_DIR}/lib)
 link_libraries(vector)
 aux_source_directory(test DIR_SRCS)
 add_executable(Demo_Test ${DIR_SRCS})
-#测试
-enable_testing()
-add_test (DemoTestRuns ${CMAKE_BINARY_DIR}/bin/Demo_Test)

@@ -1,13 +1,4 @@
 /** 
-* # 断言库
-* 用法参考python中的断言:
-*```C
-*assert(1==0)
-* ```
-* 可以通过定义宏`NDEBUG`来关闭断言.
-*```C
-*#define NDEBUG
-*```
 * @file                              assert.h
 * @brief                             断言库
 * @author                            David R. Hanson

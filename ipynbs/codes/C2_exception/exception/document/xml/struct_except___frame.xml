@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_except___frame" kind="struct" language="C++" prot="public">
+    <compoundname>Except_Frame</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_except___frame_1a4a5323a9c98b198d171a7f0409f3bbae" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_except___frame" kindref="compound">Except_Frame</ref> *</type>
+        <definition>Except_Frame* Except_Frame::prev</definition>
+        <argsstring></argsstring>
+        <name>prev</name>
+        <briefdescription>
+<para>异常帧指针 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/except.h" line="33" column="1" bodyfile="include/except.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_except___frame_1abce4b8de2bbf7d6fb6ef52d618309264" prot="public" static="no" mutable="no">
+        <type>jmp_buf</type>
+        <definition>jmp_buf Except_Frame::env</definition>
+        <argsstring></argsstring>
+        <name>env</name>
+        <briefdescription>
+<para>用于处理嵌套异常 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/except.h" line="34" column="1" bodyfile="include/except.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_except___frame_1a4c8d0ea0c9437ede53e8703feefe0dc6" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* Except_Frame::file</definition>
+        <argsstring></argsstring>
+        <name>file</name>
+        <briefdescription>
+<para>报异常文件 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/except.h" line="35" column="1" bodyfile="include/except.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_except___frame_1aff1099dac68f6f3b8392f2ebe5c8341f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Except_Frame::line</definition>
+        <argsstring></argsstring>
+        <name>line</name>
+        <briefdescription>
+<para>报异常的行号 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/except.h" line="36" column="1" bodyfile="include/except.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_except___frame_1a41f49d856fa1e252bc5f7439f6feeaf8" prot="public" static="no" mutable="no">
+        <type>const <ref refid="struct_except___t" kindref="compound">Except_T</ref> *</type>
+        <definition>const Except_T* Except_Frame::exception</definition>
+        <argsstring></argsstring>
+        <name>exception</name>
+        <briefdescription>
+<para>异常实例指针 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/except.h" line="37" column="1" bodyfile="include/except.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Except_Frame</label>
+        <link refid="struct_except___frame"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>exception</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Except_T</label>
+        <link refid="struct_except___t"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/except.h" line="32" column="1" bodyfile="include/except.h" bodystart="32" bodyend="38"/>
+    <listofallmembers>
+      <member refid="struct_except___frame_1abce4b8de2bbf7d6fb6ef52d618309264" prot="public" virt="non-virtual"><scope>Except_Frame</scope><name>env</name></member>
+      <member refid="struct_except___frame_1a41f49d856fa1e252bc5f7439f6feeaf8" prot="public" virt="non-virtual"><scope>Except_Frame</scope><name>exception</name></member>
+      <member refid="struct_except___frame_1a4c8d0ea0c9437ede53e8703feefe0dc6" prot="public" virt="non-virtual"><scope>Except_Frame</scope><name>file</name></member>
+      <member refid="struct_except___frame_1aff1099dac68f6f3b8392f2ebe5c8341f" prot="public" virt="non-virtual"><scope>Except_Frame</scope><name>line</name></member>
+      <member refid="struct_except___frame_1a4a5323a9c98b198d171a7f0409f3bbae" prot="public" virt="non-virtual"><scope>Except_Frame</scope><name>prev</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

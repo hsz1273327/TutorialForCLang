@@ -1,10 +1,10 @@
-Start testing: Jan 09 22:32 CST
+Start testing: Jan 10 19:45 CST
 ----------------------------------------------------------
 1/1 Testing: DemoRuns
 1/1 Test: DemoRuns
 Command: "/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/bin/Demo"
 Directory: /Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3
-"DemoRuns" start time: Jan 09 22:32 CST
+"DemoRuns" start time: Jan 10 19:45 CST
 Output:
 ----------------------------------------------------------
 mod(A)=2.236068
@@ -15,8 +15,8 @@ add(A,B)=<4.000000,6.000000>
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"DemoRuns" end time: Jan 09 22:32 CST
+"DemoRuns" end time: Jan 10 19:45 CST
 "DemoRuns" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Jan 09 22:32 CST
+End testing: Jan 10 19:45 CST

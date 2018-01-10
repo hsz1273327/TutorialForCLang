@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="assert_8h" kind="file" language="C++">
+    <compoundname>assert.h</compoundname>
+    <includes refid="except_8h" local="yes">except.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>setjmp.h</label>
+      </node>
+      <node id="1">
+        <label>except.h</label>
+        <link refid="except_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="0">
+        <label>include/assert.h</label>
+        <link refid="assert_8h"/>
+        <childnode refid="1" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="assert_8h_1ad6d5aaa966ca7424f7cb9bd01f2c838b" prot="public" static="no">
+        <name>assert</name>
+        <param><defname>e</defname></param>
+        <initializer>((void)((e) || (<ref refid="except_8h_1a45e87c4d7dee50346b15c7761b0b340a" kindref="member">RAISE</ref>(<ref refid="except_8h_1a02c91dd1cedbfe4b9e31d7775e0ead7f" kindref="member">Assert_Failed</ref>), 0)))</initializer>
+        <briefdescription>
+<para>断言宏 </para>        </briefdescription>
+        <detaileddescription>
+<para>[e] int 错误码 </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/assert.h" line="30" column="9" bodyfile="include/assert.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="assert_8h_1ad9980b4bb08dbab85cdca0ecb15c92ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void assert</definition>
+        <argsstring>(int e)</argsstring>
+        <name>assert</name>
+        <param>
+          <type>int</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>断言函数 </para>        </briefdescription>
+        <detaileddescription>
+<para>[e] int 错误码 </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/assert.h" line="23" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>断言库 </para>    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>David R. Hanson </para></simplesect>
+<simplesect kind="date"><para>2018-1-9 </para></simplesect>
+<simplesect kind="version"><para>0.0.1 </para></simplesect>
+<simplesect kind="par"><title>LICENSE MIT</title><para></para></simplesect>
+<simplesect kind="par"><title>添加注释 hsz</title><para></para></simplesect>
+</para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="11"><highlight class="comment">/*<sp/>$Id$<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>assert</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>NDEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>assert(e)<sp/>((void)0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="except_8h" kindref="compound">except.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="assert_8h_1ad6d5aaa966ca7424f7cb9bd01f2c838b" kindref="member">assert</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>e);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="assert_8h_1ad6d5aaa966ca7424f7cb9bd01f2c838b" refkind="member"><highlight class="preprocessor">#define<sp/>assert(e)<sp/>((void)((e)<sp/>||<sp/>(RAISE(Assert_Failed),<sp/>0)))</highlight></codeline>
+<codeline lineno="31"><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="include/assert.h"/>
+  </compounddef>
+</doxygen>

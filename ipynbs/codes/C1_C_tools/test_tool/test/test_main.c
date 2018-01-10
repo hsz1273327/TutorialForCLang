@@ -1,6 +1,8 @@
 #include "minunit.h"
 #include "binary_vector.h"
 
+BINARY_VECTOR A = {1,2},B = {3,4};
+
 MU_TEST(test_check_modA) {
     mu_check(VEC_mod(A) == 2.236068);
 }
