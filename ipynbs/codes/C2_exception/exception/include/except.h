@@ -30,6 +30,7 @@
 * @date                              2018-1-9
 * @version                           0.0.1
 * @par LICENSE                       MIT
+* @par 添加注释                       hsz
 */
 
 #ifndef EXCEPT_INCLUDED

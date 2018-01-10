@@ -12,6 +12,7 @@
 */
 
 /* $Id$ */
+#include <string.h>
 #ifndef MEMORY_INCLUDED
 #define MEMORY_INCLUDED
 #include "except.h"
@@ -21,6 +22,26 @@
 extern const Except_T Mem_Failed; ///< 内存操作失败
 
 /// ## 函数接口
+
+/** 
+* @fn    int memcmp(const void *, const void *, size_t)
+* @params[s1]             void *      要对比的第一段内存指针
+* @params[s2]             void *      要对比的第二段内存指针
+* @params[n]              size_t      要对比长度
+* @return                 int         相当于bool
+* @brief                              对比两端内存是否一致
+*/
+extern int memcmp(const void *s1, const void *s2, size_t n)
+
+/** 
+* @fn    void *memmove(void *, const void *, size_t)
+* @params[s1]             void *      目标地址指针
+* @params[s2]             void *      要移动的对象指针
+* @params[n]              size_t      申请时的代码所在行
+* @return                 void*       复制内容到的地址指针 
+* @brief                              将内存从一段内存移动到另一段内存
+*/
+extern void *memmove(void *s1, const void *s2, size_t n)
 
 /** 
 * @fn    void *Mem_alloc (long nbytes, const char *file, int line)
