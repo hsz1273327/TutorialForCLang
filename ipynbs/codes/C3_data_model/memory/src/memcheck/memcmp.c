@@ -5,7 +5,7 @@ memcmp is defined here because some vendors don't implement
 it, strcmp, or strncmp correctly; they must treat the bytes
 as unsigned chars.
 */
-int memcmp(const void *s1, const void *s2, size_t n) {
+int Mem_memcmp(const void *s1, const void *s2, size_t n) {
 	const unsigned char *cs1 = s1, *cs2 = s2;
 
 	for ( ; n-- > 0; cs1++, cs2++)

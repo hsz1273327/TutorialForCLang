@@ -31,7 +31,7 @@ extern const Except_T Mem_Failed; ///< 内存操作失败
 * @return                 int         相当于bool
 * @brief                              对比两端内存是否一致
 */
-extern int memcmp(const void *s1, const void *s2, size_t n)
+extern int Mem_memcmp(const void *, const void *, size_t);
 
 /** 
 * @fn    void *memmove(void *, const void *, size_t)
@@ -41,7 +41,7 @@ extern int memcmp(const void *s1, const void *s2, size_t n)
 * @return                 void*       复制内容到的地址指针 
 * @brief                              将内存从一段内存移动到另一段内存
 */
-extern void *memmove(void *s1, const void *s2, size_t n)
+extern void *Mem_memmove(void *, const void *, size_t);
 
 /** 
 * @fn    void *Mem_alloc (long nbytes, const char *file, int line)

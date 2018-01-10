@@ -4,7 +4,7 @@
 memmove is defined here because some vendors don't provide it at all
 and others do poor job (like calling malloc) 
 */
-void *memmove(void *s1, const void *s2, size_t n) {
+void *Mem_memmove(void *s1, const void *s2, size_t n) {
     unsigned char *cs1;
     const unsigned char *cs2;
 

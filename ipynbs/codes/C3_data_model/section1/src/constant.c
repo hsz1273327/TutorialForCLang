@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 const float Pi = 3.1415;

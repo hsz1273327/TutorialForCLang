@@ -3,7 +3,7 @@ static char rcsid[] = "$Id$";
 #include <string.h>
 #include "assert.h"
 #include "except.h"
-#include "mem.h"
+#include "memory.h"
 union align {
 #ifdef MAXALIGN
 	char pad[MAXALIGN];
