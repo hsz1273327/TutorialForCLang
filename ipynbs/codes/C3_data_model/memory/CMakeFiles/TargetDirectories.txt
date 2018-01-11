@@ -1,8 +1,0 @@
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C3_data_model/memory/CMakeFiles/install/strip.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C3_data_model/memory/CMakeFiles/install.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C3_data_model/memory/CMakeFiles/list_install_components.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C3_data_model/memory/CMakeFiles/memcheck.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C3_data_model/memory/CMakeFiles/rebuild_cache.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C3_data_model/memory/CMakeFiles/edit_cache.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C3_data_model/memory/CMakeFiles/install/local.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C3_data_model/memory/CMakeFiles/memory.dir

@@ -1,17 +1,22 @@
-cmake_minimum_required (VERSION 2.8)
+﻿cmake_minimum_required (VERSION 2.8)
 project (memory)
-include_directories(${CMAKE_BINARY_DIR}/include ${CMAKE_BINARY_DIR}/thirdpart/include)
+include_directories(${CMAKE_BINARY_DIR}/memory/include)
 
-# 编译动态链接库
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-aux_source_directory(${CMAKE_BINARY_DIR}/src/memory DIR_LIB_SRCS)
-add_library(memory SHARED ${DIR_LIB_SRCS})
+# 编译静态链接库
+## 生产实现
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/lib)
+aux_source_directory(${CMAKE_BINARY_DIR}/memory/src/memory DIR_LIB_SRCS)
+add_library(memory STATIC ${DIR_LIB_SRCS})
 install(TARGETS  memory
-    LIBRARY DESTINATION  CMAKE_LIBRARY_OUTPUT_DIRECTORY  
+    ARCHIVE DESTINATION  CMAKE_LIBRARY_OUTPUT_DIRECTORY  
 )
-aux_source_directory(${CMAKE_BINARY_DIR}/src/memcheck DIR_LIB_CHECK_SRCS)
-add_library(memcheck SHARED ${DIR_LIB_CHECK_SRCS})
+## 稽核实现
+aux_source_directory(${CMAKE_BINARY_DIR}/memory/src/memcheck DIR_LIB_SRCS)
+add_library(memcheck STATIC ${DIR_LIB_SRCS})
 install(TARGETS  memcheck
-    LIBRARY DESTINATION  CMAKE_LIBRARY_OUTPUT_DIRECTORY  
+    ARCHIVE DESTINATION  CMAKE_LIBRARY_OUTPUT_DIRECTORY  
 )
 
+install(FILES memory.h
+    DESTINATION ${CMAKE_BINARY_DIR}/build/include
+)

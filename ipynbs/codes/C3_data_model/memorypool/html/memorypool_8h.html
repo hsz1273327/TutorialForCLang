@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>memorypool: build/include/memorypool.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">memorypool
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_4fef79e7177ba769987a8da36c892c5f.html">build</a></li><li class="navelem"><a class="el" href="dir_8f2980731aba7ec7b9fcae5764f196e3.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle">
+<div class="title">memorypool.h 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>内存池操作  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &quot;except.h&quot;</code><br />
+</div>
+<p><a href="memorypool_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:ab8b89186655b2acbc8a94eac84fb73f6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a></td></tr>
+<tr class="memdesc:ab8b89186655b2acbc8a94eac84fb73f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">内存池结构,内存池描述一大块内存  <a href="#ab8b89186655b2acbc8a94eac84fb73f6">更多...</a><br /></td></tr>
+<tr class="separator:ab8b89186655b2acbc8a94eac84fb73f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:afd00c1d493a2e65865c0b69fe4c853b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memorypool_8h.html#afd00c1d493a2e65865c0b69fe4c853b6">MemoryPool_new</a> (void)</td></tr>
+<tr class="memdesc:afd00c1d493a2e65865c0b69fe4c853b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">在堆上构造一个内存池  <a href="#afd00c1d493a2e65865c0b69fe4c853b6">更多...</a><br /></td></tr>
+<tr class="separator:afd00c1d493a2e65865c0b69fe4c853b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d7c62e6b22f5777e6f8de89922bbc74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memorypool_8h.html#a5d7c62e6b22f5777e6f8de89922bbc74">MemoryPool_dispose</a> (<a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a> *)</td></tr>
+<tr class="memdesc:a5d7c62e6b22f5777e6f8de89922bbc74"><td class="mdescLeft">&#160;</td><td class="mdescRight">释放内存池关联的所有内存,并  <a href="#a5d7c62e6b22f5777e6f8de89922bbc74">更多...</a><br /></td></tr>
+<tr class="separator:a5d7c62e6b22f5777e6f8de89922bbc74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1391e50c47eaed1c7dfbe87ac7926dbd"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memorypool_8h.html#a1391e50c47eaed1c7dfbe87ac7926dbd">MemoryPool_alloc</a> (<a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a>, long, const char *, int)</td></tr>
+<tr class="memdesc:a1391e50c47eaed1c7dfbe87ac7926dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">在内存池中申请一份内存连续的序列,类似malloc  <a href="#a1391e50c47eaed1c7dfbe87ac7926dbd">更多...</a><br /></td></tr>
+<tr class="separator:a1391e50c47eaed1c7dfbe87ac7926dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe52686e2cd8e40df8f39c9735c665b8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memorypool_8h.html#afe52686e2cd8e40df8f39c9735c665b8">MemoryPool_calloc</a> (<a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a>, long, long, const char *, int)</td></tr>
+<tr class="memdesc:afe52686e2cd8e40df8f39c9735c665b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">在内存池中申请一份内存连续的序列,类似calloc  <a href="#afe52686e2cd8e40df8f39c9735c665b8">更多...</a><br /></td></tr>
+<tr class="separator:afe52686e2cd8e40df8f39c9735c665b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a279a9af4fe528a11c22ae7b730f31b26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memorypool_8h.html#a279a9af4fe528a11c22ae7b730f31b26">MemoryPool_free</a> (<a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a>)</td></tr>
+<tr class="memdesc:a279a9af4fe528a11c22ae7b730f31b26"><td class="mdescLeft">&#160;</td><td class="mdescRight">释放内存池全部内容  <a href="#a279a9af4fe528a11c22ae7b730f31b26">更多...</a><br /></td></tr>
+<tr class="separator:a279a9af4fe528a11c22ae7b730f31b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a63f805019aa7eb885fd8eed4a734b1be"><td class="memItemLeft" align="right" valign="top"><a id="a63f805019aa7eb885fd8eed4a734b1be"></a>
+const Except_T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memorypool_8h.html#a63f805019aa7eb885fd8eed4a734b1be">MemoryPool_NewFailed</a></td></tr>
+<tr class="memdesc:a63f805019aa7eb885fd8eed4a734b1be"><td class="mdescLeft">&#160;</td><td class="mdescRight">内存池new操作失败 <br /></td></tr>
+<tr class="separator:a63f805019aa7eb885fd8eed4a734b1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a377690fb20aaaabd2834974d42e1c46c"><td class="memItemLeft" align="right" valign="top"><a id="a377690fb20aaaabd2834974d42e1c46c"></a>
+const Except_T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memorypool_8h.html#a377690fb20aaaabd2834974d42e1c46c">MemoryPool_Failed</a></td></tr>
+<tr class="memdesc:a377690fb20aaaabd2834974d42e1c46c"><td class="mdescLeft">&#160;</td><td class="mdescRight">内存池操作失败 <br /></td></tr>
+<tr class="separator:a377690fb20aaaabd2834974d42e1c46c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>内存池操作 </p>
+<dl class="section author"><dt>作者</dt><dd>David R. Hanson </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2018-1-9 </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.0.1 </dd></dl>
+<dl class="section user"><dt>LICENSE MIT</dt><dd></dd></dl>
+</div><h2 class="groupheader">类型定义说明</h2>
+<a id="ab8b89186655b2acbc8a94eac84fb73f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8b89186655b2acbc8a94eac84fb73f6">&#9670;&nbsp;</a></span>MemoryPool_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>内存池结构,内存池描述一大块内存 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">[prev]</td><td>struct MemoryPool_T * 下一段池头地址 </td></tr>
+    <tr><td class="paramname">[avail]</td><td>char * 本段内存中第一个空闲位置 </td></tr>
+    <tr><td class="paramname">[limit]</td><td>char * 本段结束位置,从avail到limit之前的空间可以用于分配 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>作者</dt><dd>David R. Hanson </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2018-1-9 </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.0.1 </dd></dl>
+<dl class="section user"><dt>LICENSE MIT</dt><dd></dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a1391e50c47eaed1c7dfbe87ac7926dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1391e50c47eaed1c7dfbe87ac7926dbd">&#9670;&nbsp;</a></span>MemoryPool_alloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * MemoryPool_alloc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在内存池中申请一份内存连续的序列,类似malloc </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">[memory_pool]</td><td>MemoryPool_T 目标内存池 </td></tr>
+    <tr><td class="paramname">[nbytes]</td><td>long 开辟内存单个的大小 </td></tr>
+    <tr><td class="paramname">[file]</td><td>const char* 文件 </td></tr>
+    <tr><td class="paramname">[line]</td><td>int 执行所在行 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>void* 新空间区域的首地址 </dd></dl>
+<dl class="section author"><dt>作者</dt><dd>David R. Hanson </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2018-1-9 </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.0.1 </dd></dl>
+<dl class="section user"><dt>LICENSE MIT</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="afe52686e2cd8e40df8f39c9735c665b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe52686e2cd8e40df8f39c9735c665b8">&#9670;&nbsp;</a></span>MemoryPool_calloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * MemoryPool_calloc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在内存池中申请一份内存连续的序列,类似calloc </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">[memory_pool]</td><td>MemoryPool_T 目标内存池 </td></tr>
+    <tr><td class="paramname">[count]</td><td>long 开辟内存序列的个数 </td></tr>
+    <tr><td class="paramname">[nbytes]</td><td>long 开辟内存单个的大小 </td></tr>
+    <tr><td class="paramname">[file]</td><td>const char* 文件 </td></tr>
+    <tr><td class="paramname">[line]</td><td>int 执行所在行 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>void* 新空间区域的首地址 </dd></dl>
+<dl class="section author"><dt>作者</dt><dd>David R. Hanson </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2018-1-9 </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.0.1 </dd></dl>
+<dl class="section user"><dt>LICENSE MIT</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a5d7c62e6b22f5777e6f8de89922bbc74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d7c62e6b22f5777e6f8de89922bbc74">&#9670;&nbsp;</a></span>MemoryPool_dispose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MemoryPool_dispose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>释放内存池关联的所有内存,并 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">[ap]</td><td>MemoryPool_T* 要释放的内存池指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>作者</dt><dd>David R. Hanson </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2018-1-9 </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.0.1 </dd></dl>
+<dl class="section user"><dt>LICENSE MIT</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a279a9af4fe528a11c22ae7b730f31b26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a279a9af4fe528a11c22ae7b730f31b26">&#9670;&nbsp;</a></span>MemoryPool_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MemoryPool_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>释放内存池全部内容 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">[memory_pool]</td><td>MemoryPool_T 要释放的内存池对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>作者</dt><dd>David R. Hanson </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2018-1-9 </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.0.1 </dd></dl>
+<dl class="section user"><dt>LICENSE MIT</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="afd00c1d493a2e65865c0b69fe4c853b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd00c1d493a2e65865c0b69fe4c853b6">&#9670;&nbsp;</a></span>MemoryPool_new()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="memorypool_8h.html#ab8b89186655b2acbc8a94eac84fb73f6">MemoryPool_T</a> MemoryPool_new </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在堆上构造一个内存池 </p>
+<dl class="section return"><dt>返回</dt><dd>MemoryPool_T 实例化的内存池对象 </dd></dl>
+<dl class="section author"><dt>作者</dt><dd>David R. Hanson </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2018-1-9 </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.0.1 </dd></dl>
+<dl class="section user"><dt>LICENSE MIT</dt><dd></dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>
