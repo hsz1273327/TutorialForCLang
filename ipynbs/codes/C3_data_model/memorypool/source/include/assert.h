@@ -1,6 +1,8 @@
 /** 
 * @file                              assert.h
 * @brief                             断言库
+* @detail  断言库
+* @par 依赖          except.h
 * @author                            David R. Hanson
 * @date                              2018-1-9
 * @version                           0.0.1
@@ -9,6 +11,9 @@
 */
 
 /* $Id$ */
+#ifndef ASSERT_INCLUDED
+#define ASSERT_INCLUDED
+
 #undef assert
 #ifdef NDEBUG
 #define assert(e) ((void)0)

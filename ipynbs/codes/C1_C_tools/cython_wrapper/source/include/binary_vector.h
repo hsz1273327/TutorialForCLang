@@ -10,6 +10,7 @@ struct BINARY_VECTOR {
 typedef struct BINARY_VECTOR *BINARY_VECTOR_P;
 
 BINARY_VECTOR_P VEC_new(void);
+BINARY_VECTOR_P VEC_init(float x,float y);
 void VEC_del(BINARY_VECTOR_P);
 
 float VEC_mod(BINARY_VECTOR_P);

@@ -1,6 +1,9 @@
 /** 
 * @file                              memorypool.h
 * @brief                             内存池操作
+* @detial  内存池操作,有一定的风险
+* @par 依赖     except.h
+*               assert.h
 * @author                            David R. Hanson
 * @date                              2018-1-9
 * @version                           0.0.1

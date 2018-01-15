@@ -1,6 +1,8 @@
 /** 
 * @file                              except.h
 * @brief                             异常处理
+* @detail 用于异常处理,这是一个简单的实现,
+* @par  依赖        assert.h
 * @author                            David R. Hanson
 * @date                              2018-1-9
 * @version                           0.0.1
@@ -24,6 +26,9 @@
 typedef struct Except_T {
     const char* reason; ///< reason   str   原因字符串
 } Except_T;
+
+extern const Except_T Assert_Failed; ///<    定义Assert_Failed异常
+
 
 /** 
 * @typedef           Except_Frame
@@ -49,8 +54,8 @@ struct Except_Frame {
 };
 
 /** 
-*@enum                     Except_Status       
-*@brief                    异常的4个状态
+* @enum                     Except_Status       
+* @brief                    异常的4个状态
 */
 enum Except_Status{
     Except_entered = 0, ///< 进入异常处理块状态
@@ -60,14 +65,15 @@ enum Except_Status{
 };
 
 extern Except_Frame* Except_stack; ///<           实例化一个异常栈
-extern const Except_T Assert_Failed; ///<   定义Assert_Failed异常
+
+
 
 /** 
-*@fn     void Except_raise(const Except_T *,const char *,int)
-*@brief                                                    抛出异常
-*@param [e]                    const Except_T*         要抛出的异常   
-*@param [file]                 const char*         抛出异常的文件名  
-*@param [line]                 int                 抛出的异常所在行   
+* @fn     void Except_raise(const Except_T *,const char *,int)
+* @brief                                                    抛出异常
+* @param [e]                    const Except_T*         要抛出的异常   
+* @param [file]                 const char*         抛出异常的文件名  
+* @param [line]                 int                 抛出的异常所在行   
 */
 void Except_raise(const Except_T*, const char*, int);
 
@@ -77,21 +83,21 @@ void Except_raise(const Except_T*, const char*, int);
 extern int Except_index; ///< 异常mulu
 
 /** 
-*@fn        void Except_init(void)
-*@brief                  异常处理块的初始化
+* @fn        void Except_init(void)
+* @brief                  异常处理块的初始化
 */
 extern void Except_init(void);
 
 /** 
-*@fn        void Except_push(Except_Frame*)
-*@param [fp]                       Except_Frame*          要抛出的异常    
-*@brief     将异常压入栈
+* @fn        void Except_push(Except_Frame*)
+* @param [fp]                       Except_Frame*          要抛出的异常    
+* @brief     将异常压入栈
 */
 extern void Except_push(Except_Frame*);
 
 /** 
-*@fn        void Except_pop(void) 
-*@brief     将异常从栈中取出
+* @fn        void Except_pop(void) 
+* @brief     将异常从栈中取出
 */
 extern void Except_pop(void);
 #endif
@@ -100,29 +106,29 @@ extern void Except_pop(void);
 #ifdef WIN32
 /* $Id$ */
 /** 
-*@def                                RAISE(e)
-*@param     e     Except_T           异常结构的实例         
-*@brief                              抛出异常
+* @def                                RAISE(e)
+* @param     e     Except_T           异常结构的实例         
+* @brief                              抛出异常
 */
-#define RAISE(e) Except_raise(&(e), __FILE__, __LINE__)
+extern const Except_T RAISE(e) Except_raise(&(e), __FILE__, __LINE__)
 
 /** 
-*@def                                RERAISE
-*@brief                              重复抛出异常
+* @def                                RERAISE
+* @brief                              重复抛出异常
 */
 #define RERAISE Except_raise(Except_frame.exception, \
     Except_frame.file, Except_frame.line)
 /** 
-*@def                                RETURN
-*@brief                              返回
+* @def                                RETURN
+* @brief                              返回
 */
 #define RETURN               \
     switch (Except_pop(), 0) \
     default:                 \
         return
 /** 
-*@def                                TRY
-*@brief                              Try关键字
+* @def                                TRY
+* @brief                              Try关键字
 */
 #define TRY                                     \
     do {                                        \
@@ -135,9 +141,9 @@ extern void Except_pop(void);
         if (Except_flag == Except_entered) {
 
 /** 
-*@def                                EXCEPT(e)
-*@param     e     Except_T           异常结构的实例 
-*@brief                              EXCEPT关键字
+* @def                                EXCEPT(e)
+* @param     e     Except_T           异常结构的实例 
+* @brief                              EXCEPT关键字
 */
 #define EXCEPT(e)                            \
     if (Except_flag == Except_entered)       \
@@ -148,8 +154,8 @@ extern void Except_pop(void);
         Except_flag = Except_handled;
 
 /** 
-*@def                                ELSE
-*@brief                              ELSE关键字
+* @def                                ELSE
+* @brief                              ELSE关键字
 */
 #define ELSE                           \
     if (Except_flag == Except_entered) \
@@ -160,8 +166,8 @@ extern void Except_pop(void);
         Except_flag = Except_handled;
 
 /** 
-*@def                                FINALLY
-*@brief                              FINALLY关键字
+* @def                                FINALLY
+* @brief                              FINALLY关键字
 */
 #define FINALLY                            \
     if (Except_flag == Except_entered)     \
@@ -172,8 +178,8 @@ extern void Except_pop(void);
             Except_flag = Except_finalized;
 
 /** 
-*@def                                END_TRY
-*@brief                              END_TRY关键字
+* @def                                END_TRY
+* @brief                              END_TRY关键字
 */
 #define END_TRY                        \
     if (Except_flag == Except_entered) \
@@ -187,22 +193,22 @@ extern void Except_pop(void);
 #else
 
 /** 
-*@def                                RAISE(e)
-*@param     e     Except_T           异常结构的实例      
-*@brief                              抛出异常
+* @def                                RAISE(e)
+* @param     e     Except_T           异常结构的实例      
+* @brief                              抛出异常
 */
 #define RAISE(e) Except_raise(&(e), __FILE__, __LINE__)
 
 /** 
-*@def                                RERAISE
-*@brief                              重复抛出异常
+* @def                                RERAISE
+* @brief                              重复抛出异常
 */
 #define RERAISE Except_raise(Except_frame.exception, \
     Except_frame.file, Except_frame.line)
 
 /** 
-*@def                                RETURN
-*@brief                              返回
+* @def                                RETURN
+* @brief                              返回
 */
 #define RETURN                                    \
     switch (Except_stack = Except_stack->prev, 0) \
@@ -210,8 +216,8 @@ extern void Except_pop(void);
         return
 
 /** 
-*@def                                TRY
-*@brief                              Try关键字
+* @def                                TRY
+* @brief                              Try关键字
 */
 #define TRY                                     \
     do {                                        \
@@ -223,9 +229,9 @@ extern void Except_pop(void);
         if (Except_flag == Except_entered) {
 
 /** 
-*@def                                EXCEPT(e)
-*@param     e     Except_T           异常结构的实例      
-*@brief                              EXCEPT关键字
+* @def                                EXCEPT(e)
+* @param     e     Except_T           异常结构的实例      
+* @brief                              EXCEPT关键字
 */
 #define EXCEPT(e)                            \
     if (Except_flag == Except_entered)       \
@@ -236,8 +242,8 @@ extern void Except_pop(void);
         Except_flag = Except_handled;
 
 /** 
-*@def                                ELSE
-*@brief                              ELSE关键字
+* @def                                ELSE
+* @brief                              ELSE关键字
 */
 #define ELSE                               \
     if (Except_flag == Except_entered)     \
@@ -248,8 +254,8 @@ extern void Except_pop(void);
         Except_flag = Except_handled;
 
 /** 
-*@def                                FINALLY
-*@brief                              FINALLY关键字
+* @def                                FINALLY
+* @brief                              FINALLY关键字
 */
 #define FINALLY                            \
     if (Except_flag == Except_entered)     \
@@ -260,8 +266,8 @@ extern void Except_pop(void);
             Except_flag = Except_finalized;
 
 /** 
-*@def                                END_TRY
-*@brief                              END_TRY关键字
+* @def                                END_TRY
+* @brief                              END_TRY关键字
 */
 #define END_TRY                            \
     if (Except_flag == Except_entered)     \

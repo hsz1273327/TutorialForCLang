@@ -1,16 +1,17 @@
 static char rcsid[] = "$Id$";
 #include <stddef.h>
 #include "assert.h"
-#include "mem.h"
+#include "memory.h"
 #include "stack.h"
 #define T Stack_T
-struct T {
+struct Stack_S {
 	int count;
 	struct elem {
 		void *x;
 		struct elem *link;
 	} *head;
 };
+
 T Stack_new(void) {
 	T stk;
 	NEW(stk);
