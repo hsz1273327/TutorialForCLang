@@ -4,11 +4,17 @@
 {
     "distutils": {
         "depends": [
-            "binary_vector.h"
+            "../build/include/binary_vector.h"
+        ],
+        "include_dirs": [
+            "../build/include"
         ],
         "language": "c",
-        "sources": [
-            "binary_vector.c"
+        "libraries": [
+            "vector"
+        ],
+        "library_dirs": [
+            "../build/lib"
         ]
     },
     "module_name": "binaryvector"
@@ -646,7 +652,7 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_12binaryvector_BinaryVector;
 
-/* "binaryvector.pyx":20
+/* "binaryvector.pyx":18
  *     float VEC_mul(BINARY_VECTOR_P,BINARY_VECTOR_P)
  * 
  * cdef class BinaryVector:             # <<<<<<<<<<<<<<
@@ -873,7 +879,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_10__add__(PyObject *__py
 static PyObject *__pyx_pf_12binaryvector_12BinaryVector_12mod(struct __pyx_obj_12binaryvector_BinaryVector *__pyx_v_self); /* proto */
 static PyObject *__pyx_tp_new_12binaryvector_BinaryVector(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 
-/* "binaryvector.pyx":23
+/* "binaryvector.pyx":21
  *     cdef BINARY_VECTOR_P _vec
  * 
  *     def __cinit__(self,float x,float y):             # <<<<<<<<<<<<<<
@@ -909,11 +915,11 @@ static int __pyx_pw_12binaryvector_12BinaryVector_1__cinit__(PyObject *__pyx_v_s
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, 1); __PYX_ERR(0, 23, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, 1); __PYX_ERR(0, 21, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 23, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 21, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -921,12 +927,12 @@ static int __pyx_pw_12binaryvector_12BinaryVector_1__cinit__(PyObject *__pyx_v_s
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsFloat(values[0]); if (unlikely((__pyx_v_x == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v_y = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_y == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsFloat(values[0]); if (unlikely((__pyx_v_x == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L3_error)
+    __pyx_v_y = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_y == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 23, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 21, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("binaryvector.BinaryVector.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -945,7 +951,7 @@ static int __pyx_pf_12binaryvector_12BinaryVector___cinit__(struct __pyx_obj_12b
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "binaryvector.pyx":24
+  /* "binaryvector.pyx":22
  * 
  *     def __cinit__(self,float x,float y):
  *         self._vec = VEC_init(x,y)             # <<<<<<<<<<<<<<
@@ -954,7 +960,7 @@ static int __pyx_pf_12binaryvector_12BinaryVector___cinit__(struct __pyx_obj_12b
  */
   __pyx_v_self->_vec = VEC_init(__pyx_v_x, __pyx_v_y);
 
-  /* "binaryvector.pyx":25
+  /* "binaryvector.pyx":23
  *     def __cinit__(self,float x,float y):
  *         self._vec = VEC_init(x,y)
  *         if self._vec is NULL:             # <<<<<<<<<<<<<<
@@ -964,16 +970,16 @@ static int __pyx_pf_12binaryvector_12BinaryVector___cinit__(struct __pyx_obj_12b
   __pyx_t_1 = ((__pyx_v_self->_vec == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "binaryvector.pyx":26
+    /* "binaryvector.pyx":24
  *         self._vec = VEC_init(x,y)
  *         if self._vec is NULL:
  *             raise MemoryError             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 26, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 24, __pyx_L1_error)
 
-    /* "binaryvector.pyx":25
+    /* "binaryvector.pyx":23
  *     def __cinit__(self,float x,float y):
  *         self._vec = VEC_init(x,y)
  *         if self._vec is NULL:             # <<<<<<<<<<<<<<
@@ -982,7 +988,7 @@ static int __pyx_pf_12binaryvector_12BinaryVector___cinit__(struct __pyx_obj_12b
  */
   }
 
-  /* "binaryvector.pyx":23
+  /* "binaryvector.pyx":21
  *     cdef BINARY_VECTOR_P _vec
  * 
  *     def __cinit__(self,float x,float y):             # <<<<<<<<<<<<<<
@@ -1001,7 +1007,7 @@ static int __pyx_pf_12binaryvector_12BinaryVector___cinit__(struct __pyx_obj_12b
   return __pyx_r;
 }
 
-/* "binaryvector.pyx":28
+/* "binaryvector.pyx":26
  *             raise MemoryError
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1025,7 +1031,7 @@ static void __pyx_pf_12binaryvector_12BinaryVector_2__dealloc__(struct __pyx_obj
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "binaryvector.pyx":29
+  /* "binaryvector.pyx":27
  * 
  *     def __dealloc__(self):
  *         if self._vec is not NULL:             # <<<<<<<<<<<<<<
@@ -1035,7 +1041,7 @@ static void __pyx_pf_12binaryvector_12BinaryVector_2__dealloc__(struct __pyx_obj
   __pyx_t_1 = ((__pyx_v_self->_vec != NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "binaryvector.pyx":30
+    /* "binaryvector.pyx":28
  *     def __dealloc__(self):
  *         if self._vec is not NULL:
  *             VEC_del(self._vec)             # <<<<<<<<<<<<<<
@@ -1044,7 +1050,7 @@ static void __pyx_pf_12binaryvector_12BinaryVector_2__dealloc__(struct __pyx_obj
  */
     VEC_del(__pyx_v_self->_vec);
 
-    /* "binaryvector.pyx":29
+    /* "binaryvector.pyx":27
  * 
  *     def __dealloc__(self):
  *         if self._vec is not NULL:             # <<<<<<<<<<<<<<
@@ -1053,7 +1059,7 @@ static void __pyx_pf_12binaryvector_12BinaryVector_2__dealloc__(struct __pyx_obj
  */
   }
 
-  /* "binaryvector.pyx":28
+  /* "binaryvector.pyx":26
  *             raise MemoryError
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1065,7 +1071,7 @@ static void __pyx_pf_12binaryvector_12BinaryVector_2__dealloc__(struct __pyx_obj
   __Pyx_RefNannyFinishContext();
 }
 
-/* "binaryvector.pyx":33
+/* "binaryvector.pyx":31
  * 
  *     property x:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -1092,7 +1098,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_1x___get__(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "binaryvector.pyx":34
+  /* "binaryvector.pyx":32
  *     property x:
  *         def __get__(self):
  *             return self._vec.x             # <<<<<<<<<<<<<<
@@ -1100,13 +1106,13 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_1x___get__(struct __pyx_
  *             self._vec.x = new_x
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_vec->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_vec->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "binaryvector.pyx":33
+  /* "binaryvector.pyx":31
  * 
  *     property x:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -1125,7 +1131,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_1x___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "binaryvector.pyx":35
+/* "binaryvector.pyx":33
  *         def __get__(self):
  *             return self._vec.x
  *         def __set__(self,new_x):             # <<<<<<<<<<<<<<
@@ -1152,17 +1158,17 @@ static int __pyx_pf_12binaryvector_12BinaryVector_1x_2__set__(struct __pyx_obj_1
   float __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "binaryvector.pyx":36
+  /* "binaryvector.pyx":34
  *             return self._vec.x
  *         def __set__(self,new_x):
  *             self._vec.x = new_x             # <<<<<<<<<<<<<<
  *     property y:
  *         def __get__(self):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_new_x); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_new_x); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 34, __pyx_L1_error)
   __pyx_v_self->_vec->x = __pyx_t_1;
 
-  /* "binaryvector.pyx":35
+  /* "binaryvector.pyx":33
  *         def __get__(self):
  *             return self._vec.x
  *         def __set__(self,new_x):             # <<<<<<<<<<<<<<
@@ -1181,7 +1187,7 @@ static int __pyx_pf_12binaryvector_12BinaryVector_1x_2__set__(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "binaryvector.pyx":38
+/* "binaryvector.pyx":36
  *             self._vec.x = new_x
  *     property y:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -1208,7 +1214,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_1y___get__(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "binaryvector.pyx":39
+  /* "binaryvector.pyx":37
  *     property y:
  *         def __get__(self):
  *             return self._vec.y             # <<<<<<<<<<<<<<
@@ -1216,13 +1222,13 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_1y___get__(struct __pyx_
  *             self._vec.y = new_y
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_vec->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_vec->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "binaryvector.pyx":38
+  /* "binaryvector.pyx":36
  *             self._vec.x = new_x
  *     property y:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -1241,7 +1247,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_1y___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "binaryvector.pyx":40
+/* "binaryvector.pyx":38
  *         def __get__(self):
  *             return self._vec.y
  *         def __set__(self,new_y):             # <<<<<<<<<<<<<<
@@ -1268,17 +1274,17 @@ static int __pyx_pf_12binaryvector_12BinaryVector_1y_2__set__(struct __pyx_obj_1
   float __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "binaryvector.pyx":41
+  /* "binaryvector.pyx":39
  *             return self._vec.y
  *         def __set__(self,new_y):
  *             self._vec.y = new_y             # <<<<<<<<<<<<<<
  *     cpdef mul(self,BinaryVector that):
  *         return VEC_mul(self._vec,that._vec)
  */
-  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_new_y); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_new_y); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L1_error)
   __pyx_v_self->_vec->y = __pyx_t_1;
 
-  /* "binaryvector.pyx":40
+  /* "binaryvector.pyx":38
  *         def __get__(self):
  *             return self._vec.y
  *         def __set__(self,new_y):             # <<<<<<<<<<<<<<
@@ -1297,7 +1303,7 @@ static int __pyx_pf_12binaryvector_12BinaryVector_1y_2__set__(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "binaryvector.pyx":42
+/* "binaryvector.pyx":40
  *         def __set__(self,new_y):
  *             self._vec.y = new_y
  *     cpdef mul(self,BinaryVector that):             # <<<<<<<<<<<<<<
@@ -1319,7 +1325,7 @@ static PyObject *__pyx_f_12binaryvector_12BinaryVector_mul(struct __pyx_obj_12bi
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mul); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mul); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_12binaryvector_12BinaryVector_5mul)) {
       __Pyx_XDECREF(__pyx_r);
@@ -1335,13 +1341,13 @@ static PyObject *__pyx_f_12binaryvector_12BinaryVector_mul(struct __pyx_obj_12bi
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_that)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_that)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_that)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -1349,19 +1355,19 @@ static PyObject *__pyx_f_12binaryvector_12BinaryVector_mul(struct __pyx_obj_12bi
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, ((PyObject *)__pyx_v_that)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 42, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(((PyObject *)__pyx_v_that));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_that));
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_that));
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
@@ -1375,7 +1381,7 @@ static PyObject *__pyx_f_12binaryvector_12BinaryVector_mul(struct __pyx_obj_12bi
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "binaryvector.pyx":43
+  /* "binaryvector.pyx":41
  *             self._vec.y = new_y
  *     cpdef mul(self,BinaryVector that):
  *         return VEC_mul(self._vec,that._vec)             # <<<<<<<<<<<<<<
@@ -1383,13 +1389,13 @@ static PyObject *__pyx_f_12binaryvector_12BinaryVector_mul(struct __pyx_obj_12bi
  *     def __mul__(self,BinaryVector that):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(VEC_mul(__pyx_v_self->_vec, __pyx_v_that->_vec)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(VEC_mul(__pyx_v_self->_vec, __pyx_v_that->_vec)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "binaryvector.pyx":42
+  /* "binaryvector.pyx":40
  *         def __set__(self,new_y):
  *             self._vec.y = new_y
  *     cpdef mul(self,BinaryVector that):             # <<<<<<<<<<<<<<
@@ -1418,7 +1424,7 @@ static PyObject *__pyx_pw_12binaryvector_12BinaryVector_5mul(PyObject *__pyx_v_s
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("mul (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_that), __pyx_ptype_12binaryvector_BinaryVector, 1, "that", 0))) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_that), __pyx_ptype_12binaryvector_BinaryVector, 1, "that", 0))) __PYX_ERR(0, 40, __pyx_L1_error)
   __pyx_r = __pyx_pf_12binaryvector_12BinaryVector_4mul(((struct __pyx_obj_12binaryvector_BinaryVector *)__pyx_v_self), ((struct __pyx_obj_12binaryvector_BinaryVector *)__pyx_v_that));
 
   /* function exit code */
@@ -1436,7 +1442,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_4mul(struct __pyx_obj_12
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("mul", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_12binaryvector_12BinaryVector_mul(__pyx_v_self, __pyx_v_that, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_12binaryvector_12BinaryVector_mul(__pyx_v_self, __pyx_v_that, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -1453,7 +1459,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_4mul(struct __pyx_obj_12
   return __pyx_r;
 }
 
-/* "binaryvector.pyx":45
+/* "binaryvector.pyx":43
  *         return VEC_mul(self._vec,that._vec)
  * 
  *     def __mul__(self,BinaryVector that):             # <<<<<<<<<<<<<<
@@ -1467,7 +1473,7 @@ static PyObject *__pyx_pw_12binaryvector_12BinaryVector_7__mul__(PyObject *__pyx
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__mul__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_that), __pyx_ptype_12binaryvector_BinaryVector, 1, "that", 0))) __PYX_ERR(0, 45, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_that), __pyx_ptype_12binaryvector_BinaryVector, 1, "that", 0))) __PYX_ERR(0, 43, __pyx_L1_error)
   __pyx_r = __pyx_pf_12binaryvector_12BinaryVector_6__mul__(((PyObject *)__pyx_v_self), ((struct __pyx_obj_12binaryvector_BinaryVector *)__pyx_v_that));
 
   /* function exit code */
@@ -1488,7 +1494,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_6__mul__(PyObject *__pyx
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__mul__", 0);
 
-  /* "binaryvector.pyx":46
+  /* "binaryvector.pyx":44
  * 
  *     def __mul__(self,BinaryVector that):
  *         return self.mul(that)             # <<<<<<<<<<<<<<
@@ -1496,7 +1502,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_6__mul__(PyObject *__pyx
  *     def add(self,BinaryVector that):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_mul); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_mul); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1509,13 +1515,13 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_6__mul__(PyObject *__pyx
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, ((PyObject *)__pyx_v_that)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, ((PyObject *)__pyx_v_that)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, ((PyObject *)__pyx_v_that)};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -1523,19 +1529,19 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_6__mul__(PyObject *__pyx
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, ((PyObject *)__pyx_v_that)};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 46, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 44, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(((PyObject *)__pyx_v_that));
       __Pyx_GIVEREF(((PyObject *)__pyx_v_that));
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, ((PyObject *)__pyx_v_that));
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -1545,7 +1551,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_6__mul__(PyObject *__pyx
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "binaryvector.pyx":45
+  /* "binaryvector.pyx":43
  *         return VEC_mul(self._vec,that._vec)
  * 
  *     def __mul__(self,BinaryVector that):             # <<<<<<<<<<<<<<
@@ -1567,7 +1573,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_6__mul__(PyObject *__pyx
   return __pyx_r;
 }
 
-/* "binaryvector.pyx":48
+/* "binaryvector.pyx":46
  *         return self.mul(that)
  * 
  *     def add(self,BinaryVector that):             # <<<<<<<<<<<<<<
@@ -1581,7 +1587,7 @@ static PyObject *__pyx_pw_12binaryvector_12BinaryVector_9add(PyObject *__pyx_v_s
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("add (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_that), __pyx_ptype_12binaryvector_BinaryVector, 1, "that", 0))) __PYX_ERR(0, 48, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_that), __pyx_ptype_12binaryvector_BinaryVector, 1, "that", 0))) __PYX_ERR(0, 46, __pyx_L1_error)
   __pyx_r = __pyx_pf_12binaryvector_12BinaryVector_8add(((struct __pyx_obj_12binaryvector_BinaryVector *)__pyx_v_self), ((struct __pyx_obj_12binaryvector_BinaryVector *)__pyx_v_that));
 
   /* function exit code */
@@ -1604,7 +1610,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_8add(struct __pyx_obj_12
   int __pyx_t_4;
   __Pyx_RefNannySetupContext("add", 0);
 
-  /* "binaryvector.pyx":50
+  /* "binaryvector.pyx":48
  *     def add(self,BinaryVector that):
  *         cdef BINARY_VECTOR_P ptr
  *         ptr = VEC_add(self._vec,that._vec)             # <<<<<<<<<<<<<<
@@ -1613,18 +1619,18 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_8add(struct __pyx_obj_12
  */
   __pyx_v_ptr = VEC_add(__pyx_v_self->_vec, __pyx_v_that->_vec);
 
-  /* "binaryvector.pyx":51
+  /* "binaryvector.pyx":49
  *         cdef BINARY_VECTOR_P ptr
  *         ptr = VEC_add(self._vec,that._vec)
  *         result = BinaryVector(ptr.x,ptr.y)             # <<<<<<<<<<<<<<
  *         if ptr is not NULL:
  *             VEC_del(ptr)
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_ptr->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_ptr->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_ptr->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_ptr->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -1632,13 +1638,13 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_8add(struct __pyx_obj_12
   PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12binaryvector_BinaryVector), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12binaryvector_BinaryVector), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_result = ((struct __pyx_obj_12binaryvector_BinaryVector *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "binaryvector.pyx":52
+  /* "binaryvector.pyx":50
  *         ptr = VEC_add(self._vec,that._vec)
  *         result = BinaryVector(ptr.x,ptr.y)
  *         if ptr is not NULL:             # <<<<<<<<<<<<<<
@@ -1648,7 +1654,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_8add(struct __pyx_obj_12
   __pyx_t_4 = ((__pyx_v_ptr != NULL) != 0);
   if (__pyx_t_4) {
 
-    /* "binaryvector.pyx":53
+    /* "binaryvector.pyx":51
  *         result = BinaryVector(ptr.x,ptr.y)
  *         if ptr is not NULL:
  *             VEC_del(ptr)             # <<<<<<<<<<<<<<
@@ -1657,7 +1663,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_8add(struct __pyx_obj_12
  */
     VEC_del(__pyx_v_ptr);
 
-    /* "binaryvector.pyx":52
+    /* "binaryvector.pyx":50
  *         ptr = VEC_add(self._vec,that._vec)
  *         result = BinaryVector(ptr.x,ptr.y)
  *         if ptr is not NULL:             # <<<<<<<<<<<<<<
@@ -1666,7 +1672,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_8add(struct __pyx_obj_12
  */
   }
 
-  /* "binaryvector.pyx":54
+  /* "binaryvector.pyx":52
  *         if ptr is not NULL:
  *             VEC_del(ptr)
  *         return result             # <<<<<<<<<<<<<<
@@ -1678,7 +1684,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_8add(struct __pyx_obj_12
   __pyx_r = ((PyObject *)__pyx_v_result);
   goto __pyx_L0;
 
-  /* "binaryvector.pyx":48
+  /* "binaryvector.pyx":46
  *         return self.mul(that)
  * 
  *     def add(self,BinaryVector that):             # <<<<<<<<<<<<<<
@@ -1700,7 +1706,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_8add(struct __pyx_obj_12
   return __pyx_r;
 }
 
-/* "binaryvector.pyx":55
+/* "binaryvector.pyx":53
  *             VEC_del(ptr)
  *         return result
  *     def __add__(self,BinaryVector that):             # <<<<<<<<<<<<<<
@@ -1714,7 +1720,7 @@ static PyObject *__pyx_pw_12binaryvector_12BinaryVector_11__add__(PyObject *__py
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__add__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_that), __pyx_ptype_12binaryvector_BinaryVector, 1, "that", 0))) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_that), __pyx_ptype_12binaryvector_BinaryVector, 1, "that", 0))) __PYX_ERR(0, 53, __pyx_L1_error)
   __pyx_r = __pyx_pf_12binaryvector_12BinaryVector_10__add__(((PyObject *)__pyx_v_self), ((struct __pyx_obj_12binaryvector_BinaryVector *)__pyx_v_that));
 
   /* function exit code */
@@ -1735,7 +1741,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_10__add__(PyObject *__py
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__add__", 0);
 
-  /* "binaryvector.pyx":56
+  /* "binaryvector.pyx":54
  *         return result
  *     def __add__(self,BinaryVector that):
  *         return self.add(that)             # <<<<<<<<<<<<<<
@@ -1743,7 +1749,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_10__add__(PyObject *__py
  *         return VEC_mod(self._vec)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_add); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_add); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1756,13 +1762,13 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_10__add__(PyObject *__py
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, ((PyObject *)__pyx_v_that)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, ((PyObject *)__pyx_v_that)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, ((PyObject *)__pyx_v_that)};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -1770,19 +1776,19 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_10__add__(PyObject *__py
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, ((PyObject *)__pyx_v_that)};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 54, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(((PyObject *)__pyx_v_that));
       __Pyx_GIVEREF(((PyObject *)__pyx_v_that));
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, ((PyObject *)__pyx_v_that));
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -1792,7 +1798,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_10__add__(PyObject *__py
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "binaryvector.pyx":55
+  /* "binaryvector.pyx":53
  *             VEC_del(ptr)
  *         return result
  *     def __add__(self,BinaryVector that):             # <<<<<<<<<<<<<<
@@ -1814,7 +1820,7 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_10__add__(PyObject *__py
   return __pyx_r;
 }
 
-/* "binaryvector.pyx":57
+/* "binaryvector.pyx":55
  *     def __add__(self,BinaryVector that):
  *         return self.add(that)
  *     def mod(self):             # <<<<<<<<<<<<<<
@@ -1840,19 +1846,19 @@ static PyObject *__pyx_pf_12binaryvector_12BinaryVector_12mod(struct __pyx_obj_1
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("mod", 0);
 
-  /* "binaryvector.pyx":58
+  /* "binaryvector.pyx":56
  *         return self.add(that)
  *     def mod(self):
  *         return VEC_mod(self._vec)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(VEC_mod(__pyx_v_self->_vec)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(VEC_mod(__pyx_v_self->_vec)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "binaryvector.pyx":57
+  /* "binaryvector.pyx":55
  *     def __add__(self,BinaryVector that):
  *         return self.add(that)
  *     def mod(self):             # <<<<<<<<<<<<<<
@@ -2101,7 +2107,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 24, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2207,10 +2213,10 @@ PyMODINIT_FUNC PyInit_binaryvector(void)
   /*--- Type init code ---*/
   __pyx_vtabptr_12binaryvector_BinaryVector = &__pyx_vtable_12binaryvector_BinaryVector;
   __pyx_vtable_12binaryvector_BinaryVector.mul = (PyObject *(*)(struct __pyx_obj_12binaryvector_BinaryVector *, struct __pyx_obj_12binaryvector_BinaryVector *, int __pyx_skip_dispatch))__pyx_f_12binaryvector_12BinaryVector_mul;
-  if (PyType_Ready(&__pyx_type_12binaryvector_BinaryVector) < 0) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_12binaryvector_BinaryVector) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
   __pyx_type_12binaryvector_BinaryVector.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_12binaryvector_BinaryVector.tp_dict, __pyx_vtabptr_12binaryvector_BinaryVector) < 0) __PYX_ERR(0, 20, __pyx_L1_error)
-  if (PyObject_SetAttrString(__pyx_m, "BinaryVector", (PyObject *)&__pyx_type_12binaryvector_BinaryVector) < 0) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_12binaryvector_BinaryVector.tp_dict, __pyx_vtabptr_12binaryvector_BinaryVector) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "BinaryVector", (PyObject *)&__pyx_type_12binaryvector_BinaryVector) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
   __pyx_ptype_12binaryvector_BinaryVector = &__pyx_type_12binaryvector_BinaryVector;
   /*--- Type import code ---*/
   /*--- Variable import code ---*/
@@ -2223,7 +2229,7 @@ PyMODINIT_FUNC PyInit_binaryvector(void)
   /* "binaryvector.pyx":1
  * #cython: language_level=3             # <<<<<<<<<<<<<<
  * # distutils: language = c
- * # distutils: sources = binary_vector.c
+ * 
  */
   __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);

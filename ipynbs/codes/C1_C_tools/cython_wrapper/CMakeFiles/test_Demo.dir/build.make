@@ -90,7 +90,7 @@ test_Demo_EXTERNAL_OBJECTS =
 
 build/bin/test_Demo: CMakeFiles/test_Demo.dir/test/test.c.o
 build/bin/test_Demo: CMakeFiles/test_Demo.dir/build.make
-build/bin/test_Demo: build/lib/libvector.dylib
+build/bin/test_Demo: build/lib/libvector.a
 build/bin/test_Demo: CMakeFiles/test_Demo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/cython_wrapper/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable build/bin/test_Demo"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_Demo.dir/link.txt --verbose=$(VERBOSE)

@@ -28,15 +28,10 @@ if(NOT CMAKE_INSTALL_COMPONENT)
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/CMAKE_LIBRARY_OUTPUT_DIRECTORY" TYPE SHARED_LIBRARY FILES "/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/cython_wrapper/build/lib/libvector.dylib")
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/CMAKE_LIBRARY_OUTPUT_DIRECTORY/libvector.dylib" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/CMAKE_LIBRARY_OUTPUT_DIRECTORY/libvector.dylib")
-    execute_process(COMMAND "/usr/bin/install_name_tool"
-      -id "libvector.dylib"
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/CMAKE_LIBRARY_OUTPUT_DIRECTORY/libvector.dylib")
-    if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/CMAKE_LIBRARY_OUTPUT_DIRECTORY/libvector.dylib")
-    endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/CMAKE_LIBRARY_OUTPUT_DIRECTORY" TYPE STATIC_LIBRARY FILES "/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/cython_wrapper/build/lib/libvector.a")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/CMAKE_LIBRARY_OUTPUT_DIRECTORY/libvector.a" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/CMAKE_LIBRARY_OUTPUT_DIRECTORY/libvector.a")
+    execute_process(COMMAND "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/CMAKE_LIBRARY_OUTPUT_DIRECTORY/libvector.a")
   endif()
 endif()
 

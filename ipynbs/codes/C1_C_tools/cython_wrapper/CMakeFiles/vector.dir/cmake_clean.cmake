@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/vector.dir/source/src/binary_vector.c.o"
   "build/lib/libvector.pdb"
-  "build/lib/libvector.dylib"
+  "build/lib/libvector.a"
 )
 
 # Per-language clean rules from dependency scanning.

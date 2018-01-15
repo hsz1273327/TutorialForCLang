@@ -1,7 +1,5 @@
 #cython: language_level=3
 # distutils: language = c
-# distutils: sources = binary_vector.c
-
 
 cdef extern from "binary_vector.h":
     struct BINARY_VECTOR:
