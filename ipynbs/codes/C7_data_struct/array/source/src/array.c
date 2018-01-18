@@ -3,14 +3,16 @@ static const char *rcsid = "$Id$";
 #include <string.h>
 #include "assert.h"
 #include "array.h"
-#include "mem.h"
-#define T Array_T
+#include "memory.h"
 
 struct  Array_L {
 	int length;
 	int size;
 	char *array;
 };
+
+#define T Array_T
+
 T Array_new(int length, int size) {
 	T array;
 	NEW(array);
@@ -46,6 +48,7 @@ void *Array_get(T array, int i) {
 	assert(i >= 0 && i < array->length);
 	return array->array + i*array->size;
 }
+
 void *Array_put(T array, int i, void *elem) {
 	assert(array);
 	assert(i >= 0 && i < array->length);
@@ -54,14 +57,17 @@ void *Array_put(T array, int i, void *elem) {
 		array->size);
 	return elem;
 }
+
 int Array_length(T array) {
 	assert(array);
 	return array->length;
 }
+
 int Array_size(T array) {
 	assert(array);
 	return array->size;
 }
+
 void Array_resize(T array, int length) {
 	assert(array);
 	assert(length >= 0);
@@ -73,6 +79,7 @@ void Array_resize(T array, int length) {
 		RESIZE(array->array, length*array->size);
 	array->length = length;
 }
+
 T Array_copy(T array, int length) {
 	T copy;
 	assert(array);
