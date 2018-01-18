@@ -23,10 +23,9 @@
 * @version                           0.0.1
 * @par LICENSE                       MIT
 */
-typedef struct Except_T  Except_T;
-
-
-
+typedef struct Except_T {
+    const char* reason; ///< reason   str   原因字符串
+} Except_T;
 
 /** 
 * @typedef           Except_Frame
@@ -43,6 +42,14 @@ typedef struct Except_T  Except_T;
 */
 typedef struct Except_Frame Except_Frame;
 
+struct Except_Frame {
+    Except_Frame* prev; ///< 异常帧指针
+    jmp_buf env; ///< 用于处理嵌套异常
+    const char* file; ///< 报异常文件
+    int line; ///< 报异常的行号
+    const Except_T* exception; ///< 异常实例指针
+};
+
 /** 
 * @enum                     Except_Status       
 * @brief                    异常的4个状态
@@ -54,10 +61,8 @@ enum Except_Status{
     Except_finalized ///< 异常处理块结束状态
 };
 
-extern const Except_T Assert_Failed; ///<    定义Assert_Failed异常
 extern Except_Frame* Except_stack; ///<           实例化一个异常栈
-
-
+extern const Except_T Assert_Failed; ///<   定义Assert_Failed异常
 
 /** 
 * @fn     void Except_raise(const Except_T *,const char *,int)
@@ -101,7 +106,7 @@ extern void Except_pop(void);
 * @param     e     Except_T           异常结构的实例         
 * @brief                              抛出异常
 */
-extern const Except_T RAISE(e) Except_raise(&(e), __FILE__, __LINE__)
+#define RAISE(e) Except_raise(&(e), __FILE__, __LINE__)
 
 /** 
 * @def                                RERAISE

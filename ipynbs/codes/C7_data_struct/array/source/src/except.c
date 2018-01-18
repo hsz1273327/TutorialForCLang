@@ -4,22 +4,11 @@ static char rcsid[] = "$Id$"
 #include "assert.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-struct Except_T {
-    const char* reason; ///< reason   str   原因字符串
-}
-
-struct Except_Frame {
-    Except_Frame* prev; ///< 异常帧指针
-    jmp_buf env; ///< 用于处理嵌套异常
-    const char* file; ///< 报异常文件
-    int line; ///< 报异常的行号
-    const Except_T* exception; ///< 异常实例指针
-};
-
 #define T Except_T
 Except_Frame* Except_stack = NULL;
-void Except_raise(const T* e, const char* file, int line){
+void Except_raise(const T* e, const char* file,
+    int line)
+{
 #ifdef WIN32
     Except_Frame* p;
 
@@ -52,7 +41,6 @@ void Except_raise(const T* e, const char* file, int line){
 #endif
     longjmp(p->env, Except_raised);
 }
-
 #ifdef WIN32
 _CRTIMP void __cdecl _assert(void*, void*, unsigned);
 #undef assert
