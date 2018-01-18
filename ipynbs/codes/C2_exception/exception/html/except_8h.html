@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>exception: build/include/except.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -29,18 +29,21 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- 制作者 Doxygen 1.8.13 -->
+<!-- 制作者 Doxygen 1.8.14 -->
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -74,7 +77,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>异常处理  
+<p>异常处理  用于异常处理,这是一个简单的实现.包含一组try-except宏, 异常结构体,异常栈和异常抛出函数和宏  
 <a href="#details">更多...</a></p>
 <div class="textblock"><code>#include &lt;setjmp.h&gt;</code><br />
 </div>
@@ -92,8 +95,9 @@ $(function() {
 <tr class="memitem:a45e87c4d7dee50346b15c7761b0b340a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="except_8h.html#a45e87c4d7dee50346b15c7761b0b340a">RAISE</a>(e)&#160;&#160;&#160;<a class="el" href="except_8h.html#a83e677bae0f99387177a0b7e4122810f">Except_raise</a>(&amp;(e), __FILE__, __LINE__)</td></tr>
 <tr class="memdesc:a45e87c4d7dee50346b15c7761b0b340a"><td class="mdescLeft">&#160;</td><td class="mdescRight">抛出异常  <a href="#a45e87c4d7dee50346b15c7761b0b340a">更多...</a><br /></td></tr>
 <tr class="separator:a45e87c4d7dee50346b15c7761b0b340a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a947ef43f0f0def3fcc050a8df849fd16"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="except_8h.html#a947ef43f0f0def3fcc050a8df849fd16">RERAISE</a></td></tr>
-<tr class="memdesc:a947ef43f0f0def3fcc050a8df849fd16"><td class="mdescLeft">&#160;</td><td class="mdescRight">重复抛出异常  <a href="#a947ef43f0f0def3fcc050a8df849fd16">更多...</a><br /></td></tr>
+<tr class="memitem:a947ef43f0f0def3fcc050a8df849fd16"><td class="memItemLeft" align="right" valign="top"><a id="a947ef43f0f0def3fcc050a8df849fd16"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="except_8h.html#a947ef43f0f0def3fcc050a8df849fd16">RERAISE</a>&#160;&#160;&#160;<a class="el" href="except_8h.html#a83e677bae0f99387177a0b7e4122810f">Except_raise</a>(Except_frame.exception, Except_frame.file, Except_frame.line)</td></tr>
+<tr class="memdesc:a947ef43f0f0def3fcc050a8df849fd16"><td class="mdescLeft">&#160;</td><td class="mdescRight">重复抛出异常 <br /></td></tr>
 <tr class="separator:a947ef43f0f0def3fcc050a8df849fd16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a0e6b80dd3d5ca395cf58151749f5e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="except_8h.html#a6a0e6b80dd3d5ca395cf58151749f5e2">RETURN</a></td></tr>
 <tr class="memdesc:a6a0e6b80dd3d5ca395cf58151749f5e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回  <a href="#a6a0e6b80dd3d5ca395cf58151749f5e2">更多...</a><br /></td></tr>
@@ -129,8 +133,8 @@ $(function() {
 <a class="el" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a80cdb3635fb4b8d00925dea5821c9fbb">Except_raised</a>, 
 <a class="el" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4">Except_handled</a>, 
 <a class="el" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a8f2b6b8b0f719ecda31559637209f40b">Except_finalized</a>
- }<tr class="memdesc:a4b30e434993f92eb4f004cb57221eb72"><td class="mdescLeft">&#160;</td><td class="mdescRight">异常的4个状态  <a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72">更多...</a><br /></td></tr>
-</td></tr>
+ }</td></tr>
+<tr class="memdesc:a4b30e434993f92eb4f004cb57221eb72"><td class="mdescLeft">&#160;</td><td class="mdescRight">异常的4个状态  <a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72">更多...</a><br /></td></tr>
 <tr class="separator:a4b30e434993f92eb4f004cb57221eb72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -141,22 +145,23 @@ $(function() {
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 变量</h2></td></tr>
-<tr class="memitem:a3d38c6361ecf1c4873bbcb2de8a50874"><td class="memItemLeft" align="right" valign="top"><a id="a3d38c6361ecf1c4873bbcb2de8a50874"></a>
-<a class="el" href="struct_except___frame.html">Except_Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></td></tr>
-<tr class="memdesc:a3d38c6361ecf1c4873bbcb2de8a50874"><td class="mdescLeft">&#160;</td><td class="mdescRight">实例化一个异常栈 <br /></td></tr>
-<tr class="separator:a3d38c6361ecf1c4873bbcb2de8a50874"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02c91dd1cedbfe4b9e31d7775e0ead7f"><td class="memItemLeft" align="right" valign="top"><a id="a02c91dd1cedbfe4b9e31d7775e0ead7f"></a>
 const <a class="el" href="struct_except___t.html">Except_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="except_8h.html#a02c91dd1cedbfe4b9e31d7775e0ead7f">Assert_Failed</a></td></tr>
 <tr class="memdesc:a02c91dd1cedbfe4b9e31d7775e0ead7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">定义Assert_Failed异常 <br /></td></tr>
 <tr class="separator:a02c91dd1cedbfe4b9e31d7775e0ead7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d38c6361ecf1c4873bbcb2de8a50874"><td class="memItemLeft" align="right" valign="top"><a id="a3d38c6361ecf1c4873bbcb2de8a50874"></a>
+<a class="el" href="struct_except___frame.html">Except_Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></td></tr>
+<tr class="memdesc:a3d38c6361ecf1c4873bbcb2de8a50874"><td class="mdescLeft">&#160;</td><td class="mdescRight">实例化一个异常栈 <br /></td></tr>
+<tr class="separator:a3d38c6361ecf1c4873bbcb2de8a50874"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>异常处理 </p>
-<dl class="section author"><dt>作者</dt><dd>David R. Hanson </dd></dl>
-<dl class="section date"><dt>日期</dt><dd>2018-1-9 </dd></dl>
-<dl class="section version"><dt>版本</dt><dd>0.0.1 </dd></dl>
+<div class="textblock"><p>异常处理  用于异常处理,这是一个简单的实现.包含一组try-except宏, 异常结构体,异常栈和异常抛出函数和宏 </p>
+<dl class="section version"><dt>版本</dt><dd>1.2 </dd></dl>
+<dl class="section user"><dt>Copyright (c) 1994,1995,1996,1997 by David R. Hanson</dt><dd></dd></dl>
 <dl class="section user"><dt>LICENSE MIT</dt><dd></dd></dl>
-<dl class="section user"><dt>添加注释 hsz</dt><dd></dd></dl>
+<dl class="section user"><dt>requirements: assert.h</dt><dd></dd></dl>
+<dl class="section user"><dt>update: hsz</dt><dd></dd></dl>
+<dl class="section user"><dt>update date: 2018-01-18</dt><dd></dd></dl>
 </div><h2 class="groupheader">宏定义说明</h2>
 <a id="a0a70ee0cbf5b1738be4c9463c529ce72"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0a70ee0cbf5b1738be4c9463c529ce72">&#9670;&nbsp;</a></span>ELSE</h2>
@@ -169,10 +174,10 @@ const <a class="el" href="struct_except___t.html">Except_T</a>&#160;</td><td cla
         </tr>
       </table>
 </div><div class="memdoc">
-<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>)     \</div><div class="line">        Except_stack = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">prev</a>; \</div><div class="line">    }                                      \</div><div class="line">    else                                   \</div><div class="line">    {                                      \</div><div class="line">        Except_flag = <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4">Except_handled</a>;</div><div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4">Except_handled</a></div><div class="ttdoc">异常处理中状态 </div><div class="ttdef"><b>Definition:</b> except.h:58</div></div>
+<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>) <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a> = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">prev</a>; \</div><div class="line">    }                                                                     \</div><div class="line">    else {                                                                \</div><div class="line">        Except_flag = <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4">Except_handled</a>;</div><div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4">Except_handled</a></div><div class="ttdoc">异常处理中状态 </div><div class="ttdef"><b>Definition:</b> except.h:61</div></div>
+<div class="ttc" id="struct_except___frame_html_ad70e8e755dfc340224528a0b7320107c"><div class="ttname"><a href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">Except_Frame::prev</a></div><div class="ttdeci">struct Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:22</div></div>
 <div class="ttc" id="except_8h_html_a3d38c6361ecf1c4873bbcb2de8a50874"><div class="ttname"><a href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></div><div class="ttdeci">Except_Frame * Except_stack</div><div class="ttdoc">实例化一个异常栈 </div></div>
-<div class="ttc" id="struct_except___frame_html_a4a5323a9c98b198d171a7f0409f3bbae"><div class="ttname"><a href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">Except_Frame::prev</a></div><div class="ttdeci">Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:44</div></div>
-<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:56</div></div>
+<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:59</div></div>
 </div><!-- fragment -->
 <p>ELSE关键字 </p>
 
@@ -189,10 +194,11 @@ const <a class="el" href="struct_except___t.html">Except_T</a>&#160;</td><td cla
         </tr>
       </table>
 </div><div class="memdoc">
-<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>)     \</div><div class="line">        Except_stack = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">prev</a>; \</div><div class="line">    }                                      \</div><div class="line">    if (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a80cdb3635fb4b8d00925dea5821c9fbb">Except_raised</a>)      \</div><div class="line">        RERAISE;                           \</div><div class="line">    }                                      \</div><div class="line">    while (0)</div><div class="ttc" id="except_8h_html_a3d38c6361ecf1c4873bbcb2de8a50874"><div class="ttname"><a href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></div><div class="ttdeci">Except_Frame * Except_stack</div><div class="ttdoc">实例化一个异常栈 </div></div>
-<div class="ttc" id="struct_except___frame_html_a4a5323a9c98b198d171a7f0409f3bbae"><div class="ttname"><a href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">Except_Frame::prev</a></div><div class="ttdeci">Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:44</div></div>
-<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a80cdb3635fb4b8d00925dea5821c9fbb"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a80cdb3635fb4b8d00925dea5821c9fbb">Except_raised</a></div><div class="ttdoc">抛出异常处理状态 </div><div class="ttdef"><b>Definition:</b> except.h:57</div></div>
-<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:56</div></div>
+<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>) <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a> = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">prev</a>; \</div><div class="line">    }                                                                     \</div><div class="line">    if (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a80cdb3635fb4b8d00925dea5821c9fbb">Except_raised</a>) <a class="code" href="except_8h.html#a947ef43f0f0def3fcc050a8df849fd16">RERAISE</a>;                            \</div><div class="line">    }                                                                     \</div><div class="line">    while (0)</div><div class="ttc" id="struct_except___frame_html_ad70e8e755dfc340224528a0b7320107c"><div class="ttname"><a href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">Except_Frame::prev</a></div><div class="ttdeci">struct Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:22</div></div>
+<div class="ttc" id="except_8h_html_a3d38c6361ecf1c4873bbcb2de8a50874"><div class="ttname"><a href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></div><div class="ttdeci">Except_Frame * Except_stack</div><div class="ttdoc">实例化一个异常栈 </div></div>
+<div class="ttc" id="except_8h_html_a947ef43f0f0def3fcc050a8df849fd16"><div class="ttname"><a href="except_8h.html#a947ef43f0f0def3fcc050a8df849fd16">RERAISE</a></div><div class="ttdeci">#define RERAISE</div><div class="ttdoc">重复抛出异常 </div><div class="ttdef"><b>Definition:</b> except.h:192</div></div>
+<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a80cdb3635fb4b8d00925dea5821c9fbb"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a80cdb3635fb4b8d00925dea5821c9fbb">Except_raised</a></div><div class="ttdoc">抛出异常处理状态 </div><div class="ttdef"><b>Definition:</b> except.h:60</div></div>
+<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:59</div></div>
 </div><!-- fragment -->
 <p>END_TRY关键字 </p>
 
@@ -213,10 +219,10 @@ const <a class="el" href="struct_except___t.html">Except_T</a>&#160;</td><td cla
         </tr>
       </table>
 </div><div class="memdoc">
-<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>)       \</div><div class="line">        Except_stack = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">prev</a>;   \</div><div class="line">    }                                        \</div><div class="line">    else <span class="keywordflow">if</span> (Except_frame.exception == &amp;(e)) \</div><div class="line">    {                                        \</div><div class="line">        Except_flag = <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4">Except_handled</a>;</div><div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4">Except_handled</a></div><div class="ttdoc">异常处理中状态 </div><div class="ttdef"><b>Definition:</b> except.h:58</div></div>
+<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>) <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a> = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">prev</a>; \</div><div class="line">    }                                                                     \</div><div class="line">    else <span class="keywordflow">if</span> (Except_frame.exception == &amp;(e)) {                            \</div><div class="line">        Except_flag = <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4">Except_handled</a>;</div><div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72ac0d9956bf062b2f2db1f9294563e73b4">Except_handled</a></div><div class="ttdoc">异常处理中状态 </div><div class="ttdef"><b>Definition:</b> except.h:61</div></div>
+<div class="ttc" id="struct_except___frame_html_ad70e8e755dfc340224528a0b7320107c"><div class="ttname"><a href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">Except_Frame::prev</a></div><div class="ttdeci">struct Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:22</div></div>
 <div class="ttc" id="except_8h_html_a3d38c6361ecf1c4873bbcb2de8a50874"><div class="ttname"><a href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></div><div class="ttdeci">Except_Frame * Except_stack</div><div class="ttdoc">实例化一个异常栈 </div></div>
-<div class="ttc" id="struct_except___frame_html_a4a5323a9c98b198d171a7f0409f3bbae"><div class="ttname"><a href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">Except_Frame::prev</a></div><div class="ttdeci">Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:44</div></div>
-<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:56</div></div>
+<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:59</div></div>
 </div><!-- fragment -->
 <p>EXCEPT关键字 </p>
 <dl class="params"><dt>参数</dt><dd>
@@ -239,10 +245,10 @@ const <a class="el" href="struct_except___t.html">Except_T</a>&#160;</td><td cla
         </tr>
       </table>
 </div><div class="memdoc">
-<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>)     \</div><div class="line">        Except_stack = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">prev</a>; \</div><div class="line">    }                                      \</div><div class="line">    {                                      \</div><div class="line">        if (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>) \</div><div class="line">            Except_flag = <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a8f2b6b8b0f719ecda31559637209f40b">Except_finalized</a>;</div><div class="ttc" id="except_8h_html_a3d38c6361ecf1c4873bbcb2de8a50874"><div class="ttname"><a href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></div><div class="ttdeci">Except_Frame * Except_stack</div><div class="ttdoc">实例化一个异常栈 </div></div>
-<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a8f2b6b8b0f719ecda31559637209f40b"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a8f2b6b8b0f719ecda31559637209f40b">Except_finalized</a></div><div class="ttdoc">异常处理块结束状态 </div><div class="ttdef"><b>Definition:</b> except.h:59</div></div>
-<div class="ttc" id="struct_except___frame_html_a4a5323a9c98b198d171a7f0409f3bbae"><div class="ttname"><a href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">Except_Frame::prev</a></div><div class="ttdeci">Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:44</div></div>
-<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:56</div></div>
+<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>) <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a> = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">prev</a>; \</div><div class="line">    }                                                                     \</div><div class="line">    {                                                                     \</div><div class="line">        if (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>) Except_flag = <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a8f2b6b8b0f719ecda31559637209f40b">Except_finalized</a>;</div><div class="ttc" id="struct_except___frame_html_ad70e8e755dfc340224528a0b7320107c"><div class="ttname"><a href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">Except_Frame::prev</a></div><div class="ttdeci">struct Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:22</div></div>
+<div class="ttc" id="except_8h_html_a3d38c6361ecf1c4873bbcb2de8a50874"><div class="ttname"><a href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></div><div class="ttdeci">Except_Frame * Except_stack</div><div class="ttdoc">实例化一个异常栈 </div></div>
+<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a8f2b6b8b0f719ecda31559637209f40b"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a8f2b6b8b0f719ecda31559637209f40b">Except_finalized</a></div><div class="ttdoc">异常处理块结束状态 </div><div class="ttdef"><b>Definition:</b> except.h:62</div></div>
+<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:59</div></div>
 </div><!-- fragment -->
 <p>FINALLY关键字 </p>
 
@@ -274,23 +280,6 @@ const <a class="el" href="struct_except___t.html">Except_T</a>&#160;</td><td cla
 
 </div>
 </div>
-<a id="a947ef43f0f0def3fcc050a8df849fd16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a947ef43f0f0def3fcc050a8df849fd16">&#9670;&nbsp;</a></span>RERAISE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define RERAISE</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>值:</b><div class="fragment"><div class="line"><a class="code" href="except_8h.html#a83e677bae0f99387177a0b7e4122810f">Except_raise</a>(Except_frame.exception, \</div><div class="line">    Except_frame.file, Except_frame.line)</div><div class="ttc" id="except_8h_html_a83e677bae0f99387177a0b7e4122810f"><div class="ttname"><a href="except_8h.html#a83e677bae0f99387177a0b7e4122810f">Except_raise</a></div><div class="ttdeci">void Except_raise(const Except_T *, const char *, int)</div><div class="ttdoc">抛出异常 </div></div>
-</div><!-- fragment -->
-<p>重复抛出异常 </p>
-
-</div>
-</div>
 <a id="a6a0e6b80dd3d5ca395cf58151749f5e2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a0e6b80dd3d5ca395cf58151749f5e2">&#9670;&nbsp;</a></span>RETURN</h2>
 
@@ -302,8 +291,8 @@ const <a class="el" href="struct_except___t.html">Except_T</a>&#160;</td><td cla
         </tr>
       </table>
 </div><div class="memdoc">
-<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">switch</span> (<a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a> = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">prev</a>, 0) \</div><div class="line">    default:                                      \</div><div class="line">        return</div><div class="ttc" id="except_8h_html_a3d38c6361ecf1c4873bbcb2de8a50874"><div class="ttname"><a href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></div><div class="ttdeci">Except_Frame * Except_stack</div><div class="ttdoc">实例化一个异常栈 </div></div>
-<div class="ttc" id="struct_except___frame_html_a4a5323a9c98b198d171a7f0409f3bbae"><div class="ttname"><a href="struct_except___frame.html#a4a5323a9c98b198d171a7f0409f3bbae">Except_Frame::prev</a></div><div class="ttdeci">Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:44</div></div>
+<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">switch</span> (<a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a> = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>-&gt;<a class="code" href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">prev</a>, 0) \</div><div class="line">    default:                                      \</div><div class="line">        return</div><div class="ttc" id="struct_except___frame_html_ad70e8e755dfc340224528a0b7320107c"><div class="ttname"><a href="struct_except___frame.html#ad70e8e755dfc340224528a0b7320107c">Except_Frame::prev</a></div><div class="ttdeci">struct Except_Frame * prev</div><div class="ttdoc">异常帧指针 </div><div class="ttdef"><b>Definition:</b> except.h:22</div></div>
+<div class="ttc" id="except_8h_html_a3d38c6361ecf1c4873bbcb2de8a50874"><div class="ttname"><a href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></div><div class="ttdeci">Except_Frame * Except_stack</div><div class="ttdoc">实例化一个异常栈 </div></div>
 </div><!-- fragment -->
 <p>返回 </p>
 
@@ -321,7 +310,7 @@ const <a class="el" href="struct_except___t.html">Except_T</a>&#160;</td><td cla
       </table>
 </div><div class="memdoc">
 <b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                        \</div><div class="line">        volatile <span class="keywordtype">int</span> Except_flag;               \</div><div class="line">        Except_Frame Except_frame;              \</div><div class="line">        Except_frame.prev = <a class="code" href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a>;       \</div><div class="line">        Except_stack = &amp;Except_frame;           \</div><div class="line">        Except_flag = setjmp(Except_frame.env); \</div><div class="line">        if (Except_flag == <a class="code" href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a>) {</div><div class="ttc" id="except_8h_html_a3d38c6361ecf1c4873bbcb2de8a50874"><div class="ttname"><a href="except_8h.html#a3d38c6361ecf1c4873bbcb2de8a50874">Except_stack</a></div><div class="ttdeci">Except_Frame * Except_stack</div><div class="ttdoc">实例化一个异常栈 </div></div>
-<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:56</div></div>
+<div class="ttc" id="except_8h_html_a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2"><div class="ttname"><a href="except_8h.html#a4b30e434993f92eb4f004cb57221eb72a388ad603a03109702c508bd464b66da2">Except_entered</a></div><div class="ttdoc">进入异常处理块状态 </div><div class="ttdef"><b>Definition:</b> except.h:59</div></div>
 </div><!-- fragment -->
 <p>Try关键字 </p>
 
@@ -461,7 +450,7 @@ const <a class="el" href="struct_except___t.html">Except_T</a>&#160;</td><td cla
 <hr class="footer"/><address class="footer"><small>
 制作者 &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
+</a> 1.8.14
 </small></address>
 </body>
 </html>

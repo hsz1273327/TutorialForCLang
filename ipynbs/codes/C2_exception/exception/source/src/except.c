@@ -1,21 +1,18 @@
-static char rcsid[] = "$Id$"
-                      "\n$Id$";
-#include "except.h"
-#include "assert.h"
+/**
+ * @file                               except.c
+ * @brief                              异常处理
+ * @detail 用于异常处理,这是一个简单的实现.包含一组try-except宏,
+ * 异常结构体,异常栈和异常抛出函数和宏
+ * @version                            1.2
+ * @par Copyright (c) 1994,1995,1996,1997 by David R. Hanson
+ * @par LICENSE                        MIT
+ * @par requirements:                  assert.h
+ */
 #include <stdio.h>
 #include <stdlib.h>
+#include "except.h"
+#include "assert.h"
 
-struct Except_T {
-    const char* reason; ///< reason   str   原因字符串
-}
-
-struct Except_Frame {
-    Except_Frame* prev; ///< 异常帧指针
-    jmp_buf env; ///< 用于处理嵌套异常
-    const char* file; ///< 报异常文件
-    int line; ///< 报异常的行号
-    const Except_T* exception; ///< 异常实例指针
-};
 
 #define T Except_T
 Except_Frame* Except_stack = NULL;
