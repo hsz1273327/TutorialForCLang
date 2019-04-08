@@ -1,0 +1,1024 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>制作命令行工具并测试 · C语言攻略</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="hsz">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="编程风格.html" />
+    
+    
+    <link rel="prev" href="测试工具.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"hsz1273327/TutorialForCLang","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="http://blog.hszofficial.site/" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    工具链
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="项目结构.html">
+            
+                <a href="项目结构.html">
+            
+                    
+                    项目结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="编译与运行环境.html">
+            
+                <a href="编译与运行环境.html">
+            
+                    
+                    编译与运行环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="编译配套工具.html">
+            
+                <a href="编译配套工具.html">
+            
+                    
+                    编译配套工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="测试工具.html">
+            
+                <a href="测试工具.html">
+            
+                    
+                    测试工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.5" data-path="制作命令行工具并测试.html">
+            
+                <a href="制作命令行工具并测试.html">
+            
+                    
+                    制作命令行工具并测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="编程风格.html">
+            
+                <a href="编程风格.html">
+            
+                    
+                    编程风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="文档工具.html">
+            
+                <a href="文档工具.html">
+            
+                    
+                    文档工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="cython接口包装.html">
+            
+                <a href="cython接口包装.html">
+            
+                    
+                    python接口包装
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../数据模型/">
+            
+                <a href="../数据模型/">
+            
+                    
+                    数据模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../数据模型/系统堆栈和C语言内存模型.html">
+            
+                <a href="../数据模型/系统堆栈和C语言内存模型.html">
+            
+                    
+                    系统堆栈和C语言内存模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../数据模型/类型系统与变量常量.html">
+            
+                <a href="../数据模型/类型系统与变量常量.html">
+            
+                    
+                    类型系统与变量常量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../数据模型/自定义结构和类型.html">
+            
+                <a href="../数据模型/自定义结构和类型.html">
+            
+                    
+                    自定义结构和类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../数据模型/指针.html">
+            
+                <a href="../数据模型/指针.html">
+            
+                    
+                    指针
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../基本语法/README.md">
+            
+                <span>
+            
+                    
+                    基本语法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../基本语法/运算符.html">
+            
+                <a href="../基本语法/运算符.html">
+            
+                    
+                    运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../基本语法/逻辑控制语句.html">
+            
+                <a href="../基本语法/逻辑控制语句.html">
+            
+                    
+                    逻辑控制语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../基本语法/函数.html">
+            
+                <a href="../基本语法/函数.html">
+            
+                    
+                    函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../基本语法/数组.html">
+            
+                <a href="../基本语法/数组.html">
+            
+                    
+                    数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../基本语法/字符串和Unicode.html">
+            
+                <a href="../基本语法/字符串和Unicode.html">
+            
+                    
+                    字符串和Unicode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../输入输出/">
+            
+                <a href="../输入输出/">
+            
+                    
+                    输入输出
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../输入输出/标准输入输出.html">
+            
+                <a href="../输入输出/标准输入输出.html">
+            
+                    
+                    标准输入输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../输入输出/文件操作.html">
+            
+                <a href="../输入输出/文件操作.html">
+            
+                    
+                    文件操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../宏与编译期操作/">
+            
+                <a href="../宏与编译期操作/">
+            
+                    
+                    宏与编译期操作
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../宏与编译期操作/基本的宏写法.html">
+            
+                <a href="../宏与编译期操作/基本的宏写法.html">
+            
+                    
+                    基本的宏写法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../宏与编译期操作/基础泛型机制.html">
+            
+                <a href="../宏与编译期操作/基础泛型机制.html">
+            
+                    
+                    基础泛型机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../异常处理.html">
+            
+                <a href="../异常处理.html">
+            
+                    
+                    异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >制作命令行工具并测试</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5236;&#x4F5C;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x5E76;&#x6D4B;&#x8BD5;"><b>1. </b>&#x5236;&#x4F5C;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x5E76;&#x6D4B;&#x8BD5;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5236;&#x4F5C;&#x5C0F;&#x5DE5;&#x5177;"><b>1.1. </b>&#x5236;&#x4F5C;&#x5C0F;&#x5DE5;&#x5177;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x4ECE;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x5F00;&#x59CB;"><b>1.2. </b>&#x4ECE;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x5F00;&#x59CB;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x6570;&#x636E;&#x9A8C;&#x8BC1;"><b>1.2.1. </b>&#x6570;&#x636E;&#x9A8C;&#x8BC1;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x7528;c&#x6784;&#x5EFA;&#x5E26;&#x53C2;&#x6570;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;"><b>1.3. </b>&#x7528;C&#x6784;&#x5EFA;&#x5E26;&#x53C2;&#x6570;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x77ED;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49;"><b>1.3.1. </b>&#x77ED;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x8FD4;&#x56DE;&#x503C;"><b>1.3.2. </b>&#x8FD4;&#x56DE;&#x503C;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x4F7F;&#x7528;cmake-test-&#x6D4B;&#x8BD5;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;"><b>1.3.3. </b>&#x4F7F;&#x7528;cmake test &#x6D4B;&#x8BD5;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</a></li></ul></ul></ul></div><a href="#&#x5236;&#x4F5C;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x5E76;&#x6D4B;&#x8BD5;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x5236;&#x4F5C;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x5E76;&#x6D4B;&#x8BD5;"><a name="&#x5236;&#x4F5C;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x5E76;&#x6D4B;&#x8BD5;" class="anchor-navigation-ex-anchor" href="#&#x5236;&#x4F5C;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x5E76;&#x6D4B;&#x8BD5;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x5236;&#x4F5C;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x5E76;&#x6D4B;&#x8BD5;</h1>
+<p>C&#x8BED;&#x8A00;&#x662F;&#x548C;&#x7CFB;&#x7EDF;&#x6700;&#x8FD1;&#x7684;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x4E4B;&#x4E00;,&#x800C;&#x5F88;&#x591A;&#x7CFB;&#x7EDF;&#x5DE5;&#x5177;&#x4E5F;&#x662F;C&#x5199;&#x7684;.</p>
+<h2 id="&#x5236;&#x4F5C;&#x5C0F;&#x5DE5;&#x5177;"><a name="&#x5236;&#x4F5C;&#x5C0F;&#x5DE5;&#x5177;" class="anchor-navigation-ex-anchor" href="#&#x5236;&#x4F5C;&#x5C0F;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. &#x5236;&#x4F5C;&#x5C0F;&#x5DE5;&#x5177;</h2>
+<p>&#x5728;linux&#x7684;&#x4E16;&#x754C;&#x91CC;,&#x5F88;&#x591A;&#x5DE5;&#x4F5C;&#x90FD;&#x662F;&#x7531;&#x5C0F;&#x5DE5;&#x5177;&#x5B8C;&#x6210;&#x7684;,&#x5B83;&#x6050;&#x6015;&#x662F;&#x73B0;&#x5982;&#x4ECA;&#x6D41;&#x884C;&#x7684;<code>&#x5FAE;&#x670D;&#x52A1;</code>&#x67B6;&#x6784;&#x6700;&#x65E9;&#x7684;&#x5B9E;&#x8DF5;&#x4E86;.</p>
+<p>&#x6240;&#x8C13;&#x5C0F;&#x5DE5;&#x5177;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x7279;&#x70B9;:</p>
+<ol>
+<li>&#x4ECE;&#x6807;&#x51C6;&#x8F93;&#x5165;&#x8BFB;&#x53D6;&#x6570;&#x636E;</li>
+<li>&#x5728;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#x663E;&#x793A;&#x6570;&#x636E;</li>
+<li>&#x5904;&#x7406;&#x6587;&#x672C;&#x6570;&#x636E;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x96BE;&#x4EE5;&#x9605;&#x8BFB;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x683C;&#x5F0F;</li>
+<li>&#x53EA;&#x505A;&#x4E00;&#x4EF6;&#x7B80;&#x5355;&#x7684;&#x4E8B;</li>
+</ol>
+<p>&#x901A;&#x8FC7;&#x6807;&#x51C6;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x505A;&#x91CD;&#x5B9A;&#x5411;,&#x800C;&#x6587;&#x672C;&#x6570;&#x636E;&#x9664;&#x4E86;&#x673A;&#x5668;&#x597D;&#x8BFB;,&#x4EBA;&#x4E5F;&#x597D;&#x8BFB;.</p>
+<p>&#x6240;&#x8C13;&#x91CD;&#x65B0;&#x5B9A;&#x5411;&#x662F;&#x6307;&#x4F7F;&#x7528;<code>&gt;</code>,<code>&gt;&gt;</code>&#x4F5C;&#x4E3A;&#x8F93;&#x51FA;,&#x4F7F;&#x7528;<code>&lt;</code>,<code>&lt;&lt;</code>&#x4F5C;&#x4E3A;&#x8F93;&#x5165;</p>
+<p>&#x6BD4;&#x8F83;&#x8BA9;&#x4EBA;&#x719F;&#x77E5;&#x7684;&#x5C31;&#x662F;<code>grep</code>&#x5C0F;&#x5DE5;&#x5177;&#x4E86;,&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x8FC7;&#x6EE4;&#x6389;&#x6587;&#x672C;&#x4E2D;&#x4E0D;&#x542B;&#x5173;&#x952E;&#x5B57;&#x7684;&#x884C;.&#x800C;&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x90FD;&#x662F;&#x62FF;&#x4ED6;&#x548C;&#x5176;&#x4ED6;&#x5DE5;&#x5177;&#x914D;&#x5408;&#x4F7F;&#x7528;&#x7684;,&#x6BD4;&#x5982;&#x6211;&#x5E0C;&#x671B;&#x67E5;&#x770B;&#x4E4B;&#x524D;&#x4F7F;&#x7528;&#x8FC7;&#x7684;&#x5E26;<code>python</code>&#x7684;&#x5386;&#x53F2;&#x8BB0;&#x5F55;,&#x90A3;&#x5C31;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5199;:</p>
+<pre><code class="lang-shell">history | grep python
+</code></pre>
+<p>&#x5F53;&#x7136;&#x4E86;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x6BD4;&#x5982;python&#x4E5F;&#x53EF;&#x4EE5;&#x5236;&#x4F5C;&#x5C0F;&#x5DE5;&#x5177;,&#x800C;&#x4E14;&#x7531;&#x4E8E;&#x8BED;&#x6CD5;&#x66F4;&#x52A0;&#x7B80;&#x5355;,&#x62BD;&#x8C61;&#x5C42;&#x6B21;&#x66F4;&#x9AD8;,&#x5B9E;&#x9645;&#x4E0A;&#x5199;&#x8D77;&#x6765;&#x4F1A;&#x66F4;&#x52A0;&#x7B80;&#x5355;,&#x4F46;&#x5728;&#x8FD9;&#x8FB9;&#x7528;c/c++&#x6765;&#x505A;&#x5C0F;&#x5DE5;&#x5177;&#x6709;&#x5176;&#x5408;&#x7406;&#x7684;&#x4E00;&#x9762;</p>
+<ol>
+<li><p>&#x4E0D;&#x7528;&#x4F9D;&#x8D56;&#x73AF;&#x5883;</p>
+<p> c/c++&#x4E0D;&#x4F9D;&#x8D56;&#x4E8E;&#x8FD0;&#x884C;&#x73AF;&#x5883;,&#x53EA;&#x8981;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;&#x4E86;&#x5C31;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#x4E8C;&#x8FDB;&#x5236;&#x4EE3;&#x7801;.&#x800C;&#x5E26;&#x6709;vm&#x7684;&#x8BED;&#x8A00;&#x6BD4;&#x5982;java,python,&#x8131;&#x79BB;&#x4E86;vm&#x5C31;&#x65E0;&#x6CD5;&#x8FD0;&#x884C;&#x4E86;</p>
+</li>
+<li><p>&#x9AD8;&#x6548;</p>
+<p> &#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;,,&#x76F8;&#x540C;&#x7684;&#x903B;&#x8F91;,C/C++&#x5236;&#x4F5C;&#x7684;&#x5DE5;&#x5177;&#x6709;&#x6700;&#x9AD8;&#x7684;&#x8FD0;&#x884C;&#x6548;&#x7387;</p>
+</li>
+<li><p>&#x5C0F;&#x5DE7;</p>
+<p> &#x50CF;go&#x8BED;&#x8A00;,&#x4E5F;&#x662F;&#x7F16;&#x8BD1;&#x6210;&#x4E8C;&#x8FDB;&#x5236;&#x540E;&#x6267;&#x884C;&#x7684;&#x8BED;&#x8A00;,&#x4F46;&#x7531;&#x4E8E;&#x5176;&#x62BD;&#x8C61;&#x5C42;&#x6B21;&#x66F4;&#x9AD8;(&#x867D;&#x7136;&#x4E5F;&#x6CA1;&#x9AD8;&#x591A;&#x5C11;)&#x800C;&#x4E14;&#x6709;&#x4E2A;&#x8FD0;&#x884C;&#x65F6;,&#x751F;&#x6210;&#x7684;&#x4EE3;&#x7801;&#x6BD4;&#x4F7F;&#x7528;c/c++&#x5199;&#x7684;&#x5927;&#x5F97;&#x591A;,&#x800C;c++&#x5982;&#x679C;&#x4F7F;&#x7528;&#x6A21;&#x677F;&#x7684;&#x8BDD;&#x4E5F;&#x4F1A;&#x6BD4;C&#x5199;&#x7684;&#x5927;&#x5F97;&#x591A;</p>
+</li>
+</ol>
+<h2 id="&#x4ECE;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x5F00;&#x59CB;"><a name="&#x4ECE;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x5F00;&#x59CB;" class="anchor-navigation-ex-anchor" href="#&#x4ECE;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x5F00;&#x59CB;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. &#x4ECE;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x5F00;&#x59CB;</h2>
+<p>&#x6211;&#x4EEC;&#x6765;&#x5199;&#x4E00;&#x4E2A;gps&#x6570;&#x636E;&#x683C;&#x5F0F;&#x8F6C;&#x6362;&#x5DE5;&#x5177;,&#x4F7F;&#x7528;&#x5B83;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;gps&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;&#x7B26;&#x5408;&#x89C4;&#x5B9A;&#x7684;json&#x683C;&#x5F0F;,gps&#x6570;&#x636E;&#x662F;&#x5F62;&#x5982;:</p>
+<pre><code>42.363400,-71.098465,Speed = 21
+42.363400,-71.097588,Speed = 23
+42.363400,-71.098465,Speed = 27
+.
+.
+.
+</code></pre><p>&#x7684;csv&#x6570;&#x636E;</p>
+<p>&#x800C;&#x5730;&#x56FE;&#x5E94;&#x7528;&#x9700;&#x8981;&#x7684;&#x683C;&#x5F0F;&#x5219;&#x5F62;&#x5982;:</p>
+<pre><code class="lang-json">data = [
+{latitude: <span class="hljs-number">42.363400</span>, longitude: <span class="hljs-number">-71.098465</span>, info: <span class="hljs-string">&apos;Speed = 21&apos;</span>},
+.
+.
+.
+]
+</code></pre>
+<p>&#x7684;json&#x6570;&#x636E;</p>
+<p>&#x597D;,&#x5F00;&#x59CB;&#x6211;&#x4EEC;&#x7684;&#x5C0F;&#x7A0B;&#x5E8F;:</p>
+<pre><code class="lang-python">%%writefile ./code/create_cmdline_tool/geo2json/source/src/geo2json.c
+<span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+
+int main(){
+    float latitude;
+    float longitude;
+    char info[<span class="hljs-number">80</span>];
+    int started = <span class="hljs-number">0</span>;
+    puts(<span class="hljs-string">&quot;data=[&quot;</span>);
+    <span class="hljs-keyword">while</span> (scanf(<span class="hljs-string">&quot;%f,%f,%79[^\n]&quot;</span>,&amp;latitude,&amp;longitude,&amp;info) == <span class="hljs-number">3</span>){
+        <span class="hljs-keyword">if</span> (started){
+            printf(<span class="hljs-string">&quot;,\n&quot;</span>);
+        } <span class="hljs-keyword">else</span> {
+            started = <span class="hljs-number">1</span>;
+        }
+        printf(<span class="hljs-string">&quot;{latitude: %f, longitude: %f, info: &apos;%s&apos;}&quot;</span>,latitude,longitude,info);
+    }
+    puts(<span class="hljs-string">&quot;\n]&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code>Overwriting ./code/create_cmdline_tool/geo2json/source/src/geo2json.c
+</code></pre><pre><code class="lang-python">%%writefile ./code/create_cmdline_tool/geo2json/CMakeLists.txt
+<span class="hljs-comment">#&#x9879;&#x76EE;&#x7F16;&#x8BD1;&#x73AF;&#x5883;</span>
+cmake_minimum_required (VERSION <span class="hljs-number">2.8</span>)
+project (geo2json)
+
+<span class="hljs-comment"># &#x7F16;&#x8BD1;&#x8FDE;&#x63A5;&#x751F;&#x6210;demo</span>
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/bin)
+aux_source_directory(${CMAKE_BINARY_DIR}/source/src DIR_SRCS)
+add_executable(geo2json ${DIR_SRCS})
+</code></pre>
+<pre><code>Writing ./code/create_cmdline_tool/geo2json/CMakeLists.txt
+</code></pre><pre><code class="lang-python">!cmake ./code/create_cmdline_tool/geo2json/CMakeLists.txt
+</code></pre>
+<pre><code>-- The C compiler identification is AppleClang 10.0.0.10001044
+-- The CXX compiler identification is AppleClang 10.0.0.10001044
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/geo2json
+</code></pre><pre><code class="lang-python">!make -C ./code/create_cmdline_tool/geo2json/
+</code></pre>
+<pre><code>[35m[1mScanning dependencies of target geo2json[0m
+[ 50%] [32mBuilding C object CMakeFiles/geo2json.dir/source/src/geo2json.c.o[0m
+[1m/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/geo2json/source/src/geo2json.c:9:56: [0m[0;1;35mwarning: [0m[1m
+      format specifies type &apos;char *&apos; but the argument has type &apos;char (*)[80]&apos;
+      [-Wformat][0m
+    while (scanf(&quot;%f,%f,%79[^\n]&quot;,&amp;latitude,&amp;longitude,&amp;info) == 3){
+[0;1;32m                        ~~~~~~                         ^~~~~
+[0m1 warning generated.
+[100%] [32m[1mLinking C executable build/bin/geo2json[0m
+[100%] Built target geo2json
+</code></pre><pre><code class="lang-python">!./code/create_cmdline_tool/geo2json/build/bin/geo2json \
+&lt; ./code/create_cmdline_tool/geo2json/data/gpsdata.csv \
+&gt; ./code/create_cmdline_tool/geo2json/out/gpsdata.json
+</code></pre>
+<pre><code class="lang-python">!cat ./code/create_cmdline_tool/geo2json/out/gpsdata.json
+</code></pre>
+<pre><code>data=[
+{latitude: 42.363400, longitude: -71.098465, info: &apos;Speed = 21&apos;},
+{latitude: 42.363327, longitude: -71.097588, info: &apos;Speed = 23&apos;},
+{latitude: 42.363255, longitude: -71.096710, info: &apos;Speed = 17&apos;},
+{latitude: 42.363182, longitude: -71.095833, info: &apos;Speed = 22&apos;},
+{latitude: 42.363110, longitude: -71.094955, info: &apos;Speed = 14&apos;},
+{latitude: 42.363037, longitude: -71.094078, info: &apos;Speed = 16&apos;},
+{latitude: 42.362965, longitude: -71.093201, info: &apos;Speed = 18&apos;},
+{latitude: 42.362892, longitude: -71.092323, info: &apos;Speed = 22&apos;},
+{latitude: 42.362820, longitude: -71.091446, info: &apos;Speed = 17&apos;},
+{latitude: 42.362747, longitude: -71.090569, info: &apos;Speed = 23&apos;},
+{latitude: 42.362675, longitude: -71.089691, info: &apos;Speed = 14&apos;},
+{latitude: 42.362602, longitude: -71.088814, info: &apos;Speed = 19&apos;},
+{latitude: 42.362530, longitude: -71.087936, info: &apos;Speed = 16&apos;},
+{latitude: 42.362457, longitude: -71.087059, info: &apos;Speed = 16&apos;},
+{latitude: 423.623840, longitude: -71.086182, info: &apos;Speed = 21&apos;}
+]
+</code></pre><h3 id="&#x6570;&#x636E;&#x9A8C;&#x8BC1;"><a name="&#x6570;&#x636E;&#x9A8C;&#x8BC1;" class="anchor-navigation-ex-anchor" href="#&#x6570;&#x636E;&#x9A8C;&#x8BC1;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.1. &#x6570;&#x636E;&#x9A8C;&#x8BC1;</h3>
+<p>&#x4E0D;&#x96BE;&#x53D1;&#x73B0;,&#x8F93;&#x5165;&#x6570;&#x636E;&#x4E2D;&#x6709;&#x9519;&#x8BEF;&#x6570;&#x636E;,&#x6211;&#x4EEC;&#x7684;&#x7A0B;&#x5E8F;&#x8981;&#x52A0;&#x5165;&#x4E00;&#x4E9B;&#x9A8C;&#x8BC1;&#x903B;&#x8F91;&#x6765;&#x8FDB;&#x884C;&#x9519;&#x8BEF;&#x68C0;&#x9A8C;,&#x5F53;&#x7136;&#x4E86;,&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x5E94;&#x8BE5;&#x8F93;&#x51FA;&#x5728;stderr&#x91CC;</p>
+<pre><code class="lang-python">%%writefile ./code/create_cmdline_tool/geo2json/source/src/geo2json.c
+<span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+
+int main(){
+    float latitude;
+    float longitude;
+    char info[<span class="hljs-number">80</span>];
+    int started = <span class="hljs-number">0</span>;
+    puts(<span class="hljs-string">&quot;data=[&quot;</span>);
+    <span class="hljs-keyword">while</span> (scanf(<span class="hljs-string">&quot;%f,%f,%79[^\n]&quot;</span>,&amp;latitude,&amp;longitude,&amp;info) == <span class="hljs-number">3</span>){
+        <span class="hljs-keyword">if</span> (started){
+            printf(<span class="hljs-string">&quot;,\n&quot;</span>);
+        } <span class="hljs-keyword">else</span> {
+            started = <span class="hljs-number">1</span>;
+        }
+
+        <span class="hljs-keyword">if</span> ((latitude &lt; <span class="hljs-number">-90.0</span>) || (latitude &gt; <span class="hljs-number">90.0</span>)) {
+             fprintf(stderr,<span class="hljs-string">&quot;Invalid latitude: %f\n&quot;</span>, latitude);
+             <span class="hljs-keyword">continue</span>;
+        }
+        <span class="hljs-keyword">if</span> ((longitude &lt; <span class="hljs-number">-180.0</span>) || (longitude &gt; <span class="hljs-number">180.0</span>)) {
+             fprintf(stderr, <span class="hljs-string">&quot;Invalid longitude: %f\n&quot;</span>, longitude);
+             <span class="hljs-keyword">continue</span>;
+        }
+
+        printf(<span class="hljs-string">&quot;{latitude: %f, longitude: %f, info: &apos;%s&apos;}&quot;</span>,latitude,longitude,info);
+    }
+    puts(<span class="hljs-string">&quot;\n]&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code>Overwriting ./code/create_cmdline_tool/geo2json/source/src/geo2json.c
+</code></pre><pre><code class="lang-python">!make -C ./code/create_cmdline_tool/geo2json/
+</code></pre>
+<pre><code>[35m[1mScanning dependencies of target geo2json[0m
+[ 50%] [32mBuilding C object CMakeFiles/geo2json.dir/source/src/geo2json.c.o[0m
+[1m/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/geo2json/source/src/geo2json.c:9:56: [0m[0;1;35mwarning: [0m[1m
+      format specifies type &apos;char *&apos; but the argument has type &apos;char (*)[80]&apos;
+      [-Wformat][0m
+    while (scanf(&quot;%f,%f,%79[^\n]&quot;,&amp;latitude,&amp;longitude,&amp;info) == 3){
+[0;1;32m                        ~~~~~~                         ^~~~~
+[0m1 warning generated.
+[100%] [32m[1mLinking C executable build/bin/geo2json[0m
+[100%] Built target geo2json
+</code></pre><pre><code class="lang-python">!./code/create_cmdline_tool/geo2json/build/bin/geo2json \
+&lt; ./code/create_cmdline_tool/geo2json/data/gpsdata.csv \
+&gt; ./code/create_cmdline_tool/geo2json/out/gpsdata.json
+</code></pre>
+<pre><code>Invalid latitude: 423.623840
+</code></pre><pre><code class="lang-python">!cat ./code/create_cmdline_tool/geo2json/out/gpsdata.json
+</code></pre>
+<pre><code>data=[
+{latitude: 42.363400, longitude: -71.098465, info: &apos;Speed = 21&apos;},
+{latitude: 42.363327, longitude: -71.097588, info: &apos;Speed = 23&apos;},
+{latitude: 42.363255, longitude: -71.096710, info: &apos;Speed = 17&apos;},
+{latitude: 42.363182, longitude: -71.095833, info: &apos;Speed = 22&apos;},
+{latitude: 42.363110, longitude: -71.094955, info: &apos;Speed = 14&apos;},
+{latitude: 42.363037, longitude: -71.094078, info: &apos;Speed = 16&apos;},
+{latitude: 42.362965, longitude: -71.093201, info: &apos;Speed = 18&apos;},
+{latitude: 42.362892, longitude: -71.092323, info: &apos;Speed = 22&apos;},
+{latitude: 42.362820, longitude: -71.091446, info: &apos;Speed = 17&apos;},
+{latitude: 42.362747, longitude: -71.090569, info: &apos;Speed = 23&apos;},
+{latitude: 42.362675, longitude: -71.089691, info: &apos;Speed = 14&apos;},
+{latitude: 42.362602, longitude: -71.088814, info: &apos;Speed = 19&apos;},
+{latitude: 42.362530, longitude: -71.087936, info: &apos;Speed = 16&apos;},
+{latitude: 42.362457, longitude: -71.087059, info: &apos;Speed = 16&apos;},
+
+]
+</code></pre><h2 id="&#x7528;c&#x6784;&#x5EFA;&#x5E26;&#x53C2;&#x6570;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;"><a name="&#x7528;c&#x6784;&#x5EFA;&#x5E26;&#x53C2;&#x6570;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;" class="anchor-navigation-ex-anchor" href="#&#x7528;c&#x6784;&#x5EFA;&#x5E26;&#x53C2;&#x6570;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. &#x7528;C&#x6784;&#x5EFA;&#x5E26;&#x53C2;&#x6570;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</h2>
+<p><code>unistd.h</code>&#x662F;C&#x8BED;&#x8A00;&#x7684;&#x4E00;&#x4E2A;&#x51C6;&#x6807;&#x51C6;&#x5E93;,&#x5B83;&#x662F;linux,mac osx&#x7B49;&#x7C7B;unix&#x7CFB;&#x7EDF;&#x7684;&#x81EA;&#x5E26;&#x7684;&#x5E93;,&#x4F46;windows&#x5E76;&#x4E0D;&#x652F;&#x6301;.&#x8981;&#x5728;windows&#x4E0B;&#x4F7F;&#x7528;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5199;&#x4E00;&#x4E2A;&#x5934;&#x6587;&#x4EF6;,&#x5982;&#x4E0B;:</p>
+<pre><code class="lang-cpp"><span class="hljs-comment">/** This file is part of the Mingw32 package. 
+*  unistd.h maps     (roughly) to io.h 
+*/</span>  
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> _UNISTD_H  </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _UNISTD_H  </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;io.h&gt;</span>  </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;process.h&gt;</span>  </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* _UNISTD_H */</span></span>
+</code></pre>
+<p>&#x4F7F;&#x7528;&#x5B83;&#x4FBF;&#x5229;&#x7684;&#x6784;&#x5EFA;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;<code>getopt</code></p>
+<p><code>getopt()</code>&#x7528;&#x6765;&#x5206;&#x6790;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;.&#x53C2;&#x6570;<code>argc</code>&#x548C;<code>argv</code>&#x662F;&#x7531;<code>main()</code>&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;&#x4E2A;&#x6570;&#x548C;&#x5185;&#x5BB9;.&#x53C2;&#x6570;<code>optstring</code>&#x5219;&#x4EE3;&#x8868;&#x6B32;&#x5904;&#x7406;&#x7684;&#x9009;&#x9879;&#x5B57;&#x7B26;&#x4E32;.&#x6B64;&#x51FD;&#x6570;&#x4F1A;&#x8FD4;&#x56DE;&#x5728;<code>argv</code>&#x4E2D;&#x4E0B;&#x4E00;&#x4E2A;&#x7684;&#x9009;&#x9879;&#x5B57;&#x6BCD;,&#x6B64;&#x5B57;&#x6BCD;&#x4F1A;&#x5BF9;&#x5E94;&#x53C2;&#x6570;<code>optstring</code>&#x4E2D;&#x7684;&#x5B57;&#x6BCD;.&#x5982;&#x679C;&#x9009;&#x9879;&#x5B57;&#x7B26;&#x4E32;&#x91CC;&#x7684;&#x5B57;&#x6BCD;&#x540E;&#x63A5;&#x7740;&#x5192;&#x53F7;&quot;:&quot;.&#x5219;&#x8868;&#x793A;&#x8FD8;&#x6709;&#x76F8;&#x5173;&#x7684;&#x53C2;&#x6570;,&#x5168;&#x57DF;&#x53D8;&#x91CF;<code>optarg</code> &#x5373;&#x4F1A;&#x6307;&#x5411;&#x6B64;&#x989D;&#x5916;&#x53C2;&#x6570;.&#x5982;&#x679C;<code>getopt()</code>&#x627E;&#x4E0D;&#x5230;&#x7B26;&#x5408;&#x7684;&#x53C2;&#x6570;&#x5219;&#x4F1A;&#x5370;&#x51FA;&#x9519;&#x4FE1;&#x606F;,&#x5E76;&#x5C06;&#x5168;&#x57DF;&#x53D8;&#x91CF;<code>optopt</code>&#x8BBE;&#x4E3A;&quot;?&quot;&#x5B57;&#x7B26;,&#x5982;&#x679C;&#x4E0D;&#x5E0C;&#x671B;<code>getopt()</code>&#x5370;&#x51FA;&#x9519;&#x4FE1;&#x606F;,&#x5219;&#x53EA;&#x8981;&#x5C06;&#x5168;&#x57DF;&#x53D8;&#x91CF;<code>opterr</code>&#x8BBE;&#x4E3A;0&#x5373;&#x53EF;.</p>
+<h3 id="&#x77ED;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49;"><a name="&#x77ED;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49;" class="anchor-navigation-ex-anchor" href="#&#x77ED;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3.1. &#x77ED;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49;</h3>
+<p><code>getopt()</code>&#x4F7F;&#x7528;<code>optstring</code>&#x6240;&#x6307;&#x7684;&#x5B57;&#x4E32;&#x4F5C;&#x4E3A;&#x77ED;&#x53C2;&#x6570;&#x5217;&#x8868;,&#x50CF;<code>&quot;1ac:d::&quot;</code>&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x77ED;&#x53C2;&#x6570;&#x5217;&#x8868;.&#x77ED;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x4E00;&#x4E2A;<code>&apos;-&apos;</code>&#x540E;&#x9762;&#x8DDF;&#x4E00;&#x4E2A;&#x5B57;&#x6BCD;&#x6216;&#x6570;&#x5B57;,&#x8C61;<code>-a</code>, <code>-b</code>&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x77ED;&#x53C2;&#x6570;.&#x6BCF;&#x4E2A;&#x6570;&#x5B57;&#x6216;&#x5B57;&#x6BCD;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x53C2;&#x6570;.</p>
+<p>&#x5176;&#x4E2D;&#x77ED;&#x53C2;&#x6570;&#x5728;<code>getopt</code>&#x5B9A;&#x4E49;&#x91CC;&#x5206;&#x4E3A;&#x4E09;&#x79CD;&#xFF1A;</p>
+<ul>
+<li>&#x4E0D;&#x5E26;&#x503C;&#x7684;&#x53C2;&#x6570;,&#x5B83;&#x7684;&#x5B9A;&#x4E49;&#x5373;&#x662F;&#x53C2;&#x6570;&#x672C;&#x8EAB;</li>
+<li>&#x5FC5;&#x987B;&#x5E26;&#x503C;&#x7684;&#x53C2;&#x6570;,&#x5B83;&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x5728;&#x53C2;&#x6570;&#x672C;&#x8EAB;&#x540E;&#x9762;&#x518D;&#x52A0;&#x4E00;&#x4E2A;&#x5192;&#x53F7;</li>
+<li>&#x53EF;&#x9009;&#x503C;&#x7684;&#x53C2;&#x6570;,&#x5B83;&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x5728;&#x53C2;&#x6570;&#x672C;&#x8EAB;&#x540E;&#x9762;&#x52A0;&#x4E24;&#x4E2A;&#x5192;&#x53F7;</li>
+</ul>
+<p>&#x5728;&#x8FD9;&#x91CC;&#x62FF;&#x4E0A;&#x9762;&#x7684;<code>&quot;1ac:d::&quot;</code>&#x4F5C;&#x4E3A;&#x6837;&#x4F8B;&#x8FDB;&#x884C;&#x8BF4;&#x660E;,&#x5176;&#x4E2D;&#x7684;</p>
+<ul>
+<li><code>1</code>,<code>a</code>&#x5C31;&#x662F;&#x4E0D;&#x5E26;&#x503C;&#x7684;&#x53C2;&#x6570;</li>
+<li><code>c</code>&#x662F;&#x5FC5;&#x987B;&#x5E26;&#x503C;&#x7684;&#x53C2;&#x6570;</li>
+<li><code>d</code>&#x662F;&#x53EF;&#x9009;&#x503C;&#x7684;&#x53C2;&#x6570;</li>
+</ul>
+<p>&#x5728;&#x5B9E;&#x9645;&#x8C03;&#x7528;&#x4E2D;&#xFF0C;<code>&apos;-1 -a -c cvalue -d&apos;</code>, <code>&apos;-1 -a -c cvalue -ddvalue&apos;</code>, <code>&apos;-1a -ddvalue -c cvalue&apos;</code>&#x90FD;&#x662F;&#x5408;&#x6CD5;&#x7684;.
+&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x4E09;&#x70B9;:</p>
+<ul>
+<li>&#x4E0D;&#x5E26;&#x503C;&#x7684;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x8FDE;&#x5199;,&#x50CF;<code>1</code>&#x548C;<code>a</code>&#x662F;&#x4E0D;&#x5E26;&#x503C;&#x7684;&#x53C2;&#x6570;,&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;<code>-1</code> <code>-a</code>&#x5206;&#x5F00;&#x5199;,&#x4E5F;&#x53EF;&#x4EE5;<code>-1a</code>&#x6216;<code>-a1</code>&#x8FDE;&#x5199;.</li>
+<li>&#x53C2;&#x6570;&#x4E0D;&#x5206;&#x5148;&#x540E;&#x987A;&#x5E8F;,<code>&apos;-1a -c cvalue -ddvalue&apos;</code>&#x548C;<code>&apos;-d -c cvalue -a1&apos;</code>&#x7684;&#x89E3;&#x6790;&#x7ED3;&#x679C;&#x662F;&#x4E00;&#x6837;&#x7684;.</li>
+<li>&#x8981;&#x6CE8;&#x610F;&#x53EF;&#x9009;&#x503C;&#x7684;&#x53C2;&#x6570;&#x7684;&#x503C;&#x4E0E;&#x53C2;&#x6570;&#x4E4B;&#x95F4;&#x4E0D;&#x80FD;&#x6709;&#x7A7A;&#x683C;,&#x5FC5;&#x987B;&#x5199;&#x6210;<code>-ddvalue</code>&#x8FD9;&#x6837;&#x7684;&#x683C;&#x5F0F;,&#x5982;&#x679C;&#x5199;&#x6210;<code>-d dvalue</code>&#x8FD9;&#x6837;&#x7684;&#x683C;&#x5F0F;&#x5C31;&#x4F1A;&#x89E3;&#x6790;&#x9519;&#x8BEF;.</li>
+</ul>
+<h3 id="&#x8FD4;&#x56DE;&#x503C;"><a name="&#x8FD4;&#x56DE;&#x503C;" class="anchor-navigation-ex-anchor" href="#&#x8FD4;&#x56DE;&#x503C;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3.2. &#x8FD4;&#x56DE;&#x503C;</h3>
+<p><code>getopt()</code>&#x6BCF;&#x6B21;&#x8C03;&#x7528;&#x4F1A;&#x9010;&#x6B21;&#x8FD4;&#x56DE;&#x547D;&#x4EE4;&#x884C;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;. &#x3000; </p>
+<ul>
+<li>&#x5F53;&#x6CA1;&#x6709;&#x53C2;&#x6570;&#x7684;&#x6700;&#x540E;&#x7684;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x65F6;,<code>getopt()</code>&#x5C06;&#x8FD4;&#x56DE;-1.&#x3000; </li>
+<li>&#x5F53;&#x89E3;&#x6790;&#x5230;&#x4E00;&#x4E2A;&#x4E0D;&#x5728;<code>optstring</code>&#x91CC;&#x9762;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x6216;&#x8005;&#x4E00;&#x4E2A;&#x5FC5;&#x9009;&#x503C;&#x53C2;&#x6570;&#x4E0D;&#x5E26;&#x503C;&#x65F6;,&#x8FD4;&#x56DE;&apos;?&apos;.&#x3000; </li>
+<li>&#x5F53;<code>optstring</code>&#x662F;&#x4EE5;&apos;:&apos;&#x5F00;&#x5934;&#x65F6;,&#x7F3A;&#x503C;&#x53C2;&#x6570;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4F1A;&#x8FD4;&#x56DE;&apos;:&apos;,&#x800C;&#x4E0D;&#x662F;&apos;?&apos;.</li>
+</ul>
+<pre><code class="lang-python">%%writefile ./code/create_cmdline_tool/sqrt_opt/source/src/sqrt_opt.c
+<span class="hljs-comment">#include &lt;stdlib.h&gt;</span>
+<span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+<span class="hljs-comment">#include &lt;unistd.h&gt;</span>
+<span class="hljs-comment">#include &lt;math.h&gt;</span>
+const char * version = <span class="hljs-string">&quot;0.1.0&quot;</span>;
+
+int main(int argc, char **argv)  {  
+    int ch; 
+    double result;
+    opterr = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> ((ch = getopt(argc,argv,<span class="hljs-string">&quot;s:v\n&quot;</span>))!=<span class="hljs-number">-1</span>){  
+        switch(ch){  
+            case <span class="hljs-string">&apos;v&apos;</span>:
+                printf(<span class="hljs-string">&quot;option v: %s\n&quot;</span>,version);
+                <span class="hljs-keyword">break</span>;  
+            case <span class="hljs-string">&apos;s&apos;</span>:
+                result = sqrt(atoi(optarg));
+                printf(<span class="hljs-string">&quot;%f\n&quot;</span>,result);
+                <span class="hljs-keyword">break</span>;
+            default:
+                printf(<span class="hljs-string">&quot;wrong args\n&quot;</span>);
+        }  
+    }  
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code>Writing ./code/create_cmdline_tool/sqrt_opt/source/src/sqrt_opt.c
+</code></pre><pre><code class="lang-python">%%writefile ./code/create_cmdline_tool/sqrt_opt/CMakeLists.txt
+<span class="hljs-comment">#&#x9879;&#x76EE;&#x7F16;&#x8BD1;&#x73AF;&#x5883;</span>
+cmake_minimum_required (VERSION <span class="hljs-number">2.8</span>)
+project (sqrt_opt)
+
+<span class="hljs-comment"># &#x7F16;&#x8BD1;&#x8FDE;&#x63A5;&#x751F;&#x6210;demo</span>
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/bin)
+aux_source_directory(${CMAKE_BINARY_DIR}/source/src DIR_SRCS)
+add_executable(sqrt_opt ${DIR_SRCS})
+</code></pre>
+<pre><code>Overwriting ./code/create_cmdline_tool/sqrt_opt/CMakeLists.txt
+</code></pre><pre><code class="lang-python">!cmake ./code/create_cmdline_tool/sqrt_opt/CMakeLists.txt
+</code></pre>
+<pre><code>-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/sqrt_opt
+</code></pre><pre><code class="lang-python">!make -C ./code/create_cmdline_tool/sqrt_opt/
+</code></pre>
+<pre><code>[35m[1mScanning dependencies of target sqrt_opt[0m
+[ 50%] [32mBuilding C object CMakeFiles/sqrt_opt.dir/source/src/sqrt_opt.c.o[0m
+[100%] [32m[1mLinking C executable build/bin/sqrt_opt[0m
+[100%] Built target sqrt_opt
+</code></pre><pre><code class="lang-python">!./code/create_cmdline_tool/sqrt_opt/build/bin/sqrt_opt -v
+</code></pre>
+<pre><code>option v: 0.1.0
+</code></pre><pre><code class="lang-python">!./code/create_cmdline_tool/sqrt_opt/build/bin/sqrt_opt -s36
+</code></pre>
+<pre><code>6.000000
+</code></pre><h3 id="&#x4F7F;&#x7528;cmake-test-&#x6D4B;&#x8BD5;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;"><a name="&#x4F7F;&#x7528;cmake-test-&#x6D4B;&#x8BD5;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;cmake-test-&#x6D4B;&#x8BD5;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3.3. &#x4F7F;&#x7528;cmake test &#x6D4B;&#x8BD5;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</h3>
+<p>cmake&#x81EA;&#x5E26;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x6D4B;&#x8BD5;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x7684;&#x65B9;&#x6848;,&#x6211;&#x4EEC;&#x6765;&#x4FEE;&#x6539;&#x6211;&#x4EEC;&#x7684;<code>CMakeLists.txt</code>,&#x6D4B;&#x8BD5;&#x7684;&#x5F62;&#x5F0F;:</p>
+<pre><code>add_test (&lt;test_case_name&gt; ${CMAKE_BINARY_DIR}/build/bin/sqrt_opt -s36)
+set_tests_properties (&lt;test_case_name&gt;
+  PROPERTIES PASS_REGULAR_EXPRESSION &quot;6.0&quot;)
+</code></pre><p><code>add_test</code>&#x7528;&#x4E8E;&#x589E;&#x52A0;&#x4E00;&#x6761;&#x6D4B;&#x8BD5;,<code>set_tests_properties</code>&#x7528;&#x4E8E;&#x9A8C;&#x8BC1;&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x7B26;&#x5408;&#x9884;&#x671F;.&#x4F7F;&#x7528;<code>PASS_REGULAR_EXPRESSION</code>&#x5229;&#x7528;&#x6B63;&#x5219;&#x5339;&#x914D;&#x6765;&#x9A8C;&#x8BC1;&#x662F;&#x5426;&#x7ED3;&#x679C;&#x7B26;&#x5408;&#x9884;&#x671F;.</p>
+<pre><code class="lang-python">%%writefile ./code/create_cmdline_tool/sqrt_opt/CMakeLists.txt
+<span class="hljs-comment">#&#x9879;&#x76EE;&#x7F16;&#x8BD1;&#x73AF;&#x5883;</span>
+cmake_minimum_required (VERSION <span class="hljs-number">2.8</span>)
+project (sqrt_opt)
+
+<span class="hljs-comment"># &#x7F16;&#x8BD1;&#x8FDE;&#x63A5;&#x751F;&#x6210;demo</span>
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/bin)
+aux_source_directory(${CMAKE_BINARY_DIR}/source/src DIR_SRCS)
+add_executable(sqrt_opt ${DIR_SRCS})
+<span class="hljs-comment">#&#x6D4B;&#x8BD5;</span>
+enable_testing()
+add_test (TEST_VERSION ${CMAKE_BINARY_DIR}/build/bin/sqrt_opt -v)
+set_tests_properties (TEST_VERSION
+  PROPERTIES PASS_REGULAR_EXPRESSION <span class="hljs-string">&quot;v: 0.1.0&quot;</span>)
+add_test (TEST_36 ${CMAKE_BINARY_DIR}/build/bin/sqrt_opt -s36)
+set_tests_properties (TEST_36
+  PROPERTIES PASS_REGULAR_EXPRESSION <span class="hljs-string">&quot;6.0&quot;</span>)
+add_test (TEST_2 ${CMAKE_BINARY_DIR}/build/bin/sqrt_opt -s2)
+set_tests_properties (TEST_2
+  PROPERTIES PASS_REGULAR_EXPRESSION <span class="hljs-string">&quot;1.41&quot;</span>)
+</code></pre>
+<pre><code>Overwriting ./code/create_cmdline_tool/sqrt_opt/CMakeLists.txt
+</code></pre><pre><code class="lang-python">!cmake ./code/create_cmdline_tool/sqrt_opt/CMakeLists.txt
+</code></pre>
+<pre><code>-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/sqrt_opt
+</code></pre><pre><code class="lang-python">!make -C ./code/create_cmdline_tool/sqrt_opt/
+</code></pre>
+<pre><code>[100%] Built target sqrt_opt
+</code></pre><pre><code class="lang-python">!make -C ./code/create_cmdline_tool/sqrt_opt/ test
+</code></pre>
+<pre><code>[36mRunning tests...[0m
+Test project /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/sqrt_opt
+    Start 1: TEST_VERSION
+1/3 Test #1: TEST_VERSION .....................   Passed    0.01 sec
+    Start 2: TEST_36
+2/3 Test #2: TEST_36 ..........................   Passed    0.01 sec
+    Start 3: TEST_2
+3/3 Test #3: TEST_2 ...........................   Passed    0.01 sec
+
+[0;32m100% tests passed[0;0m, 0 tests failed[0;0m out of 3
+
+Total Test time (real) =   0.03 sec
+</code></pre><footer class="page-footer"><span class="copyright">Copyright &#xA9; hsz 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2019-04-04 23:05:37
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="测试工具.html" class="navigation navigation-prev " aria-label="Previous page: 测试工具">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="编程风格.html" class="navigation navigation-next " aria-label="Next page: 编程风格">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"制作命令行工具并测试","level":"1.2.5","depth":2,"next":{"title":"编程风格","level":"1.2.6","depth":2,"path":"工具链/编程风格.md","ref":"工具链/编程风格.md","articles":[]},"previous":{"title":"测试工具","level":"1.2.4","depth":2,"path":"工具链/测试工具.md","ref":"工具链/测试工具.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","advanced-emoji","github","github-buttons","katex","splitter","expandable-chapters-small","tbfed-pagefooter","-sharing","donate","sitemap-general","anchors","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy hsz 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"http://blog.hszofficial.site/TutorialForCLang"},"splitter":{},"search-pro":{"cutWordLib":"nodejieba","defineWord":["Gitbook Use"]},"donate":{"title":"","button":"赏","wechat":"http://blog.hszofficial.site/img/wechat_donate.jpg","alipay":"http://blog.hszofficial.site/img/zhifubao_donate.jpg","wechatText":"微信打赏","alipayText":"支付宝打赏"},"sitemap-general":{"prefix":"http://blog.hszofficial.site/TutorialForCLang/"},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true},"mode":"float","multipleH1":true,"pageTop":{"showLevelIcon":false,"mode":"float","pageTop":{"showLevelIcon":false,"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right"},"level1Icon":"","showLevel":true,"level2Icon":"","level3Icon":"","associatedWithSummary":true,"float":{"showLevelIcon":true,"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right"}},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"repo":"hsz1273327/TutorialForCLang","types":["star","watch","fork"],"size":"small"},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"weibo":false,"facebook":false,"twitter":false,"google":true,"instapaper":false,"vk":false,"all":["google"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"hsz","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C语言攻略","language":"zh-hans","links":{"sidebar":{"Home":"http://blog.hszofficial.site/"}},"gitbook":">=2.0.0","description":"C语言编程和主流使用场景介绍"},"file":{"path":"工具链/制作命令行工具并测试.md","mtime":"2019-04-04T15:05:37.970Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-08T07:10:12.236Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

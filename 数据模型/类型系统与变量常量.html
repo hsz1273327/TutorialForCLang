@@ -1,0 +1,893 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>类型系统与变量常量 · C语言攻略</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="hsz">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="自定义结构和类型.html" />
+    
+    
+    <link rel="prev" href="系统堆栈和C语言内存模型.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"hsz1273327/TutorialForCLang","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="http://blog.hszofficial.site/" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../工具链/">
+            
+                <a href="../工具链/">
+            
+                    
+                    工具链
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../工具链/项目结构.html">
+            
+                <a href="../工具链/项目结构.html">
+            
+                    
+                    项目结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../工具链/编译与运行环境.html">
+            
+                <a href="../工具链/编译与运行环境.html">
+            
+                    
+                    编译与运行环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../工具链/编译配套工具.html">
+            
+                <a href="../工具链/编译配套工具.html">
+            
+                    
+                    编译配套工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../工具链/测试工具.html">
+            
+                <a href="../工具链/测试工具.html">
+            
+                    
+                    测试工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../工具链/制作命令行工具并测试.html">
+            
+                <a href="../工具链/制作命令行工具并测试.html">
+            
+                    
+                    制作命令行工具并测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../工具链/编程风格.html">
+            
+                <a href="../工具链/编程风格.html">
+            
+                    
+                    编程风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../工具链/文档工具.html">
+            
+                <a href="../工具链/文档工具.html">
+            
+                    
+                    文档工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../工具链/cython接口包装.html">
+            
+                <a href="../工具链/cython接口包装.html">
+            
+                    
+                    python接口包装
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    数据模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="系统堆栈和C语言内存模型.html">
+            
+                <a href="系统堆栈和C语言内存模型.html">
+            
+                    
+                    系统堆栈和C语言内存模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="类型系统与变量常量.html">
+            
+                <a href="类型系统与变量常量.html">
+            
+                    
+                    类型系统与变量常量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="自定义结构和类型.html">
+            
+                <a href="自定义结构和类型.html">
+            
+                    
+                    自定义结构和类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="指针.html">
+            
+                <a href="指针.html">
+            
+                    
+                    指针
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../基本语法/README.md">
+            
+                <span>
+            
+                    
+                    基本语法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../基本语法/运算符.html">
+            
+                <a href="../基本语法/运算符.html">
+            
+                    
+                    运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../基本语法/逻辑控制语句.html">
+            
+                <a href="../基本语法/逻辑控制语句.html">
+            
+                    
+                    逻辑控制语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../基本语法/函数.html">
+            
+                <a href="../基本语法/函数.html">
+            
+                    
+                    函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../基本语法/数组.html">
+            
+                <a href="../基本语法/数组.html">
+            
+                    
+                    数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../基本语法/字符串和Unicode.html">
+            
+                <a href="../基本语法/字符串和Unicode.html">
+            
+                    
+                    字符串和Unicode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../输入输出/">
+            
+                <a href="../输入输出/">
+            
+                    
+                    输入输出
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../输入输出/标准输入输出.html">
+            
+                <a href="../输入输出/标准输入输出.html">
+            
+                    
+                    标准输入输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../输入输出/文件操作.html">
+            
+                <a href="../输入输出/文件操作.html">
+            
+                    
+                    文件操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../宏与编译期操作/">
+            
+                <a href="../宏与编译期操作/">
+            
+                    
+                    宏与编译期操作
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../宏与编译期操作/基本的宏写法.html">
+            
+                <a href="../宏与编译期操作/基本的宏写法.html">
+            
+                    
+                    基本的宏写法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../宏与编译期操作/基础泛型机制.html">
+            
+                <a href="../宏与编译期操作/基础泛型机制.html">
+            
+                    
+                    基础泛型机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../异常处理.html">
+            
+                <a href="../异常处理.html">
+            
+                    
+                    异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >类型系统与变量常量</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x4E0E;&#x53D8;&#x91CF;&#x5E38;&#x91CF;"><b>1. </b>&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x4E0E;&#x53D8;&#x91CF;&#x5E38;&#x91CF;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#c&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;"><b>1.1. </b>C&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x8F6C;&#x6362;"><b>1.1.1. </b>&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x8F6C;&#x6362;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x53D8;&#x91CF;"><b>1.2. </b>&#x53D8;&#x91CF;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x53D8;&#x91CF;&#x7684;&#x4E09;&#x8981;&#x7D20;"><b>1.2.1. </b>&#x53D8;&#x91CF;&#x7684;&#x4E09;&#x8981;&#x7D20;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x53D8;&#x91CF;&#x58F0;&#x660E;"><b>1.2.2. </b>&#x53D8;&#x91CF;&#x58F0;&#x660E;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x7B26;&#x53F7;&#x91CD;&#x8F7D;&#x5F15;&#x8D77;&#x7684;&#x6DF7;&#x6DC6;"><b>1.2.3. </b>&#x7B26;&#x53F7;&#x91CD;&#x8F7D;&#x5F15;&#x8D77;&#x7684;&#x6DF7;&#x6DC6;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x5E38;&#x91CF;"><b>1.3. </b>&#x5E38;&#x91CF;</a></li></ul></ul></div><a href="#&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x4E0E;&#x53D8;&#x91CF;&#x5E38;&#x91CF;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x4E0E;&#x53D8;&#x91CF;&#x5E38;&#x91CF;"><a name="&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x4E0E;&#x53D8;&#x91CF;&#x5E38;&#x91CF;" class="anchor-navigation-ex-anchor" href="#&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x4E0E;&#x53D8;&#x91CF;&#x5E38;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x4E0E;&#x53D8;&#x91CF;&#x5E38;&#x91CF;</h1>
+<h2 id="c&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;"><a name="c&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;" class="anchor-navigation-ex-anchor" href="#c&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. C&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;</h2>
+<p>C&#x8BED;&#x8A00;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x5F88;&#x5C11;,&#x4F46;&#x5F88;&#x7E41;&#x7410;,&#x8BB2;&#x8D77;&#x6765;&#x5F88;&#x5BB9;&#x6613;&#x4E71;&#x5957;,&#x8FD9;&#x8FB9;&#x6709;&#x4E00;&#x5F20;&#x56FE;&#x5F88;&#x597D;&#x7684;&#x603B;&#x7ED3;&#x4E86;C&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;,&#x9664;&#x4E86;bool&#x578B;&#x5916;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x90FD;&#x53EF;&#x4EE5;&#x5728;&#x5176;&#x4E2D;&#x627E;&#x5230;&#x5BF9;&#x5E94;</p>
+<p><img src="img/Ctypes.jpg" alt="C&#x8BED;&#x8A00;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;"></p>
+<p>short&#x3001;int&#x3001;long&#x3001;char&#x3001;float&#x3001;double&#x8FD9;6&#x79CD;&#x88AB;&#x79F0;&#x4E3A;&#x57FA;&#x672C;&#x7C7B;&#x578B;,&#x4ED6;&#x4EEC;&#x9664;&#x4E86;&#x610F;&#x4E49;&#x4E0D;&#x540C;&#x7CBE;&#x5EA6;&#x4E0D;&#x540C;,&#x66F4;&#x52A0;&#x5173;&#x952E;&#x7684;&#x662F;&#x4ED6;&#x4EEC;&#x6240;&#x5360;&#x7528;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x4E0D;&#x540C;.
+&#x5728;32 &#x4F4D;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;:</p>
+<ul>
+<li>short &#x5728;32&#x4F4D;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x5360;&#x7528;2&#x4E2A;byte&#xFF1B;</li>
+<li>int &#x5728;32&#x4F4D;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x5360;&#x7528;4 &#x4E2A;byte&#xFF1B;</li>
+<li>long &#x5728;32&#x4F4D;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x5360;&#x7528;4 &#x4E2A;byte&#xFF1B;64&#x4F4D;&#x7CFB;&#x7EDF; 8&#x4E2A;byte</li>
+<li>float &#x5728;32&#x4F4D;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x5360;&#x7528;4 &#x4E2A;byte&#xFF1B;</li>
+<li>double &#x5728;32&#x4F4D;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x5360;&#x7528;8 &#x4E2A;byte&#xFF1B;</li>
+<li>char &#x5728;32&#x4F4D;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x5360;&#x7528;1 &#x4E2A;byte&#x3002;</li>
+</ul>
+<p>&#x9488;&#x5BF9;int,long,short,char,&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x4FEE;&#x9970;&#x5173;&#x952E;&#x8BCD;<code>unsigned</code>&#x53EF;&#x4EE5;&#x653E;&#x5728;&#x4ED6;&#x4EEC;&#x524D;&#x9762;,&#x8868;&#x793A;&#x65E0;&#x7B26;&#x53F7;.</p>
+<p>&#x53E6;&#x5916;&#x5904;&#x7406;&#x5927;&#x6570;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;longlong&#x6570;&#x636E;&#x7C7B;&#x578B;,&#x8868;&#x793A;&#x4E00;&#x4E2A;8byte&#x7684;&#x6570;</p>
+<p>C&#x53EF;&#x4EE5;&#x50CF;python&#x4E2D;&#x4E00;&#x6837;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x578B;.&#x5177;&#x4F53;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x578B;&#x7684;&#x65B9;&#x5F0F;&#x6211;&#x4EEC;&#x5728;&#x540E;&#x9762;&#x7684;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x57FA;&#x672C;&#x7528;&#x6CD5;&#x4E2D;&#x4F1A;&#x6709;&#x8BF4;&#x660E;.</p>
+<h3 id="&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x8F6C;&#x6362;"><a name="&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x8F6C;&#x6362;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x8F6C;&#x6362;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.1. &#x57FA;&#x672C;&#x7C7B;&#x578B;&#x8F6C;&#x6362;</h3>
+<p>C&#x8BED;&#x8A00;&#x7684;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#xFF1A;</p>
+<ul>
+<li><p>&#x81EA;&#x52A8;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF08;&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x6709;&#x7F16;&#x8BD1;&#x5668;&#x5E2E;&#x4F60;&#x53BB;&#x5B8C;&#x6210;&#xFF09;</p>
+<p>  &#x5BF9;&#x4E8E;&#x81EA;&#x52A8;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x5C31;&#x662F;&#x6DF7;&#x5408;&#x8FD0;&#x7B97;&#x4EE5;&#x53CA;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x5C31;&#x662F;&#x51FD;&#x6570;&#x503C;&#x7684;&#x7C7B;&#x578B;&#x8F6C;&#x6362;</p>
+<ul>
+<li>&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#xFF1A;
+  &#x81EA;&#x52A8;&#x628A;&#x201C;&#xFF1D;&#x201D;&#x53F3;&#x8FB9;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x6210;&#x201C;&#xFF1D;&#x201D;&#x53F3;&#x8FB9;&#x7684;&#x53D8;&#x91CF;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x4F8B;&#x5982; int a=4.5; a&#x7684;&#x503C;&#x5B9E;&#x9645;&#x662F;4&#xFF01;</li>
+<li><p>&#x6DF7;&#x5408;&#x8FD0;&#x7B97;&#xFF1A;
+  &#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x8FD0;&#x7B97;&#x8868;&#x8FBE;&#x5F0F;&#x5F53;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x591A;&#x4E2A;&#x7C7B;&#x578B;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x9700;&#x8981;&#x6709;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x3002;&#x5F53;&#x8FD0;&#x7B97;&#x7B26;&#x4E24;&#x8FB9;&#x7684;&#x64CD;&#x4F5C;&#x6570;&#x7C7B;&#x578B;&#x4E0D;&#x540C;&#x65F6;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x6570;&#x5C31;&#x8981;&#x7ECF;&#x8FC7;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x4EE5;&#x548C;&#x53E6;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x6570;&#x7684;&#x7C7B;&#x578B;&#x76F8;&#x4E00;&#x81F4;&#xFF0C;&#x7136;&#x540E;&#x624D;&#x80FD;&#x8FDB;&#x884C;&#x8FD0;&#x7B97;&#x3002;
+  &#x53D8;&#x6362;&#x64CD;&#x4F5C;&#x6570;&#x91C7;&#x53D6;&#x5C31;&#x9AD8;&#x4E0D;&#x5C31;&#x4F4E;&#x7684;&#x539F;&#x5219;&#xFF0C;&#x5373;&#x7EA7;&#x522B;&#x4F4E;&#x7684;&#x64CD;&#x4F5C;&#x6570;&#x5148;&#x88AB;&#x8F6C;&#x6362;&#x6210;&#x548C;&#x7EA7;&#x522B;&#x9AD8;&#x7684;&#x64CD;&#x4F5C;&#x6570;&#x5177;&#x6709;&#x540C;&#x4E00;&#x7C7B;&#x578B;,
+  &#x7136;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x8FD0;&#x7B97;&#xFF0C;&#x7ED3;&#x679C;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x548C;&#x7EA7;&#x522B;&#x9AD8;&#x7684;&#x64CD;&#x4F5C;&#x6570;&#x76F8;&#x540C;&#x3002;</p>
+<pre><code> &#x9AD8;        double    &#x2190;&#x2190;    float
+ &#x2191;          &#x2191;             
+ &#x2191;         long     
+ &#x2191;          &#x2191;
+ &#x2191;        unsigned
+ &#x2191;          &#x2191;
+ &#x4F4E;         int      &#x2190;&#x2190;    char,short
+
+       &#x81EA;&#x52A8;&#x8F6C;&#x6362;&#x987A;&#x5E8F;&#x8868;
+</code></pre></li>
+<li><p>&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF1A; int f1(){ return 36.8;}</p>
+</li>
+</ul>
+</li>
+<li><p>&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;(&#x4F60;&#x77E5;&#x9053;&#x81EA;&#x5DF1;&#x60F3;&#x8981;&#x4EC0;&#x4E48;,&#x6240;&#x4EE5;&#x624D;&#x8F6C;&#x6362;).</p>
+<p>  C&#x8BED;&#x8A00;&#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x8FD0;&#x7B97;&#x7B26;,&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x8FD0;&#x7B97;&#x7B26;&#x5C06;&#x4E00;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#x8F6C;&#x6362;&#x6210;&#x6240;&#x9700;&#x7C7B;&#x578B;:
+  &#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-c">  (<span class="hljs-keyword">double</span>)a       (&#x5C06;a&#x8F6C;&#x6362;&#x6210;<span class="hljs-keyword">double</span>&#x7C7B;&#x578B;)
+  (<span class="hljs-keyword">int</span>)(x+y)      (&#x5C06;x+y&#x7684;&#x503C;&#x8F6C;&#x6362;&#x6210;&#x6574;&#x578B;)
+  (<span class="hljs-keyword">float</span>)(<span class="hljs-number">5</span>%<span class="hljs-number">3</span>)    (&#x5C06;<span class="hljs-number">5</span>%<span class="hljs-number">3</span>&#x7684;&#x503C;&#x8F6C;&#x6362;&#x6210;<span class="hljs-keyword">float</span>&#x578B;)
+</code></pre>
+<p>  &#x6CE8;&#x610F;&#xFF0C;&#x8868;&#x8FBE;&#x5F0F;&#x5E94;&#x8BE5;&#x7528;&#x62EC;&#x53F7;&#x62EC;&#x8D77;&#x6765;&#x3002;&#x5982;&#x679C;&#x5199;&#x6210;(int)x+y &#x5219;&#x53EA;&#x5C06;x&#x8F6C;&#x6362;&#x6210;&#x6574;&#x578B;&#xFF0C;&#x7136;&#x540E;&#x4E0E;y&#x76F8;&#x52A0;&#x3002;</p>
+</li>
+</ul>
+<h2 id="&#x53D8;&#x91CF;"><a name="&#x53D8;&#x91CF;" class="anchor-navigation-ex-anchor" href="#&#x53D8;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. &#x53D8;&#x91CF;</h2>
+<p>&#x548C;python&#x4E2D;&#x7C7B;&#x4F3C;,C&#x4E2D;&#x4E5F;&#x6709;&#x53D8;&#x91CF;,&#x53D8;&#x91CF;&#x7684;&#x5B9A;&#x4E49;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;:</p>
+<pre><code class="lang-c"><span class="hljs-keyword">int</span> a,b,c...;
+</code></pre>
+<p>&#x4E5F;&#x5C31;&#x662F;</p>
+<pre><code class="lang-c">(&#x5B58;&#x50A8;&#x8BF4;&#x660E;&#x7B26; )&#x6570;&#x636E;&#x7C7B;&#x578B; &#x53D8;&#x91CF;&#x540D;<span class="hljs-number">1</span>,&#x53D8;&#x91CF;&#x540D;<span class="hljs-number">2.</span>..;
+</code></pre>
+<h3 id="&#x53D8;&#x91CF;&#x7684;&#x4E09;&#x8981;&#x7D20;"><a name="&#x53D8;&#x91CF;&#x7684;&#x4E09;&#x8981;&#x7D20;" class="anchor-navigation-ex-anchor" href="#&#x53D8;&#x91CF;&#x7684;&#x4E09;&#x8981;&#x7D20;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.1. &#x53D8;&#x91CF;&#x7684;&#x4E09;&#x8981;&#x7D20;</h3>
+<p>&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x5FC5;&#x7136;&#x6709;&#x4E09;&#x6837;&#x5185;&#x5BB9;:</p>
+<ul>
+<li>&#x5730;&#x5740;,&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x7684;&#x6807;&#x8BB0;</li>
+<li>&#x503C;,&#x5B58;&#x653E;&#x7684;&#x5177;&#x4F53;&#x5185;&#x5BB9;</li>
+<li>&#x53D8;&#x91CF;&#x540D;,&#x5728;&#x7A0B;&#x5E8F;&#x4E2D;&#x7528;&#x4E8E;&#x6807;&#x8BB0;&#x53D8;&#x91CF;&#x7684;&#x7B26;&#x53F7;</li>
+</ul>
+<p>&#x5728;&#x591A;&#x6570;&#x8BED;&#x8A00;(&#x5305;&#x62EC;C&#x8BED;&#x8A00;)&#x4E2D;&#x8FD8;&#x8981;&#x52A0;&#x4E0A;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;,&#x7528;&#x4EE5;&#x8BA9;&#x7F16;&#x8BD1;&#x5668;&#x6216;&#x8005;&#x89E3;&#x91CA;&#x5668;&#x77E5;&#x9053;&#x8BE5;&#x5982;&#x4F55;&#x5904;&#x7406;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;</p>
+<h3 id="&#x53D8;&#x91CF;&#x58F0;&#x660E;"><a name="&#x53D8;&#x91CF;&#x58F0;&#x660E;" class="anchor-navigation-ex-anchor" href="#&#x53D8;&#x91CF;&#x58F0;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.2. &#x53D8;&#x91CF;&#x58F0;&#x660E;</h3>
+<p>C&#x8BED;&#x8A00;&#x548C;python&#x4E0D;&#x540C;&#x7684;&#x662F;python&#x7684;&#x53D8;&#x91CF;&#x4E0D;&#x9700;&#x8981;&#x4E8B;&#x5148;&#x58F0;&#x660E;,&#x800C;C&#x8BED;&#x8A00;&#x5FC5;&#x987B;&#x4E8B;&#x5148;&#x58F0;&#x660E;,&#x4E60;&#x60EF;&#x4E0A;&#x53D8;&#x91CF;&#x4F1A;&#x5728;&#x4E00;&#x8D77;&#x58F0;&#x660E;,&#x800C;&#x4E0D;&#x662F;&#x4E1C;&#x4E00;&#x5757;&#x897F;&#x4E00;&#x5757;&#x7684;,&#x8FD9;&#x6837;&#x4E5F;&#x6709;&#x52A9;&#x4E8E;debug.</p>
+<p>&#x5B58;&#x50A8;&#x8BF4;&#x660E;&#x7B26;&#x5219;&#x662F;&#x5BF9;&#x53D8;&#x91CF;/&#x51FD;&#x6570;&#x7279;&#x6027;&#x7684;&#x58F0;&#x660E;,&#x5E38;&#x89C1;&#x7684;&#x5B58;&#x50A8;&#x8BF4;&#x660E;&#x7B26;&#x6709;:</p>
+<ul>
+<li><p>static </p>
+<p>  &#x9759;&#x6001;&#x5C40;&#x90E8;&#x53D8;&#x91CF;,&#x6709;&#x65F6;&#x5E0C;&#x671B;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x5728;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7ED3;&#x675F;&#x540E;&#x4E0D;&#x6D88;&#x5931;&#x800C;&#x4FDD;&#x7559;&#x539F;&#x503C;&#xFF0C;&#x8FD9;&#x65F6;&#x5C31;&#x5E94;&#x8BE5;&#x6307;&#x5B9A;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E3A;&quot;&#x9759;&#x6001;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&quot;.&#x5B83;&#x5177;&#x6709;&#x4EE5;&#x4E0B;&#x7279;&#x70B9;:</p>
+<ul>
+<li>&#x9759;&#x6001;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x5728;&#x51FD;&#x6570;&#x5185;&#x5B9A;&#x4E49;&#xFF0C;&#x4F46;&#x4E0D;&#x8C61;&#x81EA;&#x52A8;&#x53D8;&#x91CF;&#x90A3;&#x6837;&#xFF0C;&#x5F53;&#x8C03;&#x7528;&#x65F6;&#x5C31;&#x5B58;&#x5728;&#xFF0C;&#x9000;&#x51FA;&#x51FD;&#x6570;&#x65F6;&#x5C31;&#x6D88;&#x5931;&#x3002;&#x9759;&#x6001;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x59CB;&#x7EC8;&#x5B58;&#x5728;&#x7740;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5B83;&#x7684;&#x751F;&#x5B58;&#x671F;&#x4E3A;&#x6574;&#x4E2A;&#x6E90;&#x7A0B;&#x5E8F;&#x3002;</li>
+<li>&#x9759;&#x6001;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x751F;&#x5B58;&#x671F;&#x867D;&#x7136;&#x4E3A;&#x6574;&#x4E2A;&#x6E90;&#x7A0B;&#x5E8F;&#xFF0C;&#x4F46;&#x662F;&#x5176;&#x4F5C;&#x7528;&#x57DF;&#x4ECD;&#x4E0E;&#x81EA;&#x52A8;&#x53D8;&#x91CF;&#x76F8;&#x540C;&#xFF0C;&#x5373;&#x53EA;&#x80FD;&#x5728;&#x5B9A;&#x4E49;&#x8BE5;&#x53D8;&#x91CF;&#x7684;&#x51FD;&#x6570;&#x5185;&#x4F7F;&#x7528;&#x8BE5;&#x53D8;&#x91CF;&#x3002;&#x9000;&#x51FA;&#x8BE5;&#x51FD;&#x6570;&#x540E;&#xFF0C; &#x5C3D;&#x7BA1;&#x8BE5;&#x53D8;&#x91CF;&#x8FD8;&#x7EE7;&#x7EED;&#x5B58;&#x5728;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x5B83;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>register </p>
+<p>  &#x5BC4;&#x5B58;&#x5668;&#x53D8;&#x91CF;,&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x6548;&#x7387;&#xFF0C;C&#x8BED;&#x8A00;&#x5141;&#x8BB8;&#x5C06;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x5F97;&#x503C;&#x653E;&#x5728;CPU&#x4E2D;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#xFF0C;&#x8FD9;&#x79CD;&#x53D8;&#x91CF;&#x53EB;&quot;&#x5BC4;&#x5B58;&#x5668;&#x53D8;&#x91CF;&quot;</p>
+</li>
+</ul>
+<ul>
+<li><p>extern </p>
+<p>  &#x5916;&#x90E8;&#x53D8;&#x91CF;&#xFF08;&#x5373;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF09;&#x662F;&#x5728;&#x51FD;&#x6570;&#x7684;&#x5916;&#x90E8;&#x5B9A;&#x4E49;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x4E3A;&#x4ECE;&#x53D8;&#x91CF;&#x5B9A;&#x4E49;&#x5904;&#x5F00;&#x59CB;&#xFF0C;&#x5230;&#x672C;&#x7A0B;&#x5E8F;&#x6587;&#x4EF6;&#x7684;&#x672B;&#x5C3E;&#x3002;&#x5982;&#x679C;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x4E0D;&#x5728;&#x6587;&#x4EF6;&#x7684;&#x5F00;&#x5934;&#x5B9A;&#x4E49;&#xFF0C;&#x5176;&#x6709;&#x6548;&#x7684;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x53EA;&#x9650;&#x4E8E;&#x5B9A;&#x4E49;&#x5904;&#x5230;&#x6587;&#x4EF6;&#x7EC8;&#x4E86;&#x3002;&#x5982;&#x679C;&#x5728;&#x5B9A;&#x4E49;&#x70B9;&#x4E4B;&#x524D;&#x7684;&#x51FD;&#x6570;&#x60F3;&#x5F15;&#x7528;&#x8BE5;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x5219;&#x5E94;&#x8BE5;&#x5728;&#x5F15;&#x7528;&#x4E4B;&#x524D;&#x7528;&#x5173;&#x952E;&#x5B57; extern&#x5BF9;&#x8BE5;&#x53D8;&#x91CF;&#x4F5C;&#x201C;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x58F0;&#x660E;&#x201D;&#x3002;&#x8868;&#x793A;&#x8BE5;&#x53D8;&#x91CF;&#x662F;&#x4E00;&#x4E2A;&#x5DF2;&#x7ECF;&#x5B9A;&#x4E49;&#x7684;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x3002;&#x6709;&#x4E86;&#x6B64;&#x58F0;&#x660E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4ECE;&#x201C;&#x58F0;&#x660E;&#x201D;&#x5904;&#x8D77;&#xFF0C;&#x5408;&#x6CD5;&#x5730;&#x4F7F;&#x7528;&#x8BE5;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x3002;</p>
+</li>
+</ul>
+<p>&#x603B;&#x7ED3;&#xFF1A;</p>
+<blockquote>
+<p>&#x4ECE;&#x4F5C;&#x7528;&#x57DF;&#x6765;&#x5212;&#x5206;&#x5206;&#x4E3A;:</p>
+</blockquote>
+<ul>
+<li><p>&#x5C40;&#x90E8;&#x53D8;&#x91CF;</p>
+<ul>
+<li>&#x9759;&#x6001;&#x5C40;&#x90E8;&#x53D8;&#x91CF;static(&#x79BB;&#x5F00;&#x51FD;&#x6570;&#xFF0C;&#x503C;&#x8FD8;&#x4FDD;&#x7559;)</li>
+<li>&#x5BC4;&#x5B58;&#x5668;&#x5C40;&#x90E8;&#x53D8;&#x91CF;register(&#x79BB;&#x5F00;&#x51FD;&#x6570;&#xFF0C;&#x503C;&#x6D88;&#x5931;)</li>
+<li>&#x5F62;&#x5F0F;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E3A;&#x81EA;&#x52A8;&#x53D8;&#x91CF;&#x6216;&#x8005;register&#x53D8;&#x91CF;</li>
+</ul>
+</li>
+<li><p>&#x5168;&#x5C40;&#x53D8;&#x91CF;    </p>
+<ul>
+<li>&#x9759;&#x6001;&#x5916;&#x90E8;&#x53D8;&#x91CF;(&#x4F5C;&#x7528;&#x57DF;&#x53EA;&#x80FD;&#x5728;&#x8BE5;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x6587;&#x4EF6;&#x4F5C;&#x7528;&#x57DF;)</li>
+<li>&#x5916;&#x90E8;&#x53D8;&#x91CF;(&#x975E;&#x9759;&#x6001;&#x5916;&#x90E8;&#x53D8;&#x91CF;,&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF0C;&#x53EF;&#x4EE5;&#x88AB;&#x5176;&#x5B83;&#x6587;&#x4EF6;&#x4F7F;&#x7528;)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&#x4ECE;&#x53D8;&#x91CF;&#x7684;&#x751F;&#x5B58;&#x5468;&#x671F;&#x6765;&#x5206;&#xFF1A;</p>
+</blockquote>
+<ul>
+<li><p>&#x52A8;&#x6001;&#x5B58;&#x50A8;   </p>
+<ul>
+<li>&#x5BC4;&#x5B58;&#x5668;&#x53D8;&#x91CF;register</li>
+<li>&#x5F62;&#x5F0F;&#x53C2;&#x6570;</li>
+</ul>
+</li>
+<li><p>&#x9759;&#x6001;&#x5B58;&#x50A8; </p>
+<ul>
+<li>&#x9759;&#x6001;&#x5C40;&#x90E8;&#x53D8;&#x91CF;</li>
+<li>&#x9759;&#x6001;&#x5916;&#x90E8;&#x53D8;&#x91CF;</li>
+<li>&#x5916;&#x90E8;&#x53D8;&#x91CF;(&#x5168;&#x5C40;&#x53D8;&#x91CF;)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&#x4ECE;&#x53D8;&#x91CF;&#x503C;&#x5B58;&#x653E;&#x7684;&#x4F4D;&#x7F6E;&#xFF1A;</p>
+</blockquote>
+<ul>
+<li><p>&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x9759;&#x6001;&#x5B58;&#x50A8;&#x533A;(&#x5168;&#x5C40;&#x6570;&#x636E;&#x533A;)</p>
+<ul>
+<li>&#x9759;&#x6001;&#x5C40;&#x90E8;&#x53D8;&#x91CF;</li>
+<li>&#x9759;&#x6001;&#x5916;&#x90E8;&#x53D8;&#x91CF;</li>
+<li>&#x5916;&#x90E8;&#x53D8;&#x91CF;(&#x5168;&#x5C40;&#x53D8;&#x91CF;)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x52A8;&#x6001;&#x5B58;&#x50A8;&#x533A;(&#x6808;)</p>
+<ul>
+<li>&#x5F62;&#x5F0F;&#x53C2;&#x6570;</li>
+</ul>
+</li>
+<li><p>CPU&#x4E2D;&#x7684;&#x5BC4;&#x5B58;&#x5668; </p>
+<ul>
+<li>&#x5BC4;&#x5B58;&#x5668;&#x53D8;&#x91CF;register</li>
+</ul>
+</li>
+</ul>
+<p><strong>&#x6CE8;&#x610F;:</strong>&#x5F53;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E0E;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x91CD;&#x540D;&#x7684;&#x65F6;&#x5019;,&#x548C;python&#x4E00;&#x6837;,&#x4EE5;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E3A;&#x51C6;,&#x5C4F;&#x853D;&#x5168;&#x5C40;&#x53D8;&#x91CF;</p>
+<h3 id="&#x7B26;&#x53F7;&#x91CD;&#x8F7D;&#x5F15;&#x8D77;&#x7684;&#x6DF7;&#x6DC6;"><a name="&#x7B26;&#x53F7;&#x91CD;&#x8F7D;&#x5F15;&#x8D77;&#x7684;&#x6DF7;&#x6DC6;" class="anchor-navigation-ex-anchor" href="#&#x7B26;&#x53F7;&#x91CD;&#x8F7D;&#x5F15;&#x8D77;&#x7684;&#x6DF7;&#x6DC6;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.3. &#x7B26;&#x53F7;&#x91CD;&#x8F7D;&#x5F15;&#x8D77;&#x7684;&#x6DF7;&#x6DC6;</h3>
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053;C&#x8BED;&#x8A00;&#x4E2D;&#x5173;&#x952E;&#x5B57;&#x5F88;&#x5C11;,&#x8FD9;&#x5F88;&#x7B80;&#x6D01;,&#x4F46;&#x5E26;&#x6765;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;&#x7B26;&#x53F7;&#x91CD;&#x8F7D;,&#x540C;&#x6837;&#x7684;&#x5173;&#x952E;&#x5B57;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x542B;&#x4E49;,&#x5176;&#x4ED6;&#x8FD8;&#x597D;,&#x6700;&#x5BB9;&#x6613;&#x6DF7;&#x6DC6;&#x7684;&#x5C31;&#x662F;&#x7528;&#x5728;&#x58F0;&#x660E;&#x4E2D;&#x7684;&#x4E24;&#x4E2A;&#x5173;&#x952E;&#x5B57;:</p>
+<ul>
+<li><p>static  </p>
+<ul>
+<li>&#x5728;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x8868;&#x793A;&#x8BE5;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x5728;&#x5404;&#x4E2A;&#x8C03;&#x7528;&#x95F4;&#x4E00;&#x76F4;&#x4FDD;&#x6301;&#x5EF6;&#x7EED;&#x6027;</li>
+<li>&#x5728;&#x51FD;&#x6570;&#x8FD9;&#x4E00;&#x7EA7;,&#x8868;&#x793A;&#x8BE5;&#x51FD;&#x6570;&#x53EA;&#x5BF9;&#x672C;&#x6587;&#x4EF6;&#x53EF;&#x89C1;</li>
+</ul>
+</li>
+<li><p>extern</p>
+<ul>
+<li>&#x7528;&#x4E8E;&#x51FD;&#x6570;&#x5B9A;&#x4E49;,&#x8868;&#x793A;&#x5168;&#x5C40;&#x53EF;&#x89C1;(&#x5C5E;&#x4E8E;&#x5197;&#x4F59;,&#x4E0D;&#x7528;&#x8FD9;&#x4E2A;&#x88C5;&#x9970;&#x4E5F;&#x5168;&#x5C40;&#x53EF;&#x89C1;)</li>
+<li>&#x7528;&#x4E8E;&#x53D8;&#x91CF;,&#x8868;&#x793A;&#x5B83;&#x5728;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x5B9A;&#x4E49;</li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x5E38;&#x91CF;"><a name="&#x5E38;&#x91CF;" class="anchor-navigation-ex-anchor" href="#&#x5E38;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. &#x5E38;&#x91CF;</h2>
+<p>&#x5E38;&#x91CF;&#x662F;&#x6307;&#x503C;&#x4E0D;&#x53EF;&#x53D8;&#x7684;&#x53D8;&#x91CF;,C&#x8BED;&#x8A00;&#x4E2D;&#x7684;&#x5E38;&#x91CF;&#x5176;&#x5B9E;&#x4E00;&#x76F4;&#x4EE5;&#x6765;&#x90FD;&#x88AB;&#x8BEF;&#x89E3;,&#x8BB0;&#x5F97;&#x6211;&#x5B66;C&#x7684;&#x65F6;&#x5019;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;&#x662F;&#x8FD9;&#x6837;&#x7684;:</p>
+<pre><code class="lang-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Pi 3.14</span>
+</code></pre>
+<p>&#x8FD9;&#x624D;&#x662F;&#x771F;&#x6B63;&#x7684;&#x5E38;&#x91CF;,&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x6570;&#x503C;&#x4F7F;&#x7528;&#x4E86;&#x6240;&#x8C13;&#x7684;&#x5B8F;,&#x5229;&#x7528;&#x5B8F;&#x628A;3.14&#x66FF;&#x6362;&#x4E86;Pi,&#x662F;&#x5199;&#x5728;&#x4EE3;&#x7801;&#x91CC;&#x7684;&#x4E0D;&#x662F;&#x88AB;&#x8D4B;&#x503C;&#x7684;.</p>
+<p>&#x800C;&#x5BB9;&#x6613;&#x6DF7;&#x6DC6;&#x7684;&#x662F;<code>const</code>&#x5173;&#x952E;&#x5B57;,&#x8FD9;&#x4E2A;&#x5B57;&#x53EF;&#x80FD;&#x66F4;&#x9002;&#x5408;&#x53EB;<code>readonly</code>,&#x4ED6;&#x5E76;&#x4E0D;&#x662F;&#x8868;&#x793A;&#x5E38;&#x91CF;,&#x800C;&#x662F;&#x8868;&#x793A;&#x540E;&#x9762;&#x7684;&#x53D8;&#x91CF;&#x662F;&#x53EA;&#x8BFB;&#x7684;,</p>
+<pre><code class="lang-c"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> Pi = <span class="hljs-number">3.14</span>;
+</code></pre>
+<p>Python&#x4E2D;&#x6CA1;&#x6709;&#x5E38;&#x91CF;&#x4E00;&#x8BF4;,&#x6211;&#x4EEC;&#x5C31;&#x5199;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x6765;&#x7406;&#x89E3;&#x4E0B;&#x4EC0;&#x4E48;&#x662F;&#x5E38;&#x91CF;</p>
+<pre><code class="lang-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> Pi = <span class="hljs-number">3.1415</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>{
+    <span class="hljs-keyword">int</span> r;
+    <span class="hljs-keyword">float</span> s;
+    r = <span class="hljs-number">2</span>;
+    s = Pi*r*r;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&#x534A;&#x5F84;2m&#x5706;&#x7684;&#x9762;&#x79EF;&#x4E3A;:%f\n&quot;</span>,s);
+
+    Pi = <span class="hljs-number">3.14</span>;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Pi=%f\n&quot;</span>,Pi);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code>/var/folders/2w/71b83qh117q3sjhm8xgnr7w00000gn/T/tmpiouolrs1.c:12:8: error: cannot assign to variable &apos;Pi&apos; with const-qualified type &apos;const float&apos;
+    Pi = 3.14;
+    ~~ ^
+/var/folders/2w/71b83qh117q3sjhm8xgnr7w00000gn/T/tmpiouolrs1.c:3:13: note: variable &apos;Pi&apos; declared const here
+const float Pi = 3.1415;
+~~~~~~~~~~~~^~~~~~~~~~~
+1 error generated.
+[C kernel] GCC exited with code 1, the executable will not be executed
+</code></pre><p>&#x5E38;&#x6570;&#x8D4B;&#x503C;&#x540E;&#x5C31;&#x65E0;&#x6CD5;&#x518D;&#x6B21;&#x8D4B;&#x503C;,&#x5C06;&#x8FD9;&#x53E5;&#x6CE8;&#x91CA;&#x6389;</p>
+<pre><code class="lang-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> Pi = <span class="hljs-number">3.1415</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>{
+    <span class="hljs-keyword">int</span> r;
+    <span class="hljs-keyword">float</span> s;
+    r = <span class="hljs-number">2</span>;
+    s = Pi*r*r;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&#x534A;&#x5F84;2m&#x5706;&#x7684;&#x9762;&#x79EF;&#x4E3A;:%f\n&quot;</span>,s);
+
+    <span class="hljs-comment">//Pi = 3.14;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Pi=%f\n&quot;</span>,Pi);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code>&#x534A;&#x5F84;2m&#x5706;&#x7684;&#x9762;&#x79EF;&#x4E3A;:12.566000
+Pi=3.141500
+</code></pre><footer class="page-footer"><span class="copyright">Copyright &#xA9; hsz 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2019-04-05 01:47:49
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="系统堆栈和C语言内存模型.html" class="navigation navigation-prev " aria-label="Previous page: 系统堆栈和C语言内存模型">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="自定义结构和类型.html" class="navigation navigation-next " aria-label="Next page: 自定义结构和类型">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"类型系统与变量常量","level":"1.3.2","depth":2,"next":{"title":"自定义结构和类型","level":"1.3.3","depth":2,"path":"数据模型/自定义结构和类型.md","ref":"数据模型/自定义结构和类型.md","articles":[]},"previous":{"title":"系统堆栈和C语言内存模型","level":"1.3.1","depth":2,"path":"数据模型/系统堆栈和C语言内存模型.md","ref":"数据模型/系统堆栈和C语言内存模型.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","advanced-emoji","github","github-buttons","katex","splitter","expandable-chapters-small","tbfed-pagefooter","-sharing","donate","sitemap-general","anchors","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy hsz 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"http://blog.hszofficial.site/TutorialForCLang"},"splitter":{},"search-pro":{"cutWordLib":"nodejieba","defineWord":["Gitbook Use"]},"donate":{"title":"","button":"赏","wechat":"http://blog.hszofficial.site/img/wechat_donate.jpg","alipay":"http://blog.hszofficial.site/img/zhifubao_donate.jpg","wechatText":"微信打赏","alipayText":"支付宝打赏"},"sitemap-general":{"prefix":"http://blog.hszofficial.site/TutorialForCLang/"},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true},"mode":"float","multipleH1":true,"pageTop":{"showLevelIcon":false,"mode":"float","pageTop":{"showLevelIcon":false,"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right"},"level1Icon":"","showLevel":true,"level2Icon":"","level3Icon":"","associatedWithSummary":true,"float":{"showLevelIcon":true,"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right"}},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"repo":"hsz1273327/TutorialForCLang","types":["star","watch","fork"],"size":"small"},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"weibo":false,"facebook":false,"twitter":false,"google":true,"instapaper":false,"vk":false,"all":["google"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"hsz","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C语言攻略","language":"zh-hans","links":{"sidebar":{"Home":"http://blog.hszofficial.site/"}},"gitbook":">=2.0.0","description":"C语言编程和主流使用场景介绍"},"file":{"path":"数据模型/类型系统与变量常量.md","mtime":"2019-04-04T17:47:49.367Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-08T07:10:12.236Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

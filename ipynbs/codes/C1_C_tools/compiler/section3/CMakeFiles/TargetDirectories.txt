@@ -1,9 +1,0 @@
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/CMakeFiles/install/strip.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/CMakeFiles/install.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/CMakeFiles/install/local.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/CMakeFiles/test.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/CMakeFiles/list_install_components.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/CMakeFiles/Demo.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/CMakeFiles/vector.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/CMakeFiles/rebuild_cache.dir
-/Users/huangsizhe/WORKSPACE/Blog/Docs/C_and_Cpp/TutorialForCpp/ipynbs/codes/C1_C_tools/compiler/section3/CMakeFiles/edit_cache.dir

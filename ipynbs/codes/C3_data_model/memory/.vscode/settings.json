@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "assert.h": "c",
-        "memory.h": "c",
-        "minunit.h": "c",
-        "stdbool.h": "c",
-        "string.h": "c"
-    }
-}

@@ -1,0 +1,1105 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>编译配套工具 · C语言攻略</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="hsz">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="测试工具.html" />
+    
+    
+    <link rel="prev" href="编译与运行环境.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"hsz1273327/TutorialForCLang","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="http://blog.hszofficial.site/" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    工具链
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="项目结构.html">
+            
+                <a href="项目结构.html">
+            
+                    
+                    项目结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="编译与运行环境.html">
+            
+                <a href="编译与运行环境.html">
+            
+                    
+                    编译与运行环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.3" data-path="编译配套工具.html">
+            
+                <a href="编译配套工具.html">
+            
+                    
+                    编译配套工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="测试工具.html">
+            
+                <a href="测试工具.html">
+            
+                    
+                    测试工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="制作命令行工具并测试.html">
+            
+                <a href="制作命令行工具并测试.html">
+            
+                    
+                    制作命令行工具并测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="编程风格.html">
+            
+                <a href="编程风格.html">
+            
+                    
+                    编程风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="文档工具.html">
+            
+                <a href="文档工具.html">
+            
+                    
+                    文档工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="cython接口包装.html">
+            
+                <a href="cython接口包装.html">
+            
+                    
+                    python接口包装
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../数据模型/">
+            
+                <a href="../数据模型/">
+            
+                    
+                    数据模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../数据模型/系统堆栈和C语言内存模型.html">
+            
+                <a href="../数据模型/系统堆栈和C语言内存模型.html">
+            
+                    
+                    系统堆栈和C语言内存模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../数据模型/类型系统与变量常量.html">
+            
+                <a href="../数据模型/类型系统与变量常量.html">
+            
+                    
+                    类型系统与变量常量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../数据模型/自定义结构和类型.html">
+            
+                <a href="../数据模型/自定义结构和类型.html">
+            
+                    
+                    自定义结构和类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../数据模型/指针.html">
+            
+                <a href="../数据模型/指针.html">
+            
+                    
+                    指针
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../基本语法/README.md">
+            
+                <span>
+            
+                    
+                    基本语法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../基本语法/运算符.html">
+            
+                <a href="../基本语法/运算符.html">
+            
+                    
+                    运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../基本语法/逻辑控制语句.html">
+            
+                <a href="../基本语法/逻辑控制语句.html">
+            
+                    
+                    逻辑控制语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../基本语法/函数.html">
+            
+                <a href="../基本语法/函数.html">
+            
+                    
+                    函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../基本语法/数组.html">
+            
+                <a href="../基本语法/数组.html">
+            
+                    
+                    数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../基本语法/字符串和Unicode.html">
+            
+                <a href="../基本语法/字符串和Unicode.html">
+            
+                    
+                    字符串和Unicode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../输入输出/">
+            
+                <a href="../输入输出/">
+            
+                    
+                    输入输出
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../输入输出/标准输入输出.html">
+            
+                <a href="../输入输出/标准输入输出.html">
+            
+                    
+                    标准输入输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../输入输出/文件操作.html">
+            
+                <a href="../输入输出/文件操作.html">
+            
+                    
+                    文件操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../宏与编译期操作/">
+            
+                <a href="../宏与编译期操作/">
+            
+                    
+                    宏与编译期操作
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../宏与编译期操作/基本的宏写法.html">
+            
+                <a href="../宏与编译期操作/基本的宏写法.html">
+            
+                    
+                    基本的宏写法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../宏与编译期操作/基础泛型机制.html">
+            
+                <a href="../宏与编译期操作/基础泛型机制.html">
+            
+                    
+                    基础泛型机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../异常处理.html">
+            
+                <a href="../异常处理.html">
+            
+                    
+                    异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >编译配套工具</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x7F16;&#x8BD1;&#x914D;&#x5957;&#x5DE5;&#x5177;"><b>1. </b>&#x7F16;&#x8BD1;&#x914D;&#x5957;&#x5DE5;&#x5177;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#makefile&#x4E0E;&#x81EA;&#x52A8;&#x5316;&#x7F16;&#x8BD1;"><b>1.1. </b>makefile&#x4E0E;&#x81EA;&#x52A8;&#x5316;&#x7F16;&#x8BD1;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x7528;makefile&#x5411;make&#x63CF;&#x8FF0;&#x4EE3;&#x7801;"><b>1.2. </b>&#x7528;makefile&#x5411;make&#x63CF;&#x8FF0;&#x4EE3;&#x7801;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#makefile&#x8BED;&#x6CD5;"><b>1.2.1. </b>makefile&#x8BED;&#x6CD5;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x4F7F;&#x7528;make&#x547D;&#x4EE4;"><b>1.2.2. </b>&#x4F7F;&#x7528;make&#x547D;&#x4EE4;</a></li></ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x4F7F;&#x7528;cmake&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;"><b>1.3. </b>&#x4F7F;&#x7528;cmake&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;</a></li><ul><li><span class="title-icon fa fa-hand-o-right"></span><a href="#cmake&#x57FA;&#x672C;&#x7528;&#x6CD5;"><b>1.3.1. </b>Cmake&#x57FA;&#x672C;&#x7528;&#x6CD5;</a></li><li><span class="title-icon fa fa-hand-o-right"></span><a href="#&#x4F7F;&#x7528;cmake&#x7F16;&#x8BD1;&#x6211;&#x4EEC;&#x7684;&#x4E8C;&#x5143;&#x5411;&#x91CF;"><b>1.3.2. </b>&#x4F7F;&#x7528;cmake&#x7F16;&#x8BD1;&#x6211;&#x4EEC;&#x7684;&#x4E8C;&#x5143;&#x5411;&#x91CF;</a></li></ul></ul></ul></div><a href="#&#x7F16;&#x8BD1;&#x914D;&#x5957;&#x5DE5;&#x5177;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x7F16;&#x8BD1;&#x914D;&#x5957;&#x5DE5;&#x5177;"><a name="&#x7F16;&#x8BD1;&#x914D;&#x5957;&#x5DE5;&#x5177;" class="anchor-navigation-ex-anchor" href="#&#x7F16;&#x8BD1;&#x914D;&#x5957;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x7F16;&#x8BD1;&#x914D;&#x5957;&#x5DE5;&#x5177;</h1>
+<p>&#x4E4B;&#x524D;&#x7684;&#x4EE3;&#x7801;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x4F7F;&#x7528;gcc&#x6765;&#x624B;&#x5DE5;&#x7F16;&#x8BD1;,&#x8FD9;&#x6CA1;&#x95EE;&#x9898;,&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x4E5F;&#x770B;&#x5230;&#x4E86;&#x6BCF;&#x6B21;&#x7F16;&#x8BD1;&#x7684;&#x547D;&#x4EE4;&#x90FD;&#x6BD4;python&#x7684;helloworld&#x90FD;&#x957F;&#x4E86;.&#x50CF;&#x5F88;&#x591A;&#x590D;&#x6742;&#x7684;&#x7A0B;&#x5E8F;&#x7528;&#x5230;&#x5F88;&#x591A;&#x5916;&#x90E8;&#x4F9D;&#x8D56;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x7F16;&#x8BD1;&#x90FD;&#x5FEB;&#x8D76;&#x4E0A;&#x5199;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x4E86;.</p>
+<p>&#x5728;js&#x4E2D;&#x6211;&#x4EEC;&#x7528;glup&#x6765;&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;,&#x5728;c&#x4E2D;&#x7684;&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;&#x5DE5;&#x5177;&#x5C31;&#x592A;&#x591A;&#x4E86;,&#x5404;&#x81EA;&#x9002;&#x7528;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x5E73;&#x53F0;&#x6709;&#x7740;&#x4E0D;&#x540C;&#x7684;&#x89C4;&#x8303;,&#x8FD9;&#x8FB9;&#x4ECB;&#x7ECD;&#x7684;&#x662F;<a href="https://www.gnu.org/software/make/manual/make.html" target="_blank">makefile</a>&#x548C;<a href="https://cmake.org/" target="_blank">cmake</a>&#x5DE5;&#x5177;.</p>
+<p>makefile&#x662F;&#x7C7B;unix&#x7CFB;&#x7EDF;&#x4E0B;&#x4E00;&#x4E2A;&#x53E4;&#x8001;&#x7684;&#x5DE5;&#x5177;,&#x81F3;&#x4ECA;&#x6D3B;&#x8DC3;&#x5728;&#x7F16;&#x7A0B;&#x5C4A;.</p>
+<p>cmake&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x5C42;&#x6B21;&#x7684;&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;&#x5DE5;&#x5177;,&#x5B83;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x81EA;&#x52A8;&#x751F;&#x6210;makefile,&#x5173;&#x952E;&#x662F;&#x4ED6;&#x8DE8;&#x5E73;&#x53F0;.</p>
+<h2 id="makefile&#x4E0E;&#x81EA;&#x52A8;&#x5316;&#x7F16;&#x8BD1;"><a name="makefile&#x4E0E;&#x81EA;&#x52A8;&#x5316;&#x7F16;&#x8BD1;" class="anchor-navigation-ex-anchor" href="#makefile&#x4E0E;&#x81EA;&#x52A8;&#x5316;&#x7F16;&#x8BD1;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. makefile&#x4E0E;&#x81EA;&#x52A8;&#x5316;&#x7F16;&#x8BD1;</h2>
+<p>make&#x662F;&#x4E00;&#x4E2A;linux/osx&#x4E0B;&#x53EF;&#x4EE5;&#x66FF;&#x4F60;&#x8FD0;&#x884C;&#x7F16;&#x8BD1;&#x547D;&#x4EE4;&#x7684;&#x5DE5;&#x5177;.make&#x4F1A;&#x68C0;&#x67E5;&#x6E90;&#x6587;&#x4EF6;&#x548C;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x7684;&#x65F6;&#x95F4;&#x6233;,&#x5982;&#x679C;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x8FC7;&#x671F;,make&#x5C31;&#x4F1A;&#x91CD;&#x65B0;&#x7F16;&#x8BD1;&#x5B83;.</p>
+<p>&#x5728;windows&#x4E0B;,&#x53EA;&#x6709;&#x5B89;&#x88C5;&#x4E86;mingw&#x624D;&#x4F1A;&#x5B89;&#x88C5;make&#x5DE5;&#x5177;,&#x5B83;&#x7684;&#x540D;&#x5B57;&#x53EB;&#x505A;<code>mingw32-make.exe</code>.&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x8D77;&#x89C1;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x6539;&#x540D;&#x4E3A;<code>make</code></p>
+<p>&#x4F46;&#x662F;&#x505A;&#x5230;&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x4E8B;&#x60C5;&#x524D;,&#x9700;&#x8981;&#x544A;&#x8BC9;make&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x4E00;&#x4E9B;&#x60C5;&#x51B5;.make&#x9700;&#x8981;&#x77E5;&#x9053;&#x6587;&#x4EF6;&#x4E4B;&#x95F4;&#x7684;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;,&#x540C;&#x65F6;&#x8FD8;&#x9700;&#x8981;&#x544A;&#x8BC9;&#x5B83;&#x4F60;&#x5177;&#x4F53;&#x60F3;&#x5982;&#x4F55;&#x6784;&#x5EFA;&#x4EE3;&#x7801;.&#x4E25;&#x683C;&#x610F;&#x4E49;&#x4E0A;&#x8BB2;,make&#x4E0D;&#x4EC5;&#x4EC5;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x7F16;&#x8BD1;&#x6587;&#x4EF6;.&#x76EE;&#x6807;&#x53EF;&#x4EE5;&#x662F;&#x4EFB;&#x4F55;&#x7528;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;,&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x76EE;&#x6807;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x6279;&#x6587;&#x4EF6;&#x538B;&#x7F29;&#x800C;&#x6210;&#x7684;&#x538B;&#x7F29;&#x6587;&#x6863;.</p>
+<p>&#x5BF9;&#x6BCF;&#x4E2A;&#x76EE;&#x6807;,make&#x9700;&#x8981;&#x77E5;&#x9053;&#x4E24;&#x4EF6;&#x4E8B;:</p>
+<ul>
+<li><p>&#x4F9D;&#x8D56;&#x9879;</p>
+<p>  &#x751F;&#x6210;&#x76EE;&#x6807;&#x9700;&#x8981;&#x7528;&#x54EA;&#x4E9B;&#x6587;&#x4EF6;</p>
+</li>
+</ul>
+<ul>
+<li><p>&#x751F;&#x6210;&#x65B9;&#x6CD5;</p>
+<p>  &#x751F;&#x6210;&#x8BE5;&#x6587;&#x4EF6;&#x65F6;&#x8981;&#x7528;&#x54EA;&#x4E9B;&#x6307;&#x4EE4;</p>
+</li>
+</ul>
+<p>&#x4F9D;&#x8D56;&#x9879;&#x548C;&#x751F;&#x6210;&#x65B9;&#x6CD5;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x6784;&#x6210;&#x4E86;&#x4E00;&#x6761;&#x89C4;&#x5219;.&#x6709;&#x4E86;&#x89C4;&#x5219;,make&#x5C31;&#x77E5;&#x9053;&#x5982;&#x4F55;&#x751F;&#x6210;&#x76EE;&#x6807;.</p>
+<h2 id="&#x7528;makefile&#x5411;make&#x63CF;&#x8FF0;&#x4EE3;&#x7801;"><a name="&#x7528;makefile&#x5411;make&#x63CF;&#x8FF0;&#x4EE3;&#x7801;" class="anchor-navigation-ex-anchor" href="#&#x7528;makefile&#x5411;make&#x63CF;&#x8FF0;&#x4EE3;&#x7801;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. &#x7528;makefile&#x5411;make&#x63CF;&#x8FF0;&#x4EE3;&#x7801;</h2>
+<p>&#x6240;&#x6709;&#x76EE;&#x6807;,&#x4F9D;&#x8D56;&#x9879;&#x548C;&#x751F;&#x6210;&#x65B9;&#x6CD5;&#x7684;&#x7EC6;&#x8282;&#x4FE1;&#x606F;&#x9700;&#x8981;&#x4FDD;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x53EB;<code>makefile</code>&#x6216;<code>Makefile</code>&#x7684;&#x6587;&#x4EF6;&#x4E2D;,</p>
+<h3 id="makefile&#x8BED;&#x6CD5;"><a name="makefile&#x8BED;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#makefile&#x8BED;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.1. makefile&#x8BED;&#x6CD5;</h3>
+<p>makefile&#x89C4;&#x5219;&#x5F88;&#x7B80;&#x5355;,&#x57FA;&#x672C;&#x7684;&#x89C4;&#x5219;:</p>
+<ul>
+<li>&#x89C4;&#x5219;&#x5F62;&#x5F0F;</li>
+</ul>
+<pre><code class="lang-makefile">target: require1 require2 require3
+    process
+</code></pre>
+<p>&#x6CE8;&#x610F;process&#x524D;&#x9762;&#x5FC5;&#x987B;&#x662F;tab</p>
+<ul>
+<li>&#x5B9A;&#x4E49;&#x73AF;&#x5883;&#x53D8;&#x91CF;</li>
+</ul>
+<pre><code class="lang-makefile">export FLASK_ENV=dev
+</code></pre>
+<ul>
+<li>&#x5B9A;&#x4E49;&#x53D8;&#x91CF;</li>
+</ul>
+<pre><code class="lang-makefile">DIR=xxx
+</code></pre>
+<ul>
+<li>&#x4F7F;&#x7528;&#x73AF;&#x5883;&#x53D8;&#x91CF;/&#x53D8;&#x91CF;</li>
+</ul>
+<pre><code class="lang-makefile">$(pwd)
+</code></pre>
+<p>&#x6CE8;&#x610F;,&#x8981;&#x83B7;&#x53D6;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#x7684;&#x5185;&#x5BB9;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>$(shell xxx)</code></p>
+<p>&#x4E3A;&#x4E86;&#x5F04;&#x660E;&#x767D;&#x5B83;&#x662F;&#x600E;&#x4E48;&#x5DE5;&#x4F5C;&#x7684;,&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x8FD8;&#x662F;&#x4EE5;<code>binary_vector</code>&#x4E3A;&#x4F8B;&#x4E3A;&#x5B83;&#x5199;&#x4E2A;<code>makefile</code>&#x7528;&#x4EE5;&#x5B9E;&#x73B0;&#x7F16;&#x8BD1;&#x9759;&#x6001;&#x94FE;&#x63A5;&#x5E93;&#x548C;&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;&#x7684;&#x529F;&#x80FD;:</p>
+<pre><code class="lang-python">%%writefile ./code/compiler/S2/makefile
+DIR = $(shell pwd)
+INCLUDE_DIR = $(DIR)/source/inc
+SRC_DIR = $(DIR)/source/src
+OBJECT_DIR = $(DIR)/source/obj
+LIB_DIR = $(DIR)/build/lib
+BIN_DIR = $(DIR)/build/bin
+TEST_DIR = $(DIR)/test
+
+objects = $(addprefix $(OBJECT_DIR)/,binary_operator.o unary_operator.o struct_operator.o)
+
+all: $(LIB_DIR)/libvector.a
+    echo <span class="hljs-string">&quot;done!&quot;</span>
+
+$(OBJECT_DIR)/struct_operator.o: $(INCLUDE_DIR)/binary_vector.h
+    gcc -c \
+-o $(OBJECT_DIR)/struct_operator.o \
+-I $(INCLUDE_DIR) \
+$(SRC_DIR)/struct_operator.c    
+
+$(OBJECT_DIR)/binary_operator.o: $(INCLUDE_DIR)/binary_vector.h
+    gcc -c \
+-o $(OBJECT_DIR)/binary_operator.o \
+-I $(INCLUDE_DIR) \
+$(SRC_DIR)/binary_operator.c
+
+$(OBJECT_DIR)/unary_operator.o: $(INCLUDE_DIR)/binary_vector.h
+    gcc -c \
+-o $(OBJECT_DIR)/unary_operator.o \
+-I $(INCLUDE_DIR) \
+$(SRC_DIR)/unary_operator.c
+
+$(LIB_DIR)/libvector.a: $(objects)
+    ar crv $(LIB_DIR)/libvector.a \
+$(objects)
+
+$(BIN_DIR)/vectorTest: $(LIB_DIR)/libvector.a $(INCLUDE_DIR)/binary_vector.h $(TEST_DIR)/test.c
+    gcc \
+-o $(BIN_DIR)/vectorTest \
+-I $(INCLUDE_DIR) \
+-L $(LIB_DIR) \
+-l vector \
+$(TEST_DIR)/test.c
+
+test: $(BIN_DIR)/vectorTest
+    $(BIN_DIR)/vectorTest
+
+clean: $(BIN_DIR)/vectorTest $(objects) $(LIB_DIR)/libvector.a
+    rm $(BIN_DIR)/vectorTest $(objects) $(LIB_DIR)/libvector.a
+</code></pre>
+<pre><code>Overwriting ./code/compiler/S2/makefile
+</code></pre><p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x6BCF;&#x6761;&#x547D;&#x4EE4;&#x90E8;&#x5206;&#x53EA;&#x80FD;&#x7528;<code>/tab</code>&#x800C;&#x4E0D;&#x662F;&#x7A7A;&#x683C;</p>
+<h3 id="&#x4F7F;&#x7528;make&#x547D;&#x4EE4;"><a name="&#x4F7F;&#x7528;make&#x547D;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;make&#x547D;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.2. &#x4F7F;&#x7528;make&#x547D;&#x4EE4;</h3>
+<p>make&#x547D;&#x4EE4;&#x4F7F;&#x7528;<code>-C</code>&#x6307;&#x5B9A;&#x64CD;&#x4F5C;&#x76EE;&#x5F55;, &#x540E;&#x9762;&#x63A5;<code>makefile</code>&#x4E2D;&#x7684;target&#x6267;&#x884C;&#x5B9A;&#x4E49;&#x7684;&#x8FC7;&#x7A0B;&#x548C;&#x4F9D;&#x8D56;.&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;target&#x5219;&#x4F1A;&#x77E5;&#x540D;&#x7B2C;&#x4E00;&#x6761;target</p>
+<pre><code class="lang-python">!make -C ./code/compiler/S2/ clean
+</code></pre>
+<pre><code>gcc \
+-o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/build/bin/vectorTest \
+-I /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/inc \
+-L /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/build/lib \
+-l vector \
+/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/test/test.c
+rm /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/build/bin/vectorTest /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/binary_operator.o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/unary_operator.o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/struct_operator.o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/build/lib/libvector.a
+</code></pre><pre><code class="lang-python">!make -C ./code/compiler/S2/
+</code></pre>
+<pre><code>gcc -c \
+-o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/binary_operator.o \
+-I /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/inc \
+/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/src/binary_operator.c
+gcc -c \
+-o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/unary_operator.o \
+-I /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/inc \
+/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/src/unary_operator.c
+gcc -c \
+-o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/struct_operator.o \
+-I /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/inc \
+/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/src/struct_operator.c    
+ar crv /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/build/lib/libvector.a \
+/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/binary_operator.o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/unary_operator.o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/struct_operator.o
+a - /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/binary_operator.o
+a - /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/unary_operator.o
+a - /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/obj/struct_operator.o
+echo &quot;done!&quot;
+done!
+</code></pre><pre><code class="lang-python">!make -C ./code/compiler/S2/ test
+</code></pre>
+<pre><code>gcc \
+-o /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/build/bin/vectorTest \
+-I /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/source/inc \
+-L /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/build/lib \
+-l vector \
+/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/test/test.c
+/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S2/build/bin/vectorTest
+mod(A)=2.236068
+mod(B)=5.000000
+mul(A,B)=11.000000
+add(A,B)=&lt;4.000000,6.000000&gt;
+</code></pre><h2 id="&#x4F7F;&#x7528;cmake&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;"><a name="&#x4F7F;&#x7528;cmake&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;cmake&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. &#x4F7F;&#x7528;cmake&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;</h2>
+<p>Cmake&#x672C;&#x8D28;&#x4E0A;&#x4E5F;&#x4E0D;&#x63D0;&#x4F9B;&#x6D41;&#x7A0B;&#x5316;&#x7F16;&#x8BD1;&#x7684;&#x529F;&#x80FD;,&#x4ED6;&#x5176;&#x5B9E;&#x662F;&#x7528;&#x6765;&#x751F;&#x6210;&#x4E0D;&#x540C;&#x5E73;&#x53F0;make&#x6587;&#x4EF6;&#x7684;,&#x5728;linux,mac osx&#x4E0A;&#x5C31;&#x662F;<code>makefile</code>,&#x6B63;&#x771F;&#x7F16;&#x8BD1;&#x4F7F;&#x7528;<code>make</code>&#x547D;&#x4EE4;,&#x5728;windows&#x4E0A;&#x5C31;&#x662F;<code>nmake</code>&#x5F53;&#x7136;windows&#x4E0B;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>mingw</code>&#x6765;&#x7F16;&#x8BD1;,&#x81EA;&#x5E26;&#x7684;<code>mingwXX-make</code>&#x6765;&#x7F16;&#x8BD1;makefile.&#x4E0D;&#x8FC7;&#x8FD9;&#x9700;&#x8981;&#x5728;cmake&#x7684;&#x65F6;&#x5019;&#x52A0;&#x4E0A;&#x989D;&#x5916;&#x53C2;&#x6570;<code>-G  &quot;MinGW Makefiles&quot;</code>&#x6307;&#x5B9A;</p>
+<h3 id="cmake&#x57FA;&#x672C;&#x7528;&#x6CD5;"><a name="cmake&#x57FA;&#x672C;&#x7528;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#cmake&#x57FA;&#x672C;&#x7528;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3.1. Cmake&#x57FA;&#x672C;&#x7528;&#x6CD5;</h3>
+<p>Cmake&#x662F;&#x6307;&#x4EE4;&#x5F0F;&#x7684;&#x914D;&#x7F6E;&#x65B9;&#x5F0F;,&#x57FA;&#x672C;&#x5F62;&#x5F0F;&#x5C31;&#x662F;<code>cmake_minimum_required (VERSION 2.8)</code>&#x8FD9;&#x6837;,<code>()</code>&#x5916;&#x9762;&#x7684;&#x662F;&#x53C2;&#x6570;&#x5B57;&#x6BB5;,&#x91CC;&#x9762;&#x7684;&#x662F;&#x5185;&#x5BB9;.</p>
+<h4 id="&#x5E38;&#x7528;&#x7684;&#x5B57;&#x6BB5;&#x6709;"><a name="&#x5E38;&#x7528;&#x7684;&#x5B57;&#x6BB5;&#x6709;" class="anchor-navigation-ex-anchor" href="#&#x5E38;&#x7528;&#x7684;&#x5B57;&#x6BB5;&#x6709;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5E38;&#x7528;&#x7684;&#x5B57;&#x6BB5;&#x6709;" class="plugin-anchor" href="#&#x5E38;&#x7528;&#x7684;&#x5B57;&#x6BB5;&#x6709;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5E38;&#x7528;&#x7684;&#x5B57;&#x6BB5;&#x6709;:</h4>
+<blockquote>
+<p>&#x5143;&#x4FE1;&#x606F;&#x8BBE;&#x7F6E;</p>
+</blockquote>
+<ul>
+<li><p><code>cmake_minimum_required</code>&#xFF1A;&#x6307;&#x5B9A;&#x8FD0;&#x884C;&#x6B64;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6240;&#x9700;&#x7684; CMake &#x7684;&#x6700;&#x4F4E;&#x7248;&#x672C;</p>
+</li>
+<li><p><code>project(&lt;proname&gt;)</code>&#xFF1A;&#x53C2;&#x6570;&#x503C;&#x662F; Demo1&#xFF0C;&#x8BE5;&#x547D;&#x4EE4;&#x6307;&#x5B9A;&#x9879;&#x76EE;&#x7684;&#x540D;&#x79F0;</p>
+</li>
+</ul>
+<blockquote>
+<p>&#x7F16;&#x8BD1;&#x5668;&#x8BBE;&#x7F6E;</p>
+</blockquote>
+<ul>
+<li><code>set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Lib)</code>:&#x8BBE;&#x7F6E;&#x9759;&#x6001;&#x8FDE;&#x63A5;&#x6587;&#x4EF6;&#x8F93;&#x51FA;&#x76EE;&#x5F55;</li>
+<li><code>set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Lib)</code>:&#x8BBE;&#x7F6E;&#x52A8;&#x6001;&#x6001;&#x8FDE;&#x63A5;&#x6587;&#x4EF6;&#x8F93;&#x51FA;&#x76EE;&#x5F55;</li>
+<li><code>set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Bin)</code>:&#x8BBE;&#x7F6E;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x8F93;&#x51FA;&#x76EE;&#x5F55;</li>
+<li><code>set_target_properties(&lt;projectnam&gt; PROPERTIES PUBLIC_HEADER &quot;some.h;headers.h&quot;)</code> &#x5C06;&#x5BF9;&#x5916;&#x7684;&#x63A5;&#x53E3;&#x5934;&#x6587;&#x4EF6;&#x8BBE;&#x7F6E;&#x5230;&#x7F16;&#x8BD1;&#x76EE;&#x6807;&#x4E0A;</li>
+<li><code>include_directories([AFTER|BEFORE] [SYSTEM] dir1 [dir2 ...])</code>:&#x8BBE;&#x7F6E;&#x5934;&#x6587;&#x4EF6;&#x76EE;&#x5F55;</li>
+<li><code>link_directories(directory1 directory2 ...)</code>:&#x8BBE;&#x7F6E;&#x8FDE;&#x63A5;&#x5E93;&#x6240;&#x5728;&#x4F4D;&#x7F6E;</li>
+<li><code>link_libraries(library1 &lt;debug | optimized&gt; library2 ...)</code>:&#x6DFB;&#x52A0;&#x9700;&#x8981;&#x94FE;&#x63A5;&#x7684;&#x5E93;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;</li>
+<li><code>target_link_libraries(&lt;target&gt; [item1 [item2 [...]]][[debug|optimized|general] &lt;item&gt;] ...)</code>:&#x8BBE;&#x7F6E;&#x8981;&#x94FE;&#x63A5;&#x7684;&#x5E93;&#x6587;&#x4EF6;&#x7684;&#x540D;&#x79F0;</li>
+<li><p><code>aux_source_directory(&lt;dir&gt; &lt;variable&gt;)</code>: &#x6307;&#x5B9A;&#x6E90;&#x6587;&#x4EF6;&#x7684;&#x6240;&#x5728;&#x76EE;&#x5F55;,&#x5982;<code>aux_source_directory(. DIR_SRCS)</code>&#x8FD9;&#x6837;&#x5C31;&#x5C06;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x653E;&#x5230;&#x4E86;<code>DIR_SRCS</code>&#x53D8;&#x91CF;&#x4E2D;.<code>add_executable(Demo ${DIR_SRCS})</code>&#x5C31;&#x6307;&#x5B9A;&#x597D;&#x4E86;&#x6240;&#x6709;&#x6587;&#x4EF6;.</p>
+</li>
+<li><p><code>add_executable(&lt;target&gt; &lt;sourcefiles...&gt;)</code>&#xFF1A; &#x5C06;&#x6E90;&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x6210;&#x4E00;&#x4E2A;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;,&#x7B2C;&#x4E00;&#x4F4D;&#x662F;&#x76EE;&#x6807;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x540D;,&#x540E;&#x9762;&#x5219;&#x662F;&#x6E90;&#x6587;&#x4EF6;&#x540D;.</p>
+</li>
+<li><p>add_compile_options(-std=c++11):&#x6307;&#x5B9A;&#x7F16;&#x8BD1;&#x76EE;&#x6807;&#x4F7F;&#x7528;&#x7684;&#x989D;&#x5916;&#x53C2;&#x6570;,&#x6BD4;&#x5982;&#x652F;&#x6301;c++11</p>
+</li>
+<li><p>target_compile_features(<target> <features...>)&#x6307;&#x5B9A;&#x7F16;&#x8BD1;&#x76EE;&#x6807;&#x4F7F;&#x7528;&#x7684;&#x989D;&#x5916;&#x53C2;&#x6570;</features...></target></p>
+</li>
+</ul>
+<blockquote>
+<p>&#x94FE;&#x63A5;&#x7F16;&#x8BD1;&#x8BBE;&#x7F6E;</p>
+</blockquote>
+<ul>
+<li><code>add_library (&lt;target&gt; [type]&lt;sourcefiles...&gt;)</code>:&#x5C06;&#x6E90;&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x6210;&#x4E00;&#x4E2A;&#x94FE;&#x63A5;&#x5E93;.</li>
+</ul>
+<blockquote>
+<p>&#x5B50;&#x76EE;&#x5F55;&#x8BBE;&#x7F6E;</p>
+</blockquote>
+<ul>
+<li><code>add_subdirectory(math)</code>:&#x6DFB;&#x52A0;&#x5B50;&#x76EE;&#x5F55;,&#x5B50;&#x76EE;&#x5F55;&#x4E2D;&#x9700;&#x8981;&#x6709;<code>CMakeLists.txt</code>&#x6587;&#x4EF6;,&#x7F16;&#x8BD1;&#x65F6;&#x4F1A;&#x4F18;&#x5148;&#x7F16;&#x8BD1;&#x5B50;&#x76EE;&#x5F55;.</li>
+</ul>
+<blockquote>
+<p>&#x6D4B;&#x8BD5;&#x8BBE;&#x7F6E;</p>
+</blockquote>
+<p>&#x53EF;&#x4EE5;&#x7528;<code>make test</code>&#x6267;&#x884C;&#x6D4B;&#x8BD5;</p>
+<ul>
+<li><code>enable_testing()</code>:&#x542F;&#x52A8;&#x6D4B;&#x8BD5;</li>
+<li><code>add_test(&lt;&#x6D4B;&#x8BD5;&#x540D;&gt; &lt;test_target&gt; &lt;args&gt;)</code>:&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x6D4B;&#x8BD5;,&#x9700;&#x8981;&#x5148;&#x628A;&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;&#x7F16;&#x8BD1;&#x4E86;</li>
+<li><code>set_tests_properties (test_usage PROPERTIES PASS_REGULAR_EXPRESSION &quot;Usage: .* base exponent&quot;)</code>&#x8BBE;&#x5B9A;&#x6D4B;&#x8BD5;&#x7684;&#x5C5E;&#x6027;</li>
+</ul>
+<ul>
+<li>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x5B8F;&#xFF0C;&#x7528;&#x6765;&#x7B80;&#x5316;&#x6D4B;&#x8BD5;&#x5DE5;&#x4F5C;</li>
+</ul>
+<pre><code class="lang-cmake"><span class="hljs-keyword">macro</span> (do_test arg1 arg2 result)
+  <span class="hljs-keyword">add_test</span> (test_<span class="hljs-variable">${arg1}</span>_<span class="hljs-variable">${arg2}</span> Demo <span class="hljs-variable">${arg1}</span> <span class="hljs-variable">${arg2}</span>)
+  <span class="hljs-keyword">set_tests_properties</span> (test_<span class="hljs-variable">${arg1}</span>_<span class="hljs-variable">${arg2}</span>
+    PROPERTIES PASS_REGULAR_EXPRESSION <span class="hljs-variable">${result}</span>)
+<span class="hljs-keyword">endmacro</span> (do_test)
+</code></pre>
+<blockquote>
+<p>debug&#x6D4B;&#x8BD5;</p>
+</blockquote>
+<pre><code class="lang-cmake"><span class="hljs-keyword">set</span>(CMAKE_BUILD_TYPE <span class="hljs-string">&quot;Debug&quot;</span>)
+<span class="hljs-keyword">set</span>(CMAKE_CXX_FLAGS_DEBUG <span class="hljs-string">&quot;$ENV{CXXFLAGS} -O0 -Wall -g -ggdb&quot;</span>)
+<span class="hljs-keyword">set</span>(CMAKE_CXX_FLAGS_RELEASE <span class="hljs-string">&quot;$ENV{CXXFLAGS} -O3 -Wall&quot;</span>)
+</code></pre>
+<blockquote>
+<p>install&#x529F;&#x80FD;</p>
+</blockquote>
+<p>&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x5B9A;&#x4E49;</p>
+<pre><code class="lang-cmake"><span class="hljs-keyword">install</span>([TARGETS &lt;name&gt;...(&#x7F16;&#x8BD1;&#x76EE;&#x6807;)|FILES &lt;file&gt;...(&#x8981;&#x79FB;&#x52A8;&#x7684;&#x6587;&#x4EF6;)]
+    [LIBRARY(&#x52A8;&#x6001;&#x5E93;)|ARCHIVE(&#x9759;&#x6001;&#x5E93;)|RUNTIME(&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;)] DESTINATION  &lt;dir&gt; ...
+    [INCLUDES DESTINATION [&lt;dir&gt; ...]]
+)
+</code></pre>
+<h4 id="cmake-&#x7684;&#x8BED;&#x6CD5;&#x6709;"><a name="cmake-&#x7684;&#x8BED;&#x6CD5;&#x6709;" class="anchor-navigation-ex-anchor" href="#cmake-&#x7684;&#x8BED;&#x6CD5;&#x6709;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="cmake-&#x7684;&#x8BED;&#x6CD5;&#x6709;" class="plugin-anchor" href="#cmake-&#x7684;&#x8BED;&#x6CD5;&#x6709;"><i class="fa fa-link" aria-hidden="true"></i></a>cmake &#x7684;&#x8BED;&#x6CD5;&#x6709;:</h4>
+<ul>
+<li><p>&#x6253;&#x5370;&#x4FE1;&#x606F;</p>
+<p>  <code>MESSAGE([SEND_ERROR | STATUS | FATAL_ERROR] &quot;message to display&quot;...)</code>,&#x5982;:<code>MESSAGE(STATUS &quot;This is BINARY dir &quot; ${HELLO_BINARY_DIR}))</code></p>
+</li>
+<li><p>&#x6307;&#x5B9A;&#x7F16;&#x8BD1;&#x5668;:</p>
+<p>  <code>SET(CMAKE_C_COMPILER &quot;/home/public/local/bin/gcc&quot;)</code></p>
+<p>  <code>SET(CMAKE_CXX_COMPILER &quot;/home/public/local/bin/g++&quot;)</code></p>
+</li>
+<li><p>&#x663E;&#x5F0F;&#x7684;&#x8BBE;&#x7F6E;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;</p>
+<p>  &#x4F7F;&#x7528;<code>set(&#x53D8;&#x91CF;&#x540D; &#x503C;)</code>&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;:<code>SET(HELLO_SRC main.SOURCE_PATHc)</code></p>
+</li>
+<li><p>&#x53D8;&#x91CF;&#x5F15;&#x7528;&#x7684;&#x65B9;&#x5F0F;</p>
+<p>  &#x4F7F;&#x7528;<code>${}</code>&#x8FDB;&#x884C;&#x53D8;&#x91CF;&#x7684;&#x5F15;&#x7528;</p>
+</li>
+<li><p>&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</p>
+<p>  <code>SET(ENV{&#x53D8;&#x91CF;&#x540D;} &#x503C;)</code></p>
+</li>
+<li><p>&#x8C03;&#x7528;&#x73AF;&#x5883;&#x53D8;&#x91CF;</p>
+<p>  &#x4F7F;&#x7528;<code>$ENV{NAME}</code>&#x6307;&#x4EE4;&#x5C31;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x7CFB;&#x7EDF;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x4E86;</p>
+</li>
+</ul>
+<ul>
+<li><p>IF &#x6307;&#x4EE4;</p>
+<p> &#x57FA;&#x672C;&#x8BED;&#x6CD5;&#x4E3A;:</p>
+<pre><code> IF(expression_r_r)
+   # THEN section.
+   COMMAND1(ARGS ...)
+   COMMAND2(ARGS ...)
+   ...
+ ELSE(expression_r_r)
+   # ELSE section.
+   COMMAND1(ARGS ...)
+   COMMAND2(ARGS ...)
+   ...
+ ENDIF(expression_r_r)
+</code></pre></li>
+<li><p>WHILE&#x6307;&#x4EE4;</p>
+<p> &#x57FA;&#x672C;&#x8BED;&#x6CD5;&#x4E3A;:</p>
+<pre><code>  WHILE(condition)
+    COMMAND1(ARGS ...)
+    COMMAND2(ARGS ...)
+    ...
+  ENDWHILE(condition)
+</code></pre><p>&#x5176;&#x771F;&#x5047;&#x5224;&#x65AD;&#x6761;&#x4EF6;&#x53EF;&#x4EE5;&#x53C2;&#x8003; IF &#x6307;&#x4EE4;&#x3002;</p>
+</li>
+</ul>
+<ul>
+<li><p>FOREACH</p>
+<p>  FOREACH &#x6307;&#x4EE4;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x6709;&#x4E24;&#x79CD;&#x5F62;&#x5F0F;:</p>
+<ol>
+<li>&#x5217;&#x8868;<pre><code>FOREACH(loop_var arg1 arg2 ...)
+COMMAND1(ARGS ...)
+COMMAND2(ARGS ...)
+...
+ENDFOREACH(loop_var)
+</code></pre></li>
+<li>&#x8303;&#x56F4;(&#x7C7B;&#x4F3C;pythonz&#x4E2D;&#x7684;for xxx in range(x))<pre><code>FOREACH(loop_var RANGE oop_var RANGE start stop [step])
+ENDFOREACH(loop_var)
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<h4 id="cmake&#x7684;&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#x6709;"><a name="cmake&#x7684;&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#x6709;" class="anchor-navigation-ex-anchor" href="#cmake&#x7684;&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#x6709;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="cmake&#x7684;&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#x6709;" class="plugin-anchor" href="#cmake&#x7684;&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#x6709;"><i class="fa fa-link" aria-hidden="true"></i></a>Cmake&#x7684;&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#x6709;:</h4>
+<ul>
+<li><p><code>CMAKE_BINARY_DIR/PROJECT_BINARY_DIR/&lt;projectname&gt;_BINARY_DIR</code></p>
+<p>  &#x8FD9;&#x4E09;&#x4E2A;&#x53D8;&#x91CF;&#x6307;&#x4EE3;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x4E00;&#x81F4;&#x7684;,&#x5982;&#x679C;&#x662F;<code>in source</code>&#x7F16;&#x8BD1;,&#x6307;&#x5F97;&#x5C31;&#x662F;&#x5DE5;&#x7A0B;&#x9876;&#x5C42;&#x76EE;&#x5F55;,&#x5982;&#x679C;&#x662F;<code>out-of-source</code>&#x7F16;&#x8BD1;,&#x6307;&#x7684;&#x662F;&#x5DE5;&#x7A0B;&#x7F16;&#x8BD1;&#x53D1;&#x751F;&#x7684;&#x76EE;&#x5F55;
+  PROJECT_BINARY_DIR &#x8DDF;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x7A0D;&#x6709;&#x533A;&#x522B;,&#x4F46;&#x591A;&#x6570;&#x65F6;&#x5019;&#x4F60;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4ED6;&#x4EEC;&#x662F;&#x4E00;&#x81F4;&#x7684;.</p>
+</li>
+</ul>
+<ul>
+<li><p><code>CMAKE_SOURCE_DIR/PROJECT_SOURCE_DIR/&lt;projectname&gt;_SOURCE_DIR</code></p>
+<p>  &#x8FD9;&#x4E09;&#x4E2A;&#x53D8;&#x91CF;&#x6307;&#x4EE3;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x4E00;&#x81F4;&#x7684;,&#x4E0D;&#x8BBA;&#x91C7;&#x7528;&#x4F55;&#x79CD;&#x7F16;&#x8BD1;&#x65B9;&#x5F0F;,&#x90FD;&#x662F;&#x5DE5;&#x7A0B;&#x9876;&#x5C42;&#x76EE;&#x5F55;.&#x4E5F;&#x5C31;&#x662F;&#x5728;<code>in source</code>&#x7F16;&#x8BD1;&#x65F6;,&#x4ED6;&#x8DDF;<code>CMAKE_BINARY_DIR</code>&#x7B49;&#x53D8;&#x91CF;&#x4E00;&#x81F4;.<code>PROJECT_SOURCE_DIR</code>&#x8DDF;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x7A0D;&#x6709;&#x533A;&#x522B;,&#x4F46;&#x591A;&#x6570;&#x65F6;&#x5019;&#x4F60;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4ED6;&#x4EEC;&#x662F;&#x4E00;&#x81F4;&#x7684;.</p>
+</li>
+<li><p><code>CMAKE_CURRENT_SOURCE_DIR</code></p>
+<p>  &#x6307;&#x7684;&#x662F;&#x5F53;&#x524D;&#x5904;&#x7406;&#x7684;<code>CMakeLists.txt</code>&#x6240;&#x5728;&#x7684;&#x8DEF;&#x5F84;</p>
+</li>
+<li><p><code>CMAKE_CURRRENT_BINARY_DIR</code></p>
+<p>  &#x5982;&#x679C;&#x662F;<code>in-source</code>&#x7F16;&#x8BD1;,&#x5B83;&#x8DDF;<code>CMAKE_CURRENT_SOURCE_DIR</code>&#x4E00;&#x81F4;,&#x5982;&#x679C;&#x662F;<code>out-of-source</code>&#x7F16;&#x8BD1;,&#x4ED6;&#x6307;&#x7684;&#x662F;<code>target</code>&#x7F16;&#x8BD1;&#x76EE;&#x5F55;.&#x4F7F;&#x7528;<code>ADD_SUBDIRECTORY(src bin)</code>&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x503C;.&#x4F7F;&#x7528;<code>SET(EXECUTABLE_OUTPUT_PATH &lt;&#x65B0;&#x8DEF;&#x5F84;&gt;)</code>&#x5E76;&#x4E0D;&#x4F1A;&#x5BF9;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x9020;&#x6210;&#x5F71;&#x54CD;,&#x5B83;&#x4EC5;&#x4EC5;&#x4FEE;&#x6539;&#x4E86;&#x6700;&#x7EC8;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x5B58;&#x653E;&#x7684;&#x8DEF;&#x5F84;.</p>
+</li>
+<li><p><code>CMAKE_CURRENT_LIST_FILE</code></p>
+<p>  &#x8F93;&#x51FA;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x7684;<code>CMakeLists.txt</code>&#x7684;&#x5B8C;&#x6574;&#x8DEF;&#x5F84;</p>
+</li>
+</ul>
+<ul>
+<li><p><code>CMAKE_CURRENT_LIST_LINE</code></p>
+<p>  &#x8F93;&#x51FA;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x6240;&#x5728;&#x7684;&#x884C;</p>
+</li>
+<li><p>CMAKE_MODULE_PATH</p>
+<p>  &#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x7528;&#x6765;&#x5B9A;&#x4E49;&#x81EA;&#x5DF1;&#x7684;<code>cmake</code>&#x6A21;&#x5757;&#x6240;&#x5728;&#x7684;&#x8DEF;&#x5F84;.&#x5982;&#x679C;&#x4F60;&#x7684;&#x5DE5;&#x7A0B;&#x6BD4;&#x8F83;&#x590D;&#x6742;,&#x6709;&#x53EF;&#x80FD;&#x4F1A;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x4E00;&#x4E9B;<code>cmake</code>&#x6A21;&#x5757;,&#x8FD9;&#x4E9B;<code>cmake</code>&#x6A21;&#x5757;&#x662F;&#x968F;&#x4F60;&#x7684;&#x5DE5;&#x7A0B;&#x53D1;&#x5E03;&#x7684;,&#x4E3A;&#x4E86;&#x8BA9; <code>cmake</code>&#x5728;&#x5904;&#x7406;<code>CMakeLists.txt</code>&#x65F6;&#x627E;&#x5230;&#x8FD9;&#x4E9B;&#x6A21;&#x5757;,&#x4F60;&#x9700;&#x8981;&#x901A;&#x8FC7;<code>SET</code>&#x6307;&#x4EE4;,&#x5C06;&#x81EA;&#x5DF1;&#x7684;<code>cmake</code>&#x6A21;&#x5757;&#x8DEF;&#x5F84;&#x8BBE;&#x7F6E;&#x4E00;&#x4E0B;.&#x6BD4;&#x5982;<code>SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)</code>.&#x8FD9;&#x65F6;&#x5019;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; INCLUDE &#x6307;&#x4EE4;&#x6765;&#x8C03;&#x7528;&#x81EA;&#x5DF1;&#x7684;&#x6A21;&#x5757;&#x4E86;.</p>
+</li>
+</ul>
+<ul>
+<li><p><code>EXECUTABLE_OUTPUT_PATH /LIBRARY_OUTPUT_PATH</code></p>
+<p>  &#x5206;&#x522B;&#x7528;&#x6765;&#x91CD;&#x65B0;&#x5B9A;&#x4E49;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#x7684;&#x5B58;&#x653E;&#x76EE;&#x5F55;,&#x524D;&#x9762;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x63D0;&#x5230;&#x4E86;&#x8FD9;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x3002;</p>
+</li>
+<li><p><code>PROJECT_NAME</code></p>
+<p>  &#x8FD4;&#x56DE;&#x901A;&#x8FC7;<code>PROJECT</code>&#x6307;&#x4EE4;&#x5B9A;&#x4E49;&#x7684;&#x9879;&#x76EE;&#x540D;&#x79F0;.</p>
+</li>
+</ul>
+<ul>
+<li><p><code>CMAKE_MAJOR_VERSION,CMAKE</code></p>
+<p>  &#x4E3B;&#x7248;&#x672C;&#x53F7;,&#x6BD4;&#x5982; 2.4.6 &#x4E2D;&#x7684; 2</p>
+</li>
+</ul>
+<ul>
+<li><p><code>CMAKE_MINOR_VERSION,CMAKE</code></p>
+<p>  &#x6B21;&#x7248;&#x672C;&#x53F7;,&#x6BD4;&#x5982; 2.4.6 &#x4E2D;&#x7684; 4</p>
+</li>
+</ul>
+<ul>
+<li><p><code>CMAKE_PATCH_VERSION,CMAKE</code></p>
+<p>  &#x8865;&#x4E01;&#x7B49;&#x7EA7;,&#x6BD4;&#x5982; 2.4.6 &#x4E2D;&#x7684; 6</p>
+</li>
+</ul>
+<ul>
+<li><p><code>CMAKE_SYSTEM</code></p>
+<p>  &#x7CFB;&#x7EDF;&#x540D;&#x79F0;,&#x6BD4;&#x5982; Linux-2.6.22</p>
+</li>
+</ul>
+<ul>
+<li><p><code>CMAKE_SYSTEM_NAME</code></p>
+<p>  &#x4E0D;&#x5305;&#x542B;&#x7248;&#x672C;&#x7684;&#x7CFB;&#x7EDF;&#x540D;,&#x6BD4;&#x5982; Linux</p>
+</li>
+</ul>
+<ul>
+<li><p><code>CMAKE_SYSTEM_VERSION</code></p>
+<p>  &#x7CFB;&#x7EDF;&#x7248;&#x672C;,&#x6BD4;&#x5982; 2.6.22</p>
+</li>
+</ul>
+<ul>
+<li><p><code>CMAKE_SYSTEM_PROCESSOR</code></p>
+<p>  &#x5904;&#x7406;&#x5668;&#x540D;&#x79F0;,&#x6BD4;&#x5982; i686.</p>
+</li>
+</ul>
+<ul>
+<li><p><code>UNIX</code></p>
+<p>  &#x5728;&#x6240;&#x6709;&#x7684;&#x7C7B; UNIX &#x5E73;&#x53F0;&#x4E3A; TRUE,&#x5305;&#x62EC; OS X &#x548C; cygwin</p>
+</li>
+<li><p><code>WIN32</code></p>
+<p>  &#x5728;&#x6240;&#x6709;&#x7684; win32 &#x5E73;&#x53F0;&#x4E3A; TRUE,&#x5305;&#x62EC; cygwin</p>
+</li>
+<li><p><code>CMAKE_INSTALL_PREFIX</code></p>
+<p>  &#x5728;cmake&#x751F;&#x6210;makefile&#x65F6;&#x4F7F;&#x7528;<code>-D</code>&#x6307;&#x5B9A;&#x7684;&#x76EE;&#x5F55;,&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x5B89;&#x88C5;&#x76EE;&#x5F55;,&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#x4E14;&#x5B89;&#x88C5;&#x7684;&#x5730;&#x5740;&#x662F;&#x76F8;&#x5BF9;&#x5730;&#x5740;,&#x5C31;&#x4F1A;&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;&#x5230;<code>/usr/local/</code>&#x4E0B;.</p>
+</li>
+</ul>
+<h3 id="&#x4F7F;&#x7528;cmake&#x7F16;&#x8BD1;&#x6211;&#x4EEC;&#x7684;&#x4E8C;&#x5143;&#x5411;&#x91CF;"><a name="&#x4F7F;&#x7528;cmake&#x7F16;&#x8BD1;&#x6211;&#x4EEC;&#x7684;&#x4E8C;&#x5143;&#x5411;&#x91CF;" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;cmake&#x7F16;&#x8BD1;&#x6211;&#x4EEC;&#x7684;&#x4E8C;&#x5143;&#x5411;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3.2. &#x4F7F;&#x7528;cmake&#x7F16;&#x8BD1;&#x6211;&#x4EEC;&#x7684;&#x4E8C;&#x5143;&#x5411;&#x91CF;</h3>
+<p>&#x66F4;&#x591A;&#x7684;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x770B;&#x5B98;&#x65B9;&#x6587;&#x6863;.&#x672C;&#x6587;&#x4E0D;&#x4F1A;&#x53D9;&#x8FF0;&#x592A;&#x591A;.&#x9488;&#x5BF9;&#x6211;&#x4EEC;&#x7684;&#x4E8C;&#x5143;&#x5411;&#x91CF;&#x6A21;&#x5757;,&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5199;&#x4E24;&#x4E2A;<code>CMakeLists.txt</code>,&#x4E00;&#x4E2A;&#x7528;&#x4E8E;&#x5C06;src&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x7F16;&#x8BD1;&#x4E3A;&#x9759;&#x6001;&#x5E93;,&#x4E00;&#x4E2A;&#x7528;&#x4E8E;&#x7F16;&#x8BD1;&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;.</p>
+<p>&#x6211;&#x4EEC;&#x5148;&#x5C06;S2&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x590D;&#x5236;&#x5230;S3</p>
+<pre><code class="lang-python">%%writefile ./code/compiler/S3/CMakeLists.txt
+<span class="hljs-comment">#&#x9879;&#x76EE;&#x7F16;&#x8BD1;&#x73AF;&#x5883;</span>
+cmake_minimum_required (VERSION <span class="hljs-number">2.8</span>)
+project (binary_vector)
+include_directories(source/inc)
+<span class="hljs-comment"># &#x7F16;&#x8BD1;&#x52A8;&#x6001;&#x94FE;&#x63A5;&#x5E93;</span>
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/lib)
+aux_source_directory(${CMAKE_BINARY_DIR}/source/src DIR_LIB_SRCS)
+add_library(vector SHARED ${DIR_LIB_SRCS})
+install(TARGETS   vector
+    LIBRARY DESTINATION  CMAKE_LIBRARY_OUTPUT_DIRECTORY  
+)  
+<span class="hljs-comment"># &#x7F16;&#x8BD1;&#x8FDE;&#x63A5;&#x751F;&#x6210;demo</span>
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/bin)
+link_directories(${CMAKE_BINARY_DIR}/build/lib)
+link_libraries(vector)
+aux_source_directory(test DIR_SRCS)
+add_executable(Demo ${DIR_SRCS})
+<span class="hljs-comment">#&#x6D4B;&#x8BD5;</span>
+enable_testing()
+add_test (DemoRuns ${CMAKE_BINARY_DIR}/build/bin/Demo)
+</code></pre>
+<pre><code>Overwriting ./code/compiler/S3/CMakeLists.txt
+</code></pre><pre><code class="lang-python">!cmake ./code/compiler/S3/CMakeLists.txt
+</code></pre>
+<pre><code>-- Configuring done
+CMake Warning (dev):
+  Policy CMP0042 is not set: MACOSX_RPATH is enabled by default.  Run &quot;cmake
+  --help-policy CMP0042&quot; for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+  MACOSX_RPATH is not specified for the following targets:
+
+   vector
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Generating done
+-- Build files have been written to: /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S3
+</code></pre><p>cmake&#x4F1A;&#x4E3A;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x66F4;&#x597D;&#x7684;makefile</p>
+<pre><code class="lang-python">!make -C ./code/compiler/S3/
+</code></pre>
+<pre><code>[ 66%] Built target vector
+[ 83%] [32mBuilding C object CMakeFiles/Demo.dir/test/test.c.o[0m
+[100%] [32m[1mLinking C executable build/bin/Demo[0m
+[100%] Built target Demo
+</code></pre><pre><code class="lang-python">!make -C ./code/compiler/S3/ test
+</code></pre>
+<pre><code>[36mRunning tests...[0m
+Test project /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S3
+    Start 1: DemoRuns
+1/1 Test #1: DemoRuns .........................   Passed    0.01 sec
+
+[0;32m100% tests passed[0;0m, 0 tests failed[0;0m out of 1
+
+Total Test time (real) =   0.02 sec
+</code></pre><footer class="page-footer"><span class="copyright">Copyright &#xA9; hsz 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2019-04-05 00:15:48
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="编译与运行环境.html" class="navigation navigation-prev " aria-label="Previous page: 编译与运行环境">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="测试工具.html" class="navigation navigation-next " aria-label="Next page: 测试工具">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"编译配套工具","level":"1.2.3","depth":2,"next":{"title":"测试工具","level":"1.2.4","depth":2,"path":"工具链/测试工具.md","ref":"工具链/测试工具.md","articles":[]},"previous":{"title":"编译与运行环境","level":"1.2.2","depth":2,"path":"工具链/编译与运行环境.md","ref":"工具链/编译与运行环境.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","advanced-emoji","github","github-buttons","katex","splitter","expandable-chapters-small","tbfed-pagefooter","-sharing","donate","sitemap-general","anchors","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy hsz 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"http://blog.hszofficial.site/TutorialForCLang"},"splitter":{},"search-pro":{"cutWordLib":"nodejieba","defineWord":["Gitbook Use"]},"donate":{"title":"","button":"赏","wechat":"http://blog.hszofficial.site/img/wechat_donate.jpg","alipay":"http://blog.hszofficial.site/img/zhifubao_donate.jpg","wechatText":"微信打赏","alipayText":"支付宝打赏"},"sitemap-general":{"prefix":"http://blog.hszofficial.site/TutorialForCLang/"},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":true},"mode":"float","multipleH1":true,"pageTop":{"showLevelIcon":false,"mode":"float","pageTop":{"showLevelIcon":false,"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right"},"level1Icon":"","showLevel":true,"level2Icon":"","level3Icon":"","associatedWithSummary":true,"float":{"showLevelIcon":true,"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right"}},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"repo":"hsz1273327/TutorialForCLang","types":["star","watch","fork"],"size":"small"},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"weibo":false,"facebook":false,"twitter":false,"google":true,"instapaper":false,"vk":false,"all":["google"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"hsz","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C语言攻略","language":"zh-hans","links":{"sidebar":{"Home":"http://blog.hszofficial.site/"}},"gitbook":">=2.0.0","description":"C语言编程和主流使用场景介绍"},"file":{"path":"工具链/编译配套工具.md","mtime":"2019-04-04T16:15:48.113Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-08T07:10:12.236Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
