@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.15">
+  <compound refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kind="struct"><name>BINARY_VECTOR</name>
+    <member refid="struct_b_i_n_a_r_y___v_e_c_t_o_r_1a1c7a53e7236dca52117e86e12aa34885" kind="variable"><name>x</name></member>
+    <member refid="struct_b_i_n_a_r_y___v_e_c_t_o_r_1ac3333b38944c91de27316a7f0a632373" kind="variable"><name>y</name></member>
+  </compound>
+  <compound refid="binary__vector_8h" kind="file"><name>binary_vector.h</name>
+    <member refid="binary__vector_8h_1a71520835af03ea1829c1ece3a213176c" kind="define"><name>BINARY_VECTOR_H</name></member>
+    <member refid="binary__vector_8h_1aa630b168635c85154529abdcdf6b3392" kind="typedef"><name>BINARY_VECTOR_P</name></member>
+    <member refid="binary__vector_8h_1af6b1de21a7f8037171ff260f59b64562" kind="function"><name>VEC_new</name></member>
+    <member refid="binary__vector_8h_1ac1b94c5e41c810076600adaa74db6921" kind="function"><name>VEC_init</name></member>
+    <member refid="binary__vector_8h_1a4fcf20266cfbb888a9cb123d49886d81" kind="function"><name>VEC_del</name></member>
+    <member refid="binary__vector_8h_1a6a3bda88ccda0b900451e9d453b6ef22" kind="function"><name>VEC_mod</name></member>
+    <member refid="binary__vector_8h_1ab0e3809b637c16aebdd6c18b85c09795" kind="function"><name>VEC_add</name></member>
+    <member refid="binary__vector_8h_1a2b2eda0bc0c9951ac9eea8d3b47f30b0" kind="function"><name>VEC_mul</name></member>
+  </compound>
+  <compound refid="dir_4fef79e7177ba769987a8da36c892c5f" kind="dir"><name>build</name>
+  </compound>
+  <compound refid="dir_369a28e574f1dbdd6faaf7ebcdce1bca" kind="dir"><name>build/inc</name>
+  </compound>
+</doxygenindex>

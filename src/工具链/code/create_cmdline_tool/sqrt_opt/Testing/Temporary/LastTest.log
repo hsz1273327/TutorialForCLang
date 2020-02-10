@@ -1,0 +1,57 @@
+Start testing: Apr 04 23:00 CST
+----------------------------------------------------------
+1/3 Testing: TEST_VERSION
+1/3 Test: TEST_VERSION
+Command: "/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/sqrt_opt/build/bin/sqrt_opt" "-v"
+Directory: /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/sqrt_opt
+"TEST_VERSION" start time: Apr 04 23:00 CST
+Output:
+----------------------------------------------------------
+option v: 0.1.0
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Pass Reason:
+Required regular expression found.Regex=[v: 0.1.0
+]
+"TEST_VERSION" end time: Apr 04 23:00 CST
+"TEST_VERSION" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: TEST_36
+2/3 Test: TEST_36
+Command: "/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/sqrt_opt/build/bin/sqrt_opt" "-s36"
+Directory: /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/sqrt_opt
+"TEST_36" start time: Apr 04 23:00 CST
+Output:
+----------------------------------------------------------
+6.000000
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Pass Reason:
+Required regular expression found.Regex=[6.0
+]
+"TEST_36" end time: Apr 04 23:00 CST
+"TEST_36" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: TEST_2
+3/3 Test: TEST_2
+Command: "/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/sqrt_opt/build/bin/sqrt_opt" "-s2"
+Directory: /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/create_cmdline_tool/sqrt_opt
+"TEST_2" start time: Apr 04 23:00 CST
+Output:
+----------------------------------------------------------
+1.414214
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Pass Reason:
+Required regular expression found.Regex=[1.41
+]
+"TEST_2" end time: Apr 04 23:00 CST
+"TEST_2" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 04 23:00 CST

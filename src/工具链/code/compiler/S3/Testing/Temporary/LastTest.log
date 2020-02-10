@@ -1,0 +1,22 @@
+Start testing: Apr 05 00:15 CST
+----------------------------------------------------------
+1/1 Testing: DemoRuns
+1/1 Test: DemoRuns
+Command: "/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S3/build/bin/Demo"
+Directory: /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/compiler/S3
+"DemoRuns" start time: Apr 05 00:15 CST
+Output:
+----------------------------------------------------------
+mod(A)=2.236068
+mod(B)=5.000000
+mul(A,B)=11.000000
+add(A,B)=<4.000000,6.000000>
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"DemoRuns" end time: Apr 05 00:15 CST
+"DemoRuns" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 05 00:15 CST

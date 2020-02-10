@@ -1,0 +1,27 @@
+Start testing: Apr 05 00:44 CST
+----------------------------------------------------------
+1/1 Testing: TestRuns
+1/1 Test: TestRuns
+Command: "/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/test_tool/build/bin/Demo_Test"
+Directory: /Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/test_tool
+"TestRuns" start time: Apr 05 00:44 CST
+Output:
+----------------------------------------------------------
+F
+test_check_modA failed:
+	/Users/huangsizhe/Workspace/Documents/TutorialForCLang/c-tool-chain/code/test_tool/test/test.c:7: VEC_mod(&A) == 2.236068
+....
+
+4 tests, 5 assertions, 1 failures
+
+Finished in 0.00007251 seconds (real) 0.00003600 seconds (proc)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TestRuns" end time: Apr 05 00:44 CST
+"TestRuns" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 05 00:44 CST

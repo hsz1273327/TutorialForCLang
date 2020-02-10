@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_369a28e574f1dbdd6faaf7ebcdce1bca" kind="dir">
+    <compoundname>build/inc</compoundname>
+    <innerfile refid="binary__vector_8h">binary_vector.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="build/inc/"/>
+  </compounddef>
+</doxygen>

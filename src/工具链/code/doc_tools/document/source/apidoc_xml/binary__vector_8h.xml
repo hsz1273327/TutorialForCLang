@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="binary__vector_8h" kind="file" language="C++">
+    <compoundname>binary_vector.h</compoundname>
+    <innerclass refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" prot="public">BINARY_VECTOR</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="binary__vector_8h_1a71520835af03ea1829c1ece3a213176c" prot="public" static="no">
+        <name>BINARY_VECTOR_H</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/inc/binary_vector.h" line="14" column="9" bodyfile="build/inc/binary_vector.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="binary__vector_8h_1aa630b168635c85154529abdcdf6b3392" prot="public" static="no">
+        <type>struct <ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR</ref> *</type>
+        <definition>typedef struct BINARY_VECTOR* BINARY_VECTOR_P</definition>
+        <argsstring></argsstring>
+        <name>BINARY_VECTOR_P</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/inc/binary_vector.h" line="25" column="1" bodyfile="build/inc/binary_vector.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="binary__vector_8h_1af6b1de21a7f8037171ff260f59b64562" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref></type>
+        <definition>BINARY_VECTOR_P VEC_new</definition>
+        <argsstring>(void)</argsstring>
+        <name>VEC_new</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>实例化一个BINARY_VECTOR结构体 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>BINARY_VECTOR_P 新结构体对象的指针 </para>
+</simplesect>
+<simplesect kind="par"><title>修改日志 </title><para>XXX于201X-XX-XX创建 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/inc/binary_vector.h" line="34" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="binary__vector_8h_1ac1b94c5e41c810076600adaa74db6921" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref></type>
+        <definition>BINARY_VECTOR_P VEC_init</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>VEC_init</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>带初始化的实例化一个BINARY_VECTOR结构体 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[x]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x值 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>[y]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y值 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>BINARY_VECTOR_P 新结构体对象的指针 </para>
+</simplesect>
+<simplesect kind="par"><title>修改日志 </title><para>XXX于201X-XX-XX创建 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/inc/binary_vector.h" line="45" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="binary__vector_8h_1a4fcf20266cfbb888a9cb123d49886d81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VEC_del</definition>
+        <argsstring>(BINARY_VECTOR_P)</argsstring>
+        <name>VEC_del</name>
+        <param>
+          <type><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref></type>
+        </param>
+        <briefdescription>
+<para>释放一个结构体对象 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[vector]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>要释放的结构体对象 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>修改日志 </title><para>XXX于201X-XX-XX创建 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/inc/binary_vector.h" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="binary__vector_8h_1a6a3bda88ccda0b900451e9d453b6ef22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float VEC_mod</definition>
+        <argsstring>(BINARY_VECTOR_P)</argsstring>
+        <name>VEC_mod</name>
+        <param>
+          <type><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref></type>
+        </param>
+        <briefdescription>
+<para>求模 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[vector]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>要求模的向量</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>float 模的值 </para>
+</simplesect>
+<simplesect kind="par"><title>修改日志 </title><para>XXX于201X-XX-XX创建 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/inc/binary_vector.h" line="64" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="binary__vector_8h_1ab0e3809b637c16aebdd6c18b85c09795" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref></type>
+        <definition>BINARY_VECTOR_P VEC_add</definition>
+        <argsstring>(BINARY_VECTOR_P, BINARY_VECTOR_P)</argsstring>
+        <name>VEC_add</name>
+        <param>
+          <type><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref></type>
+        </param>
+        <param>
+          <type><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref></type>
+        </param>
+        <briefdescription>
+<para>求两个向量的和 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[vector]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>求和的第一个向量 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>[vector]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>求和的第二个向量</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR</ref> 相加后的向量 </para>
+</simplesect>
+<simplesect kind="par"><title>修改日志 </title><para>XXX于201X-XX-XX创建 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/inc/binary_vector.h" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="binary__vector_8h_1a2b2eda0bc0c9951ac9eea8d3b47f30b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float VEC_mul</definition>
+        <argsstring>(BINARY_VECTOR_P, BINARY_VECTOR_P)</argsstring>
+        <name>VEC_mul</name>
+        <param>
+          <type><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref></type>
+        </param>
+        <param>
+          <type><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref></type>
+        </param>
+        <briefdescription>
+<para>求积 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[vector]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>求积的第一个向量 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>[vector]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>求积的第二个向量</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>float 内积的值 </para>
+</simplesect>
+<simplesect kind="par"><title>修改日志 </title><para>XXX于201X-XX-XX创建 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/inc/binary_vector.h" line="84" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>binary_vector接口文件 </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>author </para>
+</simplesect>
+<simplesect kind="date"><para>2018-1-8 </para>
+</simplesect>
+<simplesect kind="version"><para>dev </para>
+</simplesect>
+<simplesect kind="par"><title>Copyright (c): </title><para></para>
+</simplesect>
+XXX公司 <simplesect kind="par"><title>History: </title><para></para>
+</simplesect>
+version: author, date, desc<linebreak/>
+ </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>$Id$<sp/>*/</highlight></codeline>
+<codeline lineno="13"><highlight class="preprocessor">#ifndef<sp/>BINARY_VECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BINARY_VECTOR_H//一般是文件名的大写<sp/>头文件结尾写上一行</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>x;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>y;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR</ref><sp/>*<ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref><sp/><ref refid="binary__vector_8h_1af6b1de21a7f8037171ff260f59b64562" kindref="member">VEC_new</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref><sp/><ref refid="binary__vector_8h_1ac1b94c5e41c810076600adaa74db6921" kindref="member">VEC_init</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>x,</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="binary__vector_8h_1a4fcf20266cfbb888a9cb123d49886d81" kindref="member">VEC_del</ref>(<ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="binary__vector_8h_1a6a3bda88ccda0b900451e9d453b6ef22" kindref="member">VEC_mod</ref>(<ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref>);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref><sp/><ref refid="binary__vector_8h_1ab0e3809b637c16aebdd6c18b85c09795" kindref="member">VEC_add</ref>(<ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref>,<ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref>);</highlight></codeline>
+<codeline lineno="84"><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="binary__vector_8h_1a2b2eda0bc0c9951ac9eea8d3b47f30b0" kindref="member">VEC_mul</ref>(<ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref><sp/>,<ref refid="struct_b_i_n_a_r_y___v_e_c_t_o_r" kindref="compound">BINARY_VECTOR_P</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="build/inc/binary_vector.h"/>
+  </compounddef>
+</doxygen>
