@@ -1,0 +1,1 @@
+gcc -I./inc -o ./build/bin/single_source ./test/test.c ./src/binary_vector.c

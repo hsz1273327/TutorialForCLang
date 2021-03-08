@@ -1,0 +1,1 @@
+gcc -I./inc -o ./build/bin/mul_source ./test/test.c ./src/*_operator.c
