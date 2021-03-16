@@ -15,3 +15,7 @@ _book
 *.mobi
 *.pdf
 build
+
+lib
+
+*.o
