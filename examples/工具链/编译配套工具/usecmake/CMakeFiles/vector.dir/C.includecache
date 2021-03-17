@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/binary_operator.c
+binary_vector.h
+/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/binary_vector.h
+
+/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/struct_operator.c
+binary_vector.h
+/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/binary_vector.h
+stdlib.h
+-
+
+/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/unary_operator.c
+binary_vector.h
+/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/binary_vector.h
+math.h
+-
+
+inc/binary_vector.h
+
