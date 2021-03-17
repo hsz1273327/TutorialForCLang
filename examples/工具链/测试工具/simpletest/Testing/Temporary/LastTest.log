@@ -1,0 +1,27 @@
+Start testing: Mar 17 11:12 UTC
+----------------------------------------------------------
+1/1 Testing: TestRuns
+1/1 Test: TestRuns
+Command: "/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/build/test/vectorTest"
+Directory: /workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest
+"TestRuns" start time: Mar 17 11:12 UTC
+Output:
+----------------------------------------------------------
+F
+test_check_modA failed:
+	/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/test/test.c:7: VEC_mod(&A) == 2.236068
+....
+
+4 tests, 5 assertions, 1 failures
+
+Finished in 0.00003490 seconds (real) 0.00003227 seconds (proc)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestRuns" end time: Mar 17 11:12 UTC
+"TestRuns" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 17 11:12 UTC
