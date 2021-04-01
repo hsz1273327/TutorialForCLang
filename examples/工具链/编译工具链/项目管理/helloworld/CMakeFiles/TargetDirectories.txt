@@ -1,0 +1,3 @@
+/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/helloworld/CMakeFiles/rebuild_cache.dir
+/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/helloworld/CMakeFiles/helloworld.dir
+/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/helloworld/CMakeFiles/edit_cache.dir
