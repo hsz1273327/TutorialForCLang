@@ -63,10 +63,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake
+CMAKE_SOURCE_DIR = /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake
+CMAKE_BINARY_DIR = /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector
 
 # Include any dependencies generated for this target.
 include CMakeFiles/vector.dir/depend.make
@@ -77,73 +77,11 @@ include CMakeFiles/vector.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/vector.dir/flags.make
 
-CMakeFiles/vector.dir/src/binary_operator.c.o: CMakeFiles/vector.dir/flags.make
-CMakeFiles/vector.dir/src/binary_operator.c.o: src/binary_operator.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/vector.dir/src/binary_operator.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/vector.dir/src/binary_operator.c.o   -c /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/binary_operator.c
-
-CMakeFiles/vector.dir/src/binary_operator.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/vector.dir/src/binary_operator.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/binary_operator.c > CMakeFiles/vector.dir/src/binary_operator.c.i
-
-CMakeFiles/vector.dir/src/binary_operator.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/vector.dir/src/binary_operator.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/binary_operator.c -o CMakeFiles/vector.dir/src/binary_operator.c.s
-
-CMakeFiles/vector.dir/src/struct_operator.c.o: CMakeFiles/vector.dir/flags.make
-CMakeFiles/vector.dir/src/struct_operator.c.o: src/struct_operator.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/vector.dir/src/struct_operator.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/vector.dir/src/struct_operator.c.o   -c /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/struct_operator.c
-
-CMakeFiles/vector.dir/src/struct_operator.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/vector.dir/src/struct_operator.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/struct_operator.c > CMakeFiles/vector.dir/src/struct_operator.c.i
-
-CMakeFiles/vector.dir/src/struct_operator.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/vector.dir/src/struct_operator.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/struct_operator.c -o CMakeFiles/vector.dir/src/struct_operator.c.s
-
-CMakeFiles/vector.dir/src/unary_operator.c.o: CMakeFiles/vector.dir/flags.make
-CMakeFiles/vector.dir/src/unary_operator.c.o: src/unary_operator.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/vector.dir/src/unary_operator.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/vector.dir/src/unary_operator.c.o   -c /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/unary_operator.c
-
-CMakeFiles/vector.dir/src/unary_operator.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/vector.dir/src/unary_operator.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/unary_operator.c > CMakeFiles/vector.dir/src/unary_operator.c.i
-
-CMakeFiles/vector.dir/src/unary_operator.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/vector.dir/src/unary_operator.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/src/unary_operator.c -o CMakeFiles/vector.dir/src/unary_operator.c.s
-
-# Object files for target vector
-vector_OBJECTS = \
-"CMakeFiles/vector.dir/src/binary_operator.c.o" \
-"CMakeFiles/vector.dir/src/struct_operator.c.o" \
-"CMakeFiles/vector.dir/src/unary_operator.c.o"
-
-# External object files for target vector
-vector_EXTERNAL_OBJECTS =
-
-lib/libvector.a: CMakeFiles/vector.dir/src/binary_operator.c.o
-lib/libvector.a: CMakeFiles/vector.dir/src/struct_operator.c.o
-lib/libvector.a: CMakeFiles/vector.dir/src/unary_operator.c.o
-lib/libvector.a: CMakeFiles/vector.dir/build.make
-lib/libvector.a: CMakeFiles/vector.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C static library lib/libvector.a"
-	$(CMAKE_COMMAND) -P CMakeFiles/vector.dir/cmake_clean_target.cmake
-	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/vector.dir/link.txt --verbose=$(VERBOSE)
-
-# Rule to build all files generated by this target.
-CMakeFiles/vector.dir/build: lib/libvector.a
-
-.PHONY : CMakeFiles/vector.dir/build
-
 CMakeFiles/vector.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/vector.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/vector.dir/clean
 
 CMakeFiles/vector.dir/depend:
-	cd /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/vector.dir/DependInfo.cmake --color=$(COLOR)
+	cd /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles/vector.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/vector.dir/depend
 

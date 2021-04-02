@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libmyvector.a  CMakeFiles/myvector.dir/src/binary_operator.c.o CMakeFiles/myvector.dir/src/struct_operator.c.o CMakeFiles/myvector.dir/src/unary_operator.c.o
+/usr/bin/ranlib lib/libmyvector.a

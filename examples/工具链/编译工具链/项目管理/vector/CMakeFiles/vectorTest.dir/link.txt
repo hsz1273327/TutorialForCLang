@@ -1,1 +1,0 @@
-/usr/bin/cc    CMakeFiles/vectorTest.dir/test/test.c.o  -o build/test/vectorTest   -L/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/build/lib  -Wl,-rpath,/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/build/lib lib/libvector.a 

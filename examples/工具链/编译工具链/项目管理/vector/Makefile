@@ -68,81 +68,13 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake
+CMAKE_SOURCE_DIR = /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake
+CMAKE_BINARY_DIR = /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -155,11 +87,22 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -188,30 +131,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named vectorTest
+# Target rules for targets named myvector
 
 # Build rule for target.
-vectorTest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vectorTest
-.PHONY : vectorTest
+myvector: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 myvector
+.PHONY : myvector
 
 # fast build rule for target.
-vectorTest/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vectorTest.dir/build.make CMakeFiles/vectorTest.dir/build
-.PHONY : vectorTest/fast
-
-#=============================================================================
-# Target rules for targets named vector
-
-# Build rule for target.
-vector: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vector
-.PHONY : vector
-
-# fast build rule for target.
-vector/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/build
-.PHONY : vector/fast
+myvector/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/build
+.PHONY : myvector/fast
 
 src/binary_operator.o: src/binary_operator.c.o
 
@@ -219,7 +149,7 @@ src/binary_operator.o: src/binary_operator.c.o
 
 # target to build an object file
 src/binary_operator.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/src/binary_operator.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/src/binary_operator.c.o
 .PHONY : src/binary_operator.c.o
 
 src/binary_operator.i: src/binary_operator.c.i
@@ -228,7 +158,7 @@ src/binary_operator.i: src/binary_operator.c.i
 
 # target to preprocess a source file
 src/binary_operator.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/src/binary_operator.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/src/binary_operator.c.i
 .PHONY : src/binary_operator.c.i
 
 src/binary_operator.s: src/binary_operator.c.s
@@ -237,7 +167,7 @@ src/binary_operator.s: src/binary_operator.c.s
 
 # target to generate assembly for a file
 src/binary_operator.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/src/binary_operator.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/src/binary_operator.c.s
 .PHONY : src/binary_operator.c.s
 
 src/struct_operator.o: src/struct_operator.c.o
@@ -246,7 +176,7 @@ src/struct_operator.o: src/struct_operator.c.o
 
 # target to build an object file
 src/struct_operator.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/src/struct_operator.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/src/struct_operator.c.o
 .PHONY : src/struct_operator.c.o
 
 src/struct_operator.i: src/struct_operator.c.i
@@ -255,7 +185,7 @@ src/struct_operator.i: src/struct_operator.c.i
 
 # target to preprocess a source file
 src/struct_operator.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/src/struct_operator.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/src/struct_operator.c.i
 .PHONY : src/struct_operator.c.i
 
 src/struct_operator.s: src/struct_operator.c.s
@@ -264,7 +194,7 @@ src/struct_operator.s: src/struct_operator.c.s
 
 # target to generate assembly for a file
 src/struct_operator.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/src/struct_operator.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/src/struct_operator.c.s
 .PHONY : src/struct_operator.c.s
 
 src/unary_operator.o: src/unary_operator.c.o
@@ -273,7 +203,7 @@ src/unary_operator.o: src/unary_operator.c.o
 
 # target to build an object file
 src/unary_operator.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/src/unary_operator.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/src/unary_operator.c.o
 .PHONY : src/unary_operator.c.o
 
 src/unary_operator.i: src/unary_operator.c.i
@@ -282,7 +212,7 @@ src/unary_operator.i: src/unary_operator.c.i
 
 # target to preprocess a source file
 src/unary_operator.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/src/unary_operator.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/src/unary_operator.c.i
 .PHONY : src/unary_operator.c.i
 
 src/unary_operator.s: src/unary_operator.c.s
@@ -291,35 +221,8 @@ src/unary_operator.s: src/unary_operator.c.s
 
 # target to generate assembly for a file
 src/unary_operator.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/src/unary_operator.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myvector.dir/build.make CMakeFiles/myvector.dir/src/unary_operator.c.s
 .PHONY : src/unary_operator.c.s
-
-test/test.o: test/test.c.o
-
-.PHONY : test/test.o
-
-# target to build an object file
-test/test.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vectorTest.dir/build.make CMakeFiles/vectorTest.dir/test/test.c.o
-.PHONY : test/test.c.o
-
-test/test.i: test/test.c.i
-
-.PHONY : test/test.i
-
-# target to preprocess a source file
-test/test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vectorTest.dir/build.make CMakeFiles/vectorTest.dir/test/test.c.i
-.PHONY : test/test.c.i
-
-test/test.s: test/test.c.s
-
-.PHONY : test/test.s
-
-# target to generate assembly for a file
-test/test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vectorTest.dir/build.make CMakeFiles/vectorTest.dir/test/test.c.s
-.PHONY : test/test.c.s
 
 # Help Target
 help:
@@ -328,14 +231,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... test"
-	@echo "... vector"
-	@echo "... vectorTest"
+	@echo "... myvector"
 	@echo "... src/binary_operator.o"
 	@echo "... src/binary_operator.i"
 	@echo "... src/binary_operator.s"
@@ -345,9 +242,6 @@ help:
 	@echo "... src/unary_operator.o"
 	@echo "... src/unary_operator.i"
 	@echo "... src/unary_operator.s"
-	@echo "... test/test.o"
-	@echo "... test/test.i"
-	@echo "... test/test.s"
 .PHONY : help
 
 

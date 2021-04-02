@@ -1,9 +1,3 @@
-/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/install/strip.dir
-/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/install/local.dir
-/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/install.dir
-/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/list_install_components.dir
-/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/test.dir
-/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/vectorTest.dir
-/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/vector.dir
-/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/edit_cache.dir
-/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/CMakeFiles/rebuild_cache.dir
+/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles/rebuild_cache.dir
+/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles/myvector.dir
+/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles/edit_cache.dir

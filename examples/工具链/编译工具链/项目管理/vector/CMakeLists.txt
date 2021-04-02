@@ -1,32 +1,40 @@
 #项目编译环境
 cmake_minimum_required (VERSION 3.17)
-project (vector
+project (myvector
     VERSION 0.0.0
-    DESCRIPTION "简单测试"
+    DESCRIPTION "简单测试编译包"
     LANGUAGES C
 )
-include_directories(inc)
-# 编译动态链接库
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-aux_source_directory(${CMAKE_BINARY_DIR}/src DIR_LIB_SRCS)
 
 # 定义目标
-add_library(vector STATIC ${DIR_LIB_SRCS})
-target_compile_definitions(vector)
-target_compile_features(vector)
-target_include_directories(vector 
-    PUBLIC inc
+add_library(${PROJECT_NAME} STATIC)
+
+# 设置源码位置
+file(GLOB SRC "${CMAKE_CURRENT_LIST_DIR}/src/*.c")
+target_sources(${PROJECT_NAME} 
+    PRIVATE ${SRC}
+)
+# 设置头文件位置
+target_include_directories(${PROJECT_NAME} BEFORE
+    PUBLIC ${CMAKE_CURRENT_LIST_DIR}/inc
+)
+# 设置静态库文件的存放位置
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)
+set_target_properties(${PROJECT_NAME} PROPERTIES 
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib
 )
 
-install(TARGETS   vector
-    LIBRARY DESTINATION  CMAKE_LIBRARY_OUTPUT_DIRECTORY  
-)  
-# 编译连接生成demo
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/test)
-link_directories(${CMAKE_BINARY_DIR}/build/lib)
-link_libraries(vector)
-aux_source_directory(test DIR_SRCS)
-add_executable(vectorTest ${DIR_SRCS})
-#测试
-enable_testing()
-add_test (DemoRuns ${CMAKE_BINARY_DIR}/build/test/vectorTest)
+# # 安装
+# install(TARGETS   vector
+#     LIBRARY DESTINATION  CMAKE_LIBRARY_OUTPUT_DIRECTORY  
+# )  
+
+# #测试
+# # 编译连接生成demo
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/test)
+# link_directories(${CMAKE_BINARY_DIR}/build/lib)
+# link_libraries(vector)
+# aux_source_directory(test DIR_SRCS)
+# add_executable(vectorTest ${DIR_SRCS})
+# enable_testing()
+# add_test (DemoRuns ${CMAKE_BINARY_DIR}/build/test/vectorTest)

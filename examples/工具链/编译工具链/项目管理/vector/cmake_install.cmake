@@ -1,4 +1,4 @@
-# Install script for directory: /workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake
+# Install script for directory: /workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -37,10 +37,6 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/lib/libvector.a")
-endif()
-
 if(CMAKE_INSTALL_COMPONENT)
   set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
 else()
@@ -49,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/workspaces/TutorialForCLang/examples/工具链/编译配套工具/usecmake/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

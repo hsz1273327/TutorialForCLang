@@ -1,2 +1,0 @@
-/usr/bin/ar qc lib/libvector.a  CMakeFiles/vector.dir/src/binary_operator.c.o CMakeFiles/vector.dir/src/struct_operator.c.o CMakeFiles/vector.dir/src/unary_operator.c.o
-/usr/bin/ranlib lib/libvector.a
