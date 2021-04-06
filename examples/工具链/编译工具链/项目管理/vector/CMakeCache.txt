@@ -198,17 +198,14 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//build share lib also?
+WITHSHARE:BOOL=on
+
 //Value Computed by CMake
 myvector_BINARY_DIR:STATIC=/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector
 
 //Value Computed by CMake
 myvector_SOURCE_DIR:STATIC=/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector
-
-//Value Computed by CMake
-vector_BINARY_DIR:STATIC=/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector
-
-//Value Computed by CMake
-vector_SOURCE_DIR:STATIC=/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector
 
 
 ########################
