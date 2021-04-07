@@ -1,3 +1,0 @@
-/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles/rebuild_cache.dir
-/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles/myvector.dir
-/workspaces/TutorialForCLang/examples/工具链/编译工具链/项目管理/vector/CMakeFiles/edit_cache.dir
