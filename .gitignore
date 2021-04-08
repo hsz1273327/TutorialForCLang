@@ -15,7 +15,7 @@ _book
 *.mobi
 *.pdf
 build
-
+bin
 lib
 
 *.o
