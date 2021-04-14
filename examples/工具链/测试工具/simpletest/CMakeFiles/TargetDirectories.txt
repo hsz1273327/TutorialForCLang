@@ -1,9 +1,0 @@
-/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/CMakeFiles/install/strip.dir
-/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/CMakeFiles/install/local.dir
-/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/CMakeFiles/install.dir
-/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/CMakeFiles/list_install_components.dir
-/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/CMakeFiles/test.dir
-/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/CMakeFiles/vectorTest.dir
-/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/CMakeFiles/vector.dir
-/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/CMakeFiles/edit_cache.dir
-/workspaces/TutorialForCLang/examples/工具链/测试工具/simpletest/CMakeFiles/rebuild_cache.dir
