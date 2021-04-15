@@ -1,9 +1,14 @@
+# 编程风格与vscode设置
 
-# 编程风格
+首先说下**免责声明**:这篇文章介绍的东西本身就是个很个人风格的东西,因此只有参考没有绝对.本文也只是记录我自己的设置,不喜勿喷.
+
+了解我的人都知道我现在基本只使用vscode作为文本编辑器处理编程任务,因此本文介绍的是vscode的相关设置,没有为什么.好开始正文.
+
+## 编程风格
 
 任何语言的编程风格都是一个很个性化的东西,但明确风格又非常有意义.
 
-深入讨论之前，首先要明确编程风格的意义所在，基本的有：
+深入讨论之前首先要明确编程风格的意义所在.基本上可以归结为：
 
 + 美观
 + 方便阅读
@@ -15,18 +20,20 @@
 + 代码质量
 + 方便编写
 
+就如同艺术流派的多样性一样,C/C++编码风格没有特定的统一规范,不同的软件项目或者企业有不同的艺术风格,
 
-就如同艺术流派的多样性一样,编码风格没有特定的统一规范,不同的软件项目或者企业有不同的艺术风格,比如说我一般使用vscode写程序,而其中可以在`C_Cpp.clang_format_fallbackStyle`中设置使用
+<!-- 
+`C_Cpp.clang_format_fallbackStyle`中设置使用
 + `Visual Studio`
 + `LLVM`
 + `Google`
 + `Chromium`
 + `Mozilla`
-+ `WebKit`
-
++ `WebKit` -->
+<!-- 
 这么几种预设风格之一,我一般喜欢使用`Google`风格,同时可以设置
 
-`"C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 4 }"`
+`"C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 4 }"` -->
 
 这样就可以让缩进为4个空格,以和python的风格一致.
 
