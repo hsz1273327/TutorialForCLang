@@ -1,9 +1,9 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include <catch2/catch.hpp>
 #include "binary_vector.hpp"
 using vector::BinaryVector;
 using Catch::Matchers::WithinRel;
-TEST_CASE( "Test_TDD", "[vector]" ) {
+
+TEST_CASE( "Test_TDD", "[vector][unittest]" ) {
     BinaryVector A(1.0,2.0);
     BinaryVector B(3.0,4.0);
     SECTION( "check mod A" ) {

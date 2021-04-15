@@ -72,7 +72,19 @@ else()
 endif()
 
 #测试
+## 启用性能测试
+# SET(ENV{CATCH_CONFIG_ENABLE_BENCHMARKING} "1")
 
+
+## 测试覆盖率
+option(WITH_TEST_COVERAGE "with test coverage?" off)
+if(WITH_TEST_COVERAGE)
+    list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+    include(CodeCoverage)
+    append_coverage_compiler_flags()
+endif()
+
+## 编译测试文件
 message(NOTICE "下载外部依赖")
 include(FetchContent)
 ## catch2
@@ -104,7 +116,16 @@ target_link_libraries(Test_${PROJECT_NAME}
 set_target_properties(Test_${PROJECT_NAME} PROPERTIES 
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/dist/test
 )
+
+## 注册测试项
 enable_testing()
 add_test(Test_TDD ${CMAKE_CURRENT_LIST_DIR}/dist/test/Test_${PROJECT_NAME} Test_TDD)
-add_test(Test_BDD ${CMAKE_CURRENT_LIST_DIR}/dist/test/Test_${PROJECT_NAME} Test_BDD)
-add_test(Test_ALL ${CMAKE_CURRENT_LIST_DIR}/dist/test/Test_${PROJECT_NAME})
+add_test(Test_BDD ${CMAKE_CURRENT_LIST_DIR}/dist/test/Test_${PROJECT_NAME} "Scenario: Test_BDD")
+if (WITH_TEST_COVERAGE)
+    setup_target_for_coverage_gcovr_html(
+        NAME coverage
+        EXECUTABLE Test_${PROJECT_NAME}
+        BASE_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}"
+        EXCLUDE "${CMAKE_CURRENT_LIST_DIR}/build/*" "${CMAKE_CURRENT_LIST_DIR}/test/*"
+    )
+endif()
