@@ -1,0 +1,1 @@
+请在vscode上用镜像[hsz1273327/vscode_cxx_env:alpine3.13-gcc10-conan1.39.0-vcpkgmaster](https://hub.docker.com/repository/docker/hsz1273327/vscode_cxx_env)来测试

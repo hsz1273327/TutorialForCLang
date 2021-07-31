@@ -8,7 +8,7 @@ project (helloworld
 
 option(AS_STATIC "是否作为纯静态可执行文件编译" off)
 # 创建文件夹存放可执行文件
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/build/bin)
 add_executable(${PROJECT_NAME})
 
 # 设置源码位置

@@ -1,11 +1,12 @@
 #项目编译环境
 cmake_minimum_required (VERSION 3.17)
+SET(CMAKE_TOOLCHAIN_FILE "/vcpkg/vcpkg/scripts/buildsystems/vcpkg.cmake")
 # 确保可以描述项目
 if (POLICY CMP0048)
   cmake_policy(SET CMP0048 NEW)
 endif (POLICY CMP0048)
 
-project (helloworld_with_log
+project (hello_sqlite
     VERSION 0.0.0
     DESCRIPTION "简单测试"
     LANGUAGES CXX
@@ -15,14 +16,18 @@ message(NOTICE "引入conan维护的依赖")
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
+# 找到vcpkg安装的sqlite3
+find_package(unofficial-sqlite3 CONFIG REQUIRED)
+
 option(AS_STATIC "是否作为纯静态可执行文件编译" off)
 # 构造可执行文件的配置
 add_executable(${PROJECT_NAME})
 ## 设置源码位置
 target_sources(${PROJECT_NAME} 
-    PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src/helloworld.cc
+    PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src/hello_sqlite.cpp
 )
 target_link_libraries(${PROJECT_NAME}  
+    PRIVATE unofficial::sqlite3::sqlite3
     ${CONAN_LIBS}
 )
 if(AS_STATIC)

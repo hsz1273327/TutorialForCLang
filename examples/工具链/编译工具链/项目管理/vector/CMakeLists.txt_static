@@ -20,7 +20,7 @@ target_include_directories(${PROJECT_NAME}
 # 设置静态库文件的存放位置
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)
 set_target_properties(${PROJECT_NAME} PROPERTIES 
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/build/lib
 )
 # # 安装
 # install(TARGETS   vector

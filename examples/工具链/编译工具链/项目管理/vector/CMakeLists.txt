@@ -48,7 +48,7 @@ if(WITHSHARE)
     set_target_properties(${PROJECT_NAME}_shared PROPERTIES 
         OUTPUT_NAME ${PROJECT_NAME}
         CLEAN_DIRECT_OUTPUT 1
-        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/build/lib
     )
 
     # 安装

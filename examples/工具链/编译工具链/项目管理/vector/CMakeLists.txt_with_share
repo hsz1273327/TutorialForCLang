@@ -29,7 +29,7 @@ target_include_directories(${PROJECT_NAME}_static
 set_target_properties(${PROJECT_NAME}_static PROPERTIES 
     OUTPUT_NAME ${PROJECT_NAME}
     CLEAN_DIRECT_OUTPUT 1
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/build/lib
 )
 # 编译动态库
 option(WITHSHARE "build share lib also?" off)
