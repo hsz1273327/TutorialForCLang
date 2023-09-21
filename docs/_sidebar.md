@@ -1,4 +1,5 @@
 * [回到博客](http://blog.hszofficial.site/)
+* [首页](README.md)
 * [工具链](工具链/README.md)
     * [编译工具链](工具链/编译工具链/README.md)
         * [编译器](工具链/编译工具链/编译器.md)
