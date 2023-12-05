@@ -1,5 +1,6 @@
 {
-    "files.associations": {
-        "binary_vector.h": "c"
-    }
+    "cpplint.cpplintPath": "/Users/mac/micromamba/envs/py3.10/bin/cpplint",
+    "C_Cpp.clang_format_fallbackStyle": "Chromium",
+    "C_Cpp.clang_format_style": "{ BasedOnStyle: Chromium, IndentWidth: 4 }",
+    "C_Cpp.clang_format_path": "/usr/local/Cellar/clang-format/16.0.4/bin/clang-format"
 }
