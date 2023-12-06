@@ -118,6 +118,19 @@ int callpy() {
     pModule = PyImport_Import(pName);                // 导入模块
     Py_DECREF(pName);                                // 释放对象pName
     if (pModule != NULL) {
+        // 在模块中找到函数名为func_name的函数,将这个函数对象提出来
+        pFunc = PyObject_GetAttrString(pModule, Func_Name);
+        /* pFunc is a new reference */
+        if (pFunc && PyCallable_Check(pFunc)) {
+            // pFunc存在且为可调用对象,则执行调用
+            pValue = PyObject_CallObject(pFunc, NULL);
+            Py_DECREF(pValue);
+        } else {
+            if (PyErr_Occurred())  // 捕获错误,并打印
+                PyErr_Print();
+            fprintf(stderr, "Cannot find function \"%s\"\n", Func_Name);
+        }
+        Py_XDECREF(pFunc);
         // 调用numpy的函数
         pFuncCallNumpy = PyObject_GetAttrString(pModule, FuncCallNumpy_Name);
         if (pFuncCallNumpy && PyCallable_Check(pFuncCallNumpy)) {

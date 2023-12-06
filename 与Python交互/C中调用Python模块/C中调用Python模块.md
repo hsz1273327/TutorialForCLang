@@ -496,19 +496,6 @@ int callpy() {
     pModule = PyImport_Import(pName);                // 导入模块
     Py_DECREF(pName);                                // 释放对象pName
     if (pModule != NULL) {
-        // 在模块中找到函数名为func_name的函数,将这个函数对象提出来
-        pFunc = PyObject_GetAttrString(pModule, Func_Name);
-        /* pFunc is a new reference */
-        if (pFunc && PyCallable_Check(pFunc)) {
-            // pFunc存在且为可调用对象,则执行调用
-            pValue = PyObject_CallObject(pFunc, NULL);
-            Py_DECREF(pValue);
-        } else {
-            if (PyErr_Occurred())  // 捕获错误,并打印
-                PyErr_Print();
-            fprintf(stderr, "Cannot find function \"%s\"\n", Func_Name);
-        }
-        Py_XDECREF(pFunc);
         // 调用numpy的函数
         pFuncCallNumpy = PyObject_GetAttrString(pModule, FuncCallNumpy_Name);
         if (pFuncCallNumpy && PyCallable_Check(pFuncCallNumpy)) {
@@ -582,16 +569,47 @@ int main(int argc, char* argv[]) {
 
 ## 数据交换
 
-光调用没用,我们更加需要的是数据交换,
+光调用没用,我们更加需要的是数据交换.数据交换具体来说可以看做是这样两种过程
+
+1. 取出需要的python对象,转化成C类型后使用
+2. 调用python的可调用对象,获得它的返回值,转化成C类型后使用
+
+下面我们再对这个例子进行修改来演示C和python间的数据交换
 
 ### 数据类型转换
 
-Python中万物都是对象,在C这个层面看就是万物都是`PyObject*`,这也就意味着无论是无论是获取数据还是作为参数,我们都需要在`PyObject*`和python各种对象之间进行转换.这个太多了,可以查看[官方文档](https://docs.python.org/zh-cn/3/c-api/concrete.html).这里介绍几个比较常见的接口
+Python中万物都是对象,在C这个层面看就是万物都是`PyObject*`,这也就意味着无论是无论是获取数据还是作为参数,我们都需要在`PyObject*`和python各种对象之间进行转换.这个太多了,可以查看[官方文档](https://docs.python.org/zh-cn/3/c-api/concrete.html).这里介绍几个比较常用的接口
 
+#### None类型
+
+#### 布尔类型
+
+#### 数值类型
+
+#### 字符串类型
+
+#### 字典类型
+
+#### 列表类型
+
+#### 可迭代对象类型
+
+#### 缓冲协议类型
+
+#### 类型类型
 
 ### 获取对象中字段对应的值
 
+
+
 ### 调用可调用对象
+
+
+#### 函数对象的调用
+
+#### 类实例化调用
+
+#### 方法调用
 
 ## 外部线程和服务化
 
