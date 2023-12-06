@@ -229,8 +229,7 @@ python中万物皆对象,而python中对象在C中类型为`PyObject *`,模块�
         // 设置python程序名
         status = PyConfig_SetString(&config, &config.program_name, program);
         if (PyStatus_Exception(status)) {
-            fprintf(stderr,
-                    "Fatal error: InitPythonConfig set program_name get error\n");
+            fprintf(stderr, "Fatal error: InitPythonConfig set program_name get error\n");
             PyConfig_Clear(&config);
             exit(1);
         }
@@ -243,8 +242,7 @@ python中万物皆对象,而python中对象在C中类型为`PyObject *`,模块�
         }
         // 设置python的sys.path用于查找模块
         config.module_search_paths_set = 1;
-        status =
-            PyWideStringList_Append(&config.module_search_paths, current_dir_name);
+        status = PyWideStringList_Append(&config.module_search_paths, current_dir_name);
         if (PyStatus_Exception(status)) {
             fprintf(stderr,
                     "Fatal error: InitPythonConfig set module_search_paths get "
@@ -268,8 +266,7 @@ python中万物皆对象,而python中对象在C中类型为`PyObject *`,模块�
         PyObject *pName, *pModule, *pFunc;
         PyObject* pValue;
 
-        pName = PyUnicode_DecodeFSDefault(
-            Module_Name);  // 将模块名类型转为python对象字符串
+        pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
 
         pModule = PyImport_Import(pName);  // 导入模块
 
@@ -299,13 +296,303 @@ python中万物皆对象,而python中对象在C中类型为`PyObject *`,模块�
         if (Py_FinalizeEx() < 0) {
             return 120;
         }
-
+        PyMem_RawFree(current_dir_name);
         PyMem_RawFree(program);
         return 0;
     }
     ```
 
-### 更进一步的初始化python解释器
+### 配置python解释器
 
+我们来介绍如何配置python解释器,顺便规整上面的代码.这边的代码还在上面的例子中,只是源文件为`mainwithconf.cpp`.
+
+#### 配置模块搜索路径
+
+还是那个问题,要调用python模块我们需要先可以找到模块,python解释器根据其内部的全局变量`sys.path`寻找模块.python的解释器启动在命令行中看起来就是一个`python`就行了,但其实它受到好几项设置的影响,尤其是和搜索模块相关的,可以总结如下:
+
++ 路径配置输入,即会在调用`PyConfig_Read`之后影响`路径配置输出字段`的取值.
+
+    可以用环境变量和`PyConfig`设置的包括:
+
+    | 环境变量                                | `sys`中的设置    | `PyConfig`中的设置        | 默认值                                                                   | 含义                                                                     |
+    | --------------------------------------- | ---------------- | ------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+    | `PYTHONHOME`                            | ---              | `PyConfig.home`           | 调用的`libpython`链接库查找路径的前一级,一般安装python后会在`/usr/local` | Python相关资源的所在目录                                                 |
+    | `PYTHONPLATLIBDIR`                      | `sys.platlibdir` | `PyConfig.platlibdir`     | 非windows平台为`lib`;Windows上则为`DLLs`                                 | 平台专用库目录,用于构建标准库的路径和已安装扩展模块的路径                |
+    | `PYTHONEXECUTABLE`(仅在 macOS 上起作用) | ---              | `PyConfig.program_name`   | `NULL`                                                                   | 用于初始化`executable`和在`Python`初始化期间早期错误消息中使用的程序名称 |
+    | `PYTHONPATH`                            | `sys.path`       | `PyConfig.pythonpath_env` | `NULL`                                                                   | 增加额外的搜索路径                                                       |
+
+    除了这些外还会`对路径配置输出字段`造成影响的包括
+    + 当前工作目录,用于获取绝对路径
+    + `PATH环境变量`,用于获取程序的完整路径(即默认的`PyConfig.program_name`)
+    + `__PYVENV_LAUNCHER__`环境变量
+    + (仅限 Windows only)注册表`HKEY_CURRENT_USER`和`HKEY_LOCAL_MACHINE`的 `"SoftwarePythonPythonCoreX.YPythonPath"` 项下的应用程序目录(其中 X.Y 为 Python 版本).
+
+    另外`PyConfig.pathconfig_warnings`设置可以用于控制是否允许计算路径配置以将警告记录到`stderr`中(`1`为允许`0`为不允许).这个的默认值根据配置的加载模式不同不同,在本文的用法中默认为`1`
+
++ 路径配置输出字段,调用`PyConfig_Read`之后由`路径配置输入`共同影响生成的配置,他们依然可以用`PyConfig_SetString`,`PyWideStringList_Append`等方式进行修正
+
+    | `sys`中的设置          | `PyConfig`中的设置                                                 | 含义                                                                                                       |
+    | ---------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+    | `sys.exec_prefix`      | `PyConfig.exec_prefix`                                             | 指定使用的python的位置,可以用于指定一个虚拟环境或和`sys.base_exec_prefix`保持一致                          |
+    | `sys.prefix`           | `PyConfig.prefix`                                                  | 一个指定用于安装与平台无关的 Python 文件的站点专属目录前缀,可用于指定虚拟环境或和`sys.base_prefix`保持一致 |
+    | `sys.executable`       | `PyConfig.executable`                                              | Python 解释器的可执行二进制文件的绝对路径,通常设为`NULL`                                                   |
+    | `sys.base_exec_prefix` | `PyConfig.base_exec_prefix`                                        | 由`PyConfig.home`得到,指定使用的libpython的位置前缀                                                        |
+    | `sys.base_prefix`      | `PyConfig.base_prefix`                                             | 由`PyConfig.home`得到,一个指定用于安装与平台无关的 Python 文件的目录前缀                                   |
+    | `sys._base_executable` | `PyConfig.base_executable`                                         | 指向基础的Python环境的设置.由`__PYVENV_LAUNCHER__`环境变量设置.如为`NULL`则从`PyConfig.executable`设置.    |
+    | `sys.path`             | `PyConfig.module_search_paths`和`PyConfig.module_search_paths_set` | 搜索模块的路径.                                                                                            |
+
+在调用Python模块的C项目中我们通常会是这样的架构
+
+```txt
+\---|
+    |---可执行文件
+    |---env # 虚拟环境
+    |---python模块 # 项目中的python业务模块
+```
+
+又或者在可执行文件的启动配置中允许指定模块位置和虚拟环境位置.
+
+我们自己维护的python模块放在固定位置,第三方模块则放在虚拟环境中维护.这样既做到了环境隔离也更加便于维护自己的项目.当然我们也应该允许用户直接使用编译指定的libpython对应的环境.因此我们可以将解释器初始化这块抽取出来,构造一个初始化python解释器的函数:
+
+```Cpp
+...
+#include <filesystem>
+
+int init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod) {
+    wchar_t* program;
+    wchar_t* env_dir_name;
+    wchar_t* pymodule_dir_name;
+    program = Py_DecodeLocale(programname, NULL);
+    if (program == NULL) {
+        fprintf(stderr, "Fatal error: cannot decode programname\n");
+        return 1;
+    }
+
+    // 初始化python设置
+    PyStatus status;
+    PyConfig config;
+    PyConfig_InitPythonConfig(&config);
+
+    // 设置python程序名
+    status = PyConfig_SetString(&config, &config.program_name, program);
+    if (PyStatus_Exception(status)) {
+        fprintf(stderr, "Fatal error: InitPythonConfig set program_name get error\n");
+        PyConfig_Clear(&config);
+        return 1;
+    }
+    // 加载默认配置
+    status = PyConfig_Read(&config);
+    if (PyStatus_Exception(status)) {
+        fprintf(stderr, "Fatal error: PyConfig_Read get error\n");
+        PyConfig_Clear(&config);
+        return 1;
+    }
+    // 设置python的sys.path用于查找模块
+    std::filesystem::path pymodule_dir;
+    if (pymodulepath == NULL) {
+        pymodule_dir = std::filesystem::current_path();
+    } else {
+        pymodule_dir = pymodulepath;
+        if (pymodule_dir.is_relative()) {
+            pymodule_dir = std::filesystem::absolute(pymodule_dir);
+        }
+    }
+    auto _pymodule_dir_name = pymodule_dir.string().c_str();
+    pymodule_dir_name = Py_DecodeLocale(_pymodule_dir_name, NULL);
+    if (pymodule_dir_name == NULL) {
+        fprintf(stderr, "Fatal error: cannot decode pymodule_dir_name\n");
+        return 1;
+    } else {
+        printf("pymodule_dir %s \n", _pymodule_dir_name);
+    }
+    config.module_search_paths_set = 1;
+    status = PyWideStringList_Append(&config.module_search_paths, pymodule_dir_name);
+    if (PyStatus_Exception(status)) {
+        fprintf(stderr,
+                "Fatal error: InitPythonConfig set module_search_paths get "
+                "error\n");
+        PyConfig_Clear(&config);
+        return 1;
+    }
+
+    // 设置虚拟环境
+    if (envpath != NULL) {
+        std::filesystem::path env_dir = envpath;
+        if (env_dir.is_relative()) {
+            env_dir = std::filesystem::absolute(env_dir);
+        }
+        auto _env_dir_name = env_dir.string().c_str();
+        env_dir_name = Py_DecodeLocale(_env_dir_name, NULL);
+        if (env_dir_name == NULL) {
+            fprintf(stderr, "Fatal error: cannot decode _env_dir_name \n");
+            return 1;
+        } else {
+            printf("use virtual environments %s \n", _env_dir_name);
+        }
+        status = PyConfig_SetString(&config, &config.prefix, env_dir_name);
+        if (PyStatus_Exception(status)) {
+            fprintf(stderr, "Fatal error: InitPythonConfig set prefix get error\n");
+            PyConfig_Clear(&config);
+            return 1;
+        }
+        status = PyConfig_SetString(&config, &config.exec_prefix, env_dir_name);
+        if (PyStatus_Exception(status)) {
+            fprintf(stderr, "Fatal error: InitPythonConfig set exec_prefix get error\n");
+            PyConfig_Clear(&config);
+            return 1;
+        }
+    }
+    status = Py_InitializeFromConfig(&config);
+    if (PyStatus_Exception(status)) {
+        PyConfig_Clear(&config);
+        if (PyStatus_IsExit(status)) {
+            return status.exitcode;
+        }
+        // 抛出错误
+        Py_ExitStatusException(status);
+    }
+    PyConfig_Clear(&config);
+    PyMem_RawFree(pymodule_dir_name);
+    if (envpath != NULL) {
+        PyMem_RawFree(env_dir_name);
+    }
+    PyMem_RawFree(program);
+    if (debugmod) {
+        PyRun_SimpleString("import sys;print(sys.path);print(sys.prefix)");
+    }
+    return 0;
+}
+```
+
+这个函数可以通过设置参数`envpath`设置虚拟环境位置,为`NULL`时则不使用虚拟环境;参数`pymodulepath`可以用于设置项目python模块的查找路径,为`NULL`时为可执行文件所在文件夹;参数`debugmod`则用于检查是否按预期设置成功.
+
+#### 调用python模块
+
+python应用通常会大量调用第三方模块,我们可以正常的给用于编译的python环境或它创建的虚拟环境安装第三方模块,这样就可以在我们自己的python代码中用这些第三方模块了,我们改写`hello.py`让它调用我们安装的第三方库numpy.
+
+```python
+def callnumpy():
+    import numpy as np
+    print(f"numpy version: {np.version.__version__}")
+
+```
+
+需要注意,numpy无法同时在多个解释器中加载,这就限制了我们的应用不能起多个python解释器.当然这在我们的例子中完全没有影响,因为我们仅使用了`Py_InitializeFromConfig`启动了一个解释器,并没有搞多解释器.
+
+但Python的CAPI是支持的,可以使用[`Py_NewInterpreter(void)`](https://docs.python.org/zh-cn/3/c-api/init.html#c.Py_NewInterpreter)和[`Py_EndInterpreter(PyThreadState *tstate)`](https://docs.python.org/zh-cn/3/c-api/init.html#c.Py_EndInterpreter)实现.我的建议也是任何情况下能单解释器就单解释器.
+
+我们把调用python对象的部分抽出来变成一个函数:
+
+```Cpp
+
+int callpy() {
+    const char* Module_Name = "hello";
+    const char* Func_Name = "apply";
+    const char* FuncCallNumpy_Name = "callnumpy";
+    PyObject *pName, *pModule, *pFunc, *pFuncCallNumpy;
+    PyObject* pValue;
+
+    pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
+    pModule = PyImport_Import(pName);                // 导入模块
+    Py_DECREF(pName);                                // 释放对象pName
+    if (pModule != NULL) {
+        // 在模块中找到函数名为func_name的函数,将这个函数对象提出来
+        pFunc = PyObject_GetAttrString(pModule, Func_Name);
+        /* pFunc is a new reference */
+        if (pFunc && PyCallable_Check(pFunc)) {
+            // pFunc存在且为可调用对象,则执行调用
+            pValue = PyObject_CallObject(pFunc, NULL);
+            Py_DECREF(pValue);
+        } else {
+            if (PyErr_Occurred())  // 捕获错误,并打印
+                PyErr_Print();
+            fprintf(stderr, "Cannot find function \"%s\"\n", Func_Name);
+        }
+        Py_XDECREF(pFunc);
+        // 调用numpy的函数
+        pFuncCallNumpy = PyObject_GetAttrString(pModule, FuncCallNumpy_Name);
+        if (pFuncCallNumpy && PyCallable_Check(pFuncCallNumpy)) {
+            // pFunc存在且为可调用对象,则执行调用
+            pValue = PyObject_CallObject(pFuncCallNumpy, NULL);
+            Py_DECREF(pValue);
+        } else {
+            if (PyErr_Occurred())  // 捕获错误,并打印
+                PyErr_Print();
+            fprintf(stderr, "Cannot find function \"%s\"\n", FuncCallNumpy_Name);
+        }
+        Py_XDECREF(pFuncCallNumpy);
+
+    } else {
+        PyErr_Print();  // 捕获错误,并打印
+        fprintf(stderr, "Failed to load Module\"%s\"\n", Module_Name);
+        return 1;
+    }
+    Py_XDECREF(pModule);
+    return 0;
+}
+```
+
+#### 回收python解释器
+
+这个没啥好说的,抽出来纯粹为了更优雅些
+
+```Cpp
+int finalize_py(){
+    if (Py_FinalizeEx() < 0) {
+        return 120;
+    }
+    return 0;
+}
+```
+
+#### 回到例子
+
+上面的一整段代码逻辑我们就可以拆分为如下几个部分:
+
+1. python解释器的初始化部分
+
+2. 调用python模块的部分
+
+3. 回收python解释器的部分
+
+我们再将这些串起来构成`main`函数
+
+```Cpp
+
+int main(int argc, char* argv[]) {
+    int status;
+    status = init_py(argv[0], "env/", NULL, true);
+    if (status != 0) {
+        return status;
+    }
+
+    // 开始执行python调用
+    status = callpy();
+    if (status != 0) {
+        return status;
+    }
+    // 回收python解释器
+    status = finalize_py();
+    if (status != 0) {
+        return status;
+    }
+    return 0;
+}
+```
 
 ## 数据交换
+
+光调用没用,我们更加需要的是数据交换,
+
+### 数据类型转换
+
+Python中万物都是对象,在C这个层面看就是万物都是`PyObject*`,这也就意味着无论是无论是获取数据还是作为参数,我们都需要在`PyObject*`和python各种对象之间进行转换.这个太多了,可以查看[官方文档](https://docs.python.org/zh-cn/3/c-api/concrete.html).这里介绍几个比较常见的接口
+
+
+### 获取对象中字段对应的值
+
+### 调用可调用对象
+
+## 外部线程和服务化
+
+### 外部线程和gil

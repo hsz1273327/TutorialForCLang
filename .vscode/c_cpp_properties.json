@@ -4,7 +4,8 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/Users/huangsizhe/micromamba/envs/py3.10/include/python3.10"
+                "/Users/huangsizhe/micromamba/envs/py3.10/include/python3.10",
+                "/Users/mac/micromamba/envs/py3.10/include/python3.10"
             ],
             "defines": [],
             "macFrameworkPath": [

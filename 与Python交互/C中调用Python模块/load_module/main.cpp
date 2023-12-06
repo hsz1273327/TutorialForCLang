@@ -29,8 +29,7 @@ int main(int argc, char* argv[]) {
     // 设置python程序名
     status = PyConfig_SetString(&config, &config.program_name, program);
     if (PyStatus_Exception(status)) {
-        fprintf(stderr,
-                "Fatal error: InitPythonConfig set program_name get error\n");
+        fprintf(stderr, "Fatal error: InitPythonConfig set program_name get error\n");
         PyConfig_Clear(&config);
         exit(1);
     }
@@ -43,8 +42,7 @@ int main(int argc, char* argv[]) {
     }
     // 设置python的sys.path用于查找模块
     config.module_search_paths_set = 1;
-    status =
-        PyWideStringList_Append(&config.module_search_paths, current_dir_name);
+    status = PyWideStringList_Append(&config.module_search_paths, current_dir_name);
     if (PyStatus_Exception(status)) {
         fprintf(stderr,
                 "Fatal error: InitPythonConfig set module_search_paths get "
@@ -68,8 +66,7 @@ int main(int argc, char* argv[]) {
     PyObject *pName, *pModule, *pFunc;
     PyObject* pValue;
 
-    pName = PyUnicode_DecodeFSDefault(
-        Module_Name);  // 将模块名类型转为python对象字符串
+    pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
 
     pModule = PyImport_Import(pName);  // 导入模块
 
@@ -99,7 +96,7 @@ int main(int argc, char* argv[]) {
     if (Py_FinalizeEx() < 0) {
         return 120;
     }
-
+    PyMem_RawFree(current_dir_name);
     PyMem_RawFree(program);
     return 0;
 }
