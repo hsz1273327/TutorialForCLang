@@ -578,45 +578,289 @@ int main(int argc, char* argv[]) {
 
 ### 数据类型转换
 
-Python中万物都是对象,在C这个层面看就是万物都是`PyObject*`,这也就意味着无论是无论是获取数据还是作为参数,我们都需要在`PyObject*`和python各种对象之间进行转换.这个太多了,可以查看[官方文档](https://docs.python.org/zh-cn/3/c-api/concrete.html).这里介绍几个比较常用的接口
+Python中万物都是对象,在C这个层面看就是万物都是`PyObject*`,这也就意味着无论是无论是获取数据还是作为参数,我们都需要在`PyObject*`和python各种对象之间进行转换.这个太多了,可以查看[官方文档](https://docs.python.org/zh-cn/3/c-api/concrete.html).这里介绍几个比较常用的类型对应的使用方法.
 
 #### None类型
 
+None类型是一个单例,就是`Py_None`,也就是说在C/C++中并不需要做转换,判断也只需要`x == Py_None`即可
+
+None常作为参数或返回值用于数据交换
+
 #### 布尔类型
+
+C中实际没有布尔值,而是0和其他作为false和true.
+
++ 使用`int PyBool_Check(PyObject *o)`来判断对象是否是python中的布尔类型.
++ 使用`PyObject *PyBool_FromLong(long v)`可以从C中用long类型的数据构造一个python中的布尔型对象,`0`会转为`False`,其他会转为`True`
++ 单例`Py_False`对应python中的`False`,`Py_True`对应pyhton中的`True`.在C中可以直接使用`==`进行判断
+
+布尔类型常作为参数或返回值用于数据交换
 
 #### 数值类型
 
+数值类型python和C中基本都有对应
+
+数值类型都常作为参数或返回值用于数据交换
+
 ##### 整型数
+
+python中的整型数是不限长度的,这就为转换提供了难度.
+
++ 使用`int PyLong_Check(PyObject *p)`可以用于检测python对象是不是整型数
+
++ 使用如下函数可以从C类型的对象构造Python的整型数对象
+
+    | 函数                                                                  | C类型                | 说明                                                                  |
+    | --------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------- |
+    | `PyObject *PyLong_FromLong(long v)`                                   | `long`               | ---                                                                   |
+    | `PyObject *PyLong_FromUnsignedLong(unsigned long v)`                  | `unsigned long`      | ---                                                                   |
+    | `PyObject *PyLong_FromLongLong(long long v)`                          | `long long`          | ---                                                                   |
+    | `PyObject *PyLong_FromUnsignedLongLong(unsigned long long v)`         | `unsigned long long` | ---                                                                   |
+    | `PyObject *PyLong_FromDouble(double v)`                               | `double`             | 会仅保留整数部分                                                      |
+    | `PyObject *PyLong_FromString(const char *str, char **pend, int base)` | `char *str`          | 用于构造非10进制整型数,base为0则还是十进制也就是字面量,不为0则必须在2 |
+    ~36之间;pend需要传入一个指针或NULL,如果不是NULL则会将出错时第一个字符的指针填入其中.
+
++ 使用如下函数将python的整型转换为对应的C类型
+
+    | 函数                                                                   | C类型                | 说明                                                                                                                                         |
+    | ---------------------------------------------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `long PyLong_AsLong(PyObject *obj)`                                    | `long`               | 超出范围会返回`-1`且需要使用`PyErr_Occurred()`捕获异常`OverflowError`                                                                        |
+    | `long PyLong_AsLongAndOverflow(PyObject *obj, int *overflow)`          | `long`               | 超出`LONG_MAX`会给传入的参数`overflow`赋值`1`;小于`LONG_MIN`则会赋值`-1`;出错则返回`-1`且需要使用`PyErr_Occurred()`捕获异常`OverflowError`   |
+    | `long long PyLong_AsLongLong(PyObject *obj)`                           | `long long`          | 超出范围会返回`-1`且需要使用`PyErr_Occurred()`捕获异常`OverflowError`                                                                        |
+    | `long long PyLong_AsLongLongAndOverflow(PyObject *obj, int *overflow)` | `long long`          | 超出`LLONG_MAX`会给传入的参数`overflow`赋值`1`;小于`LLONG_MIN`则会赋值`-1`;出错则返回`-1`且需要使用`PyErr_Occurred()`捕获异常`OverflowError` |
+    | `unsigned long PyLong_AsUnsignedLong(PyObject *pylong)`                | `unsigned long`      | 超出范围会返回`(unsigned long)-1`且需要使用`PyErr_Occurred()`捕获异常`OverflowError`                                                         |
+    | `unsigned long long PyLong_AsUnsignedLongLong(PyObject *pylong)`       | `unsigned long long` | 超出范围会返回`(unsigned long long)-1`且需要使用`PyErr_Occurred()`捕获异常`OverflowError`                                                    |
+    | `unsigned long PyLong_AsUnsignedLongMask(PyObject *obj)`               | `unsigned long`      | 超出范围不会抛出异常,会返回`ULONG_MAX + 1 求模的余数`,其他异常会返回`(unsigned long)-1`                                                      |
+    | `unsigned long long PyLong_AsUnsignedLongLongMask(PyObject *obj)`      | `unsigned long long` | 超出范围不会抛出异常,会返回`ULLONG_MAX + 1 求模的余数`,其他异常会返回`(unsigned long long)-1`                                                |
+    | `double PyLong_AsDouble(PyObject *pylong)`                             | `double`             | 超出了`double`的取值范围则需要使用`PyErr_Occurred()`捕获异常`OverflowError`,且返回`-1.0`                                                     |
 
 ##### 浮点数
 
-##### 复数
++ 使用`int PyFloat_Check(PyObject *p)`可以用于检测python对象是不是float类型
+
++ 使用如下函数可以从C类型的对象构造Python的整型数对象
+
+    | 函数                                     | C类型    | 说明         |
+    | ---------------------------------------- | -------- | ------------ |
+    | `PyObject *PyFloat_FromDouble(double v)` | `double` | 失败返回NULL |
+
++ 使用如下函数将python的整型转换为对应的C类型
+
+    | 函数                                         | C类型    | 说明                                                      |
+    | -------------------------------------------- | -------- | --------------------------------------------------------- |
+    | `double PyFloat_AsDouble(PyObject *pyfloat)` | `double` | 失败时将返回`-1.0`,并且需要调用PyErr_Occurred()来检测错误 |
 
 #### 字符串类型
 
-##### 字节串
+字符串是个很麻烦的概念,它是文本的形式,但由于编码的存在即便是在Python中Python2和Python3中类型都不同.C是一门非常古老的编程语言,在创建它的时候字符串就是字节串,每个字节都是ascii码,但随着计算机的发展,仅能表现英语的ascii码显然无法涵盖所有字符,当时的所谓字符串也就名不副实了.为了解决非英语的字符的使用问题,unicode应运而生,通过编码解码实现了这一需求,成为了真正的字符串,而原本的字符串成了实质上的字节串.
+python中的字符串和C中对应的东西在称呼上是这样对应的
+
+| 名称    | C中类型     | Python3中类型 |
+| ------- | ----------- | ------------- |
+| 字符串  | `char *`    | `bytes`       |
+| unicode | `wchar_t *` | `str`         |
+
+我们通常说的字符串又往往指的是带编码的unicode,而不带编码的通常我们会叫它字节串或字节流.但在现在这个场景下,我们以表中的命名为准.
+
+字符串类型常作为参数或返回值用于数据交换
+
+##### 字符串
+
++ 使用`int PyBytes_Check(PyObject *o)`可以用于检测python对象是不是bytes类型
+
++ 使用如下函数可以从C类型的对象构造Python的整型数对象
+
+    | 函数                                                    | C类型    | 说明                                                                                                                     |
+    | ------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------ |
+    | `PyObject *PyBytes_FromString(const char *v)`           | `char *` | 失败返回NULL,形参`v`不可为NULL                                                                                           |
+    | `PyObject *PyBytes_FromFormat(const char *format, ...)` | `char *` | 接受一个C`printf()`风格的format字符串和可变数量的参数,计算结果 Python 字节串对象的大小并返回参数值经格式化后的字节串对象 |
+
++ 使用如下函数将python的整型转换为对应的C类型
+
+    | 函数                                  | C类型    | 说明                                                                                                           |
+    | ------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------- |
+    | `char *PyBytes_AsString(PyObject *o)` | `char *` | 返回结果的缓冲区的最后一个字节总是为空,失败时将返回`NULL`并引发`TypeError`需要调用`PyErr_Occurred()`来检测错误 |
 
 ##### unicode
 
++ 使用`int PyUnicode_Check(PyObject *o)`可以用于检测python对象是不是str类型
+
++ 使用如下函数可以从C类型的对象构造Python的整型数对象
+
+    | 函数                                                                     | C类型       | 说明                                                                                                                               |
+    | ------------------------------------------------------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+    | `PyObject *PyUnicode_FromString(const char *str)`                        | `char *`    | UTF-8编码                                                                                                                          |
+    | `PyObject *PyUnicode_DecodeFSDefault(const char *str)`                   | `char *`    | 用系统设置的解码器解码参数字符串为python中的str                                                                                    |
+    | `PyObject *PyUnicode_FromFormat(const char *format, ...)`                | `char *`    | UTF-8编码,接受一个C`printf()`风格的format字符串和可变数量的参数,计算结果 Python 字节串对象的大小并返回参数值经格式化后的字节串对象 |
+    | `PyObject *PyUnicode_FromWideChar(const wchar_t *wstr, Py_ssize_t size)` | `wchar_t *` | 将`-1`作为大小表示本函数会使用`wcslen()`自己计算长度                                                                               |
+
++ 使用如下函数将python的整型转换为对应的C类型
+
+    | 函数                                                                       | C类型       | 说明                                                                                                                                                                                                                                                                                                  |
+    | -------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `const char *PyUnicode_AsUTF8(PyObject *unicode)`                          | `char *`    | 将python中的str以utf-8解码后返回为对应的C中的字符串                                                                                                                                                                                                                                                   |
+    | `wchar_t *PyUnicode_AsWideCharString(PyObject *unicode, Py_ssize_t *size)` | `wchar_t *` | 如果参数`size` 不为`NULL`则会将宽字符的数量(不包括结尾空字符)写入到`*size`中;如果`size`为`NULL`并且`wchar_t*`字符串包含空字符则将引发`ValueError`.成功时返回由`PyMem_New`分配的缓冲区(使用`PyMem_Free()`来释放它.发生错误时则返回`NULL`并且`*size`将是未定义的.如果内存分配失败则会引发`MemoryError`. |
+
 #### 容器类型
 
-##### 字典类型
-
-##### 列表类型
+容器类型单独创建没什么意义,关键是将其中的元素放进去拿出来.
+<!-- 容器类型单独创建没什么意义,关键是将其中的元素放进去拿出来,我们假定容器中的元素都是python中的`str`类型,需要转到C中的`char *`.下面开始具体介绍 -->
 
 ##### 元组类型
 
-#### 可迭代对象类型
+元组非常重要,因为可调用对象如果是多值返回,返回的就是一个元组,如果调用函数,元组也常被用于传递位置参数
 
-#### 缓冲协议类型
++ 使用`int PyTuple_Check(PyObject *p)`可以用于检测python对象是不是tuple类型
 
-#### 文件对象类型
++ 构造: 使用`PyObject *PyTuple_Pack(Py_ssize_t n, ...)`,其中`n`为元组长度,可变参数为元素,注意可变参数部分必须是`PyObject *`类型.
 
-#### 类型类型
+    ```C
+    PyObject * x,y,t;
+    x = PyUnicode_DecodeFSDefault("12345");
+    y = PyUnicode_DecodeFSDefault("abcde");
+    t = PyTuple_Pack(2, x, y);
+    ...
+    Py_DECREF(x);
+    Py_DECREF(y);
+    Py_DECREF(t);
+    ```
 
-### 获取对象中字段对应的值
++ 提取元素: 通常是如下步骤:
+
+    1. 使用`Py_ssize_t PyTuple_Size(PyObject *p)`获得元组长度
+    2. for循环元组长度,使用`PyObject *PyTuple_GetItem(PyObject *p, Py_ssize_t pos)`获取对应位置的元素
+    3. 分别使用其他类型的检测和提取功能获取C部分
+
+    ```C
+    #include <vector>
+    ...
+    Py_ssize_t length;
+    Py_ssize_t i;
+    PyObject * item;
+    std::vector<char*> result={};
+    length = PyTuple_Size(t);
+
+    for (i=0;i<length;i++){
+        item = PyTuple_GetItem(t, i);
+        PyUnicode_AsUTF8(item);
+        result.push_back(PyUnicode_AsUTF8(item));
+        Py_DECREF(item);
+    }
+    ...
+    ```
+
+##### 字典类型
+
+字典非常重要,常会用在调用可调用对象时作为关键字参数传递,我们应当尽量不要传递字典作为返回值或全局变量的值.对于结构化数据的传递更加推荐使用`json`等文本序列化协议.
+
++ 使用`int PyDict_Check(PyObject *p`可以用于检测python对象是不是Dict类型
+
++ 构造: 通常构造的步骤如下
+
+    1. 使用`PyObject *PyDict_New()`构造一个指定长度的空dict
+    2. 使用`int PyDict_SetItem(PyObject *p, PyObject *key, PyObject *val)`或`int PyDict_SetItemString(PyObject *p, const char *key, PyObject *val)`将对象键值对一个一个加到字典中
+
+    ```C
+    PyObject * x,y,d;
+    d = PyList_New(0);
+    x = PyUnicode_DecodeFSDefault("12345");
+    PyDict_SetItemString(d,"key1" x);
+    y = PyUnicode_DecodeFSDefault("abcde");
+    PyDict_SetItemString(d,"key2" y);
+    ...
+    Py_DECREF(x);
+    Py_DECREF(y);
+    Py_DECREF(d);
+    ```
+
++ 提取元素: 通常是如下步骤
+
+    1. 使用`PyObject *PyDict_Keys(PyObject *p)`获得Dict中的所有key,注意返回的值是用Python的List对象,
+    2. 使用`Py_ssize_t PyList_Size(PyObject *list)`获得list长度
+    3. for循环这个key的list长度,使用`PyObject *PyList_GetItem(PyObject *list, Py_ssize_t index)`获取key对象
+    4. 使用`PyObject *PyDict_GetItem(PyObject *p, PyObject *key)`获取key对应的取值,分别使用其他类型的检测和提取功能获取C部分
+
+    ```C
+    #include <map>
+    ...
+    Py_ssize_t length;
+    Py_ssize_t i;
+    PyObject * keys;
+    PyObject * key;
+    PyObject * value;
+    std::map<char*, char*> result={};
+
+    keys = PyDict_Keys(PyObject *d)
+    length = PyList_Size(keys);
+    for (i=0;i<length;i++){
+        key = PyList_GetItem(keys, i);
+        char* map_key= PyUnicode_AsUTF8(key);
+        value = PyDict_GetItem(d, key);
+        map_value = PyUnicode_AsUTF8(value);
+        result[map_key] = map_value;
+        Py_DECREF(key);
+        Py_DECREF(value);
+    }
+    ...
+    Py_DECREF(keys);
+    ...
+    ```
+
+##### 列表类型
+
+我们应该尽量控制接口不要用列表作为参数或返回值
+
++ 使用`int PyList_Check(PyObject *p)`可以用于检测python对象是不是list类型
+
++ 构造: 通常构造的步骤如下
+
+    1. 使用`PyObject *PyList_New(Py_ssize_t len)`构造一个指定长度的空list,当`len`大于零时被返回的列表对象项目被设成`NULL`,通常`len`会设成`0`
+    2. 使用`int PyList_Append(PyObject *list, PyObject *item)`将对象一个一个加到list中
+
+    ```C
+    PyObject * x,y,l;
+    l = PyList_New(0);
+    x = PyUnicode_DecodeFSDefault("12345");
+    PyList_Append(l, x)
+    y = PyUnicode_DecodeFSDefault("abcde");
+    PyList_Append(l, y)
+    ...
+    Py_DECREF(x);
+    Py_DECREF(y);
+    Py_DECREF(l);
+    ```
+
++ 提取元素: 通常是如下步骤
+
+    1. 使用`Py_ssize_t PyList_Size(PyObject *list)`获得list长度
+    2. for循环list长度,使用`PyObject *PyList_GetItem(PyObject *list, Py_ssize_t index)`获取对应位置的元素
+    3. 分别使用其他类型的检测和提取功能获取C部分
+
+    ```C
+    #include <vector>
+    ...
+    Py_ssize_t length;
+    Py_ssize_t i;
+    PyObject * item;
+    std::vector<char*> result={};
+    length = PyList_Size(l);
+    for (i=0;i<length;i++){
+        item = PyList_GetItem(l, i);
+        PyUnicode_AsUTF8(item)
+        result.push_back(PyUnicode_AsUTF8(item));
+        Py_DECREF(item);
+    }
+    ...
+    ```
 
 
+### 访问对象中字段
+
+数据交换中第一种方式是从一个python对象中获取字段.这个对象可以是模块对象,类对象,类的实例对象,具名元组对象等.这些对象都可以用如下接口访问其中的字段
+
+https://docs.python.org/zh-cn/3/c-api/object.html?highlight=pyobject_getattrstring#c.PyObject_GetAttrString
+
+PyObject_GetAttrString
 
 ### 调用可调用对象
 
