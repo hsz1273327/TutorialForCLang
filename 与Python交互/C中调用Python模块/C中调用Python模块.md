@@ -576,9 +576,29 @@ int main(int argc, char* argv[]) {
 
 下面我们再对这个例子进行修改来演示C和python间的数据交换
 
+### Python对象的所有权
+
+我们知道Python是有垃圾回收机制的,使用的是引用计数方案,即其中所有对象都会维护一个计数器用于标记是否要被gc回收.而C中是没有的,我们在C程序中创建的Python对象并不会自动增减计数器,因此就有了上面例子中的手动调用`void Py_DECREF(PyObject *o)`或`void Py_XDECREF(PyObject *o)`释放引用的操作.
+
+Python对象的所有权相关的描述在[官网有介绍](https://docs.python.org/zh-cn/3/extending/extending.html#reference-counts).我们大致可以整理出如下几个概念:
+
++ `引用计数`,对象记录的被引用的次数,当为触发gc时如果对象的引用计数为0,对象会被回收
++ `强引用`, 持有引用的代码所拥有的对象的引用.在创建引用时可通过调用`Py_INCREF()`来获取强引用而在删除引用时可通过`Py_DECREF()`来释放它.
++ `借入引用`, 使用借入引用的代码并不持有这个引用,也就是说这个引用**不会触发**`引用计数`的增加,推荐在`借入引用`上调用`Py_INCREF()`以将其原地转换为强引用.
++ `引用的所有权`,`强引用`的所有权归创造这个引用的代码(即调用返回Pyhton对象引用`PyObject *`的函数的代码)所有,`借入引用`的所有权归被借的对象(即返回Pyhton对象引用`PyObject *`的函数)管理.
++ `偷走所有权`,指以Pyhton对象引用`PyObject *`为参数函数会拿走调用方代码对传入参数的引用所有权.
+
+多数Python的CAPI函数中以`PyObject *`为类型的参数都是借入引用,也就是说你的代码调用这些函数时并不会失去传入对象的引用所有权,你依然需要手工回收他们,当然也有特例,就是`void PyList_SET_ITEM(PyObject *list, Py_ssize_t i, PyObject *o)`和`int PyTuple_SetItem(PyObject *p, Py_ssize_t pos, PyObject *o)`中的`o`,他们会偷走`o`的所有权,这也就意味着你不需要处理这两个函数中`o`参数的引用计数回收的工作了.
+
+而多数Python的CAPI函数中以`PyObject *`为类型的返回值都是强引用,也就是说我们需要手动控制这些对象引用的回收.当然也有例外,容器的`GetItem`接口即`PyTuple_GetItem()`,`PyList_GetItem()`, `PyDict_GetItem()`和`PyDict_GetItemString()`这四个接口,获取对象属性接口即`PyObject_GetAttrString()`以及`PyImport_AddModule()`和`PyImport_AddModuleObject()`接口都是返回的`借入引用`,也就是说我们通常不需要手工释放其引用计数,当然如果有必要,也可以调用`Py_INCREF()`来获取自己的引用所有权,但记得这样就得自己用`Py_DECREF()`释放了
+
+我们需要额外小心容器类型和有属性的对象的操作,因为不同容器内的元素有的是强引用(`偷走所有权`)有的是`借入引用`,需要查询接口文档才可以确认.
+
+当我们处理容器或有属性的对象中的元素时,如果涉及到多个元素间的使用或比较复杂的逻辑时,建议使用`Py_INCREF()`获得的元素所有权后再使用,这可以避免很多问题.
+
 ### 数据类型转换
 
-Python中万物都是对象,在C这个层面看就是万物都是`PyObject*`,这也就意味着无论是无论是获取数据还是作为参数,我们都需要在`PyObject*`和python各种对象之间进行转换.这个太多了,可以查看[官方文档](https://docs.python.org/zh-cn/3/c-api/concrete.html).这里介绍几个比较常用的类型对应的使用方法.
+Python中万物都是对象,在C这个层面看就是万物都是`PyObject*`,这也就意味着无论是无论是获取数据还是作为参数,我们都需要在`PyObject*`和python各种对象之间进行转换.这个太多了,可以查看[官方文档](https://docs.python.org/zh-cn/3/c-api/concrete.html).这里介绍一些比较常用的类型对应的使用方法,我尽量挑使用场景比较多的列出来.
 
 #### None类型
 
@@ -704,6 +724,9 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
 #### 容器类型
 
 容器类型单独创建没什么意义,关键是将其中的元素放进去拿出来.
+
+不同容器的操作引用逻辑会有不同,需要额外注意
+
 <!-- 容器类型单独创建没什么意义,关键是将其中的元素放进去拿出来,我们假定容器中的元素都是python中的`str`类型,需要转到C中的`char *`.下面开始具体介绍 -->
 
 ##### 元组类型
@@ -712,23 +735,38 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
 
 + 使用`int PyTuple_Check(PyObject *p)`可以用于检测python对象是不是tuple类型
 
-+ 构造: 使用`PyObject *PyTuple_Pack(Py_ssize_t n, ...)`,其中`n`为元组长度,可变参数为元素,注意可变参数部分必须是`PyObject *`类型.
++ 构造: 有两种构造方法
+  
+    1. 使用`PyObject *PyTuple_Pack(Py_ssize_t n, ...)`,其中`n`为元组长度,可变参数为元素,注意可变参数部分必须是`PyObject *`类型.
 
-    ```C
-    PyObject * x,y,t;
-    x = PyUnicode_DecodeFSDefault("12345");
-    y = PyUnicode_DecodeFSDefault("abcde");
-    t = PyTuple_Pack(2, x, y);
-    ...
-    Py_DECREF(x);
-    Py_DECREF(y);
-    Py_DECREF(t);
-    ```
+        ```C
+        PyObject * x,y,t;
+        x = PyUnicode_DecodeFSDefault("12345");
+        y = PyUnicode_DecodeFSDefault("abcde");
+        t = PyTuple_Pack(2, x, y);
+        ...
+        Py_DECREF(x);
+        Py_DECREF(y);
+        Py_DECREF(t);
+        ```
+
+    2. 使用`PyObject *PyTuple_New(Py_ssize_t len)`构建一个固定长度的元组,然后使用`int PyTuple_SetItem(PyObject *p, Py_ssize_t pos, PyObject *o)`设置对应位置上的元素.**需要注意**`PyTuple_SetItem`接口会`偷走传入对象引用的所有权`
+
+        ```C
+        PyObject * x,y,t;
+        t = PyTuple_New(2);
+        x = PyUnicode_DecodeFSDefault("12345");
+        y = PyUnicode_DecodeFSDefault("abcde");
+        PyTuple_SetItem(t,1,x);
+        PyTuple_SetItem(t,2,y);
+        ...
+        Py_DECREF(t);
+        ```
 
 + 提取元素: 通常是如下步骤:
 
     1. 使用`Py_ssize_t PyTuple_Size(PyObject *p)`获得元组长度
-    2. for循环元组长度,使用`PyObject *PyTuple_GetItem(PyObject *p, Py_ssize_t pos)`获取对应位置的元素
+    2. for循环元组长度,使用`PyObject *PyTuple_GetItem(PyObject *p, Py_ssize_t pos)`获取对应位置的元素,**注意**这个接口获取的是对象的`借入引用`
     3. 分别使用其他类型的检测和提取功能获取C部分
 
     ```C
@@ -744,7 +782,6 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
         item = PyTuple_GetItem(t, i);
         PyUnicode_AsUTF8(item);
         result.push_back(PyUnicode_AsUTF8(item));
-        Py_DECREF(item);
     }
     ...
     ```
@@ -758,11 +795,11 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
 + 构造: 通常构造的步骤如下
 
     1. 使用`PyObject *PyDict_New()`构造一个指定长度的空dict
-    2. 使用`int PyDict_SetItem(PyObject *p, PyObject *key, PyObject *val)`或`int PyDict_SetItemString(PyObject *p, const char *key, PyObject *val)`将对象键值对一个一个加到字典中
+    2. 使用`int PyDict_SetItem(PyObject *p, PyObject *key, PyObject *val)`或`int PyDict_SetItemString(PyObject *p, const char *key, PyObject *val)`将对象键值对一个一个加到字典中.**需要注意**`PyDict_SetItem`接口不会偷走传入对象引用的所有权,因此你还是得手动释放传入对象在这段代码中的所有权
 
     ```C
     PyObject * x,y,d;
-    d = PyList_New(0);
+    d = PyDict_New();
     x = PyUnicode_DecodeFSDefault("12345");
     PyDict_SetItemString(d,"key1" x);
     y = PyUnicode_DecodeFSDefault("abcde");
@@ -777,8 +814,8 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
 
     1. 使用`PyObject *PyDict_Keys(PyObject *p)`获得Dict中的所有key,注意返回的值是用Python的List对象,
     2. 使用`Py_ssize_t PyList_Size(PyObject *list)`获得list长度
-    3. for循环这个key的list长度,使用`PyObject *PyList_GetItem(PyObject *list, Py_ssize_t index)`获取key对象
-    4. 使用`PyObject *PyDict_GetItem(PyObject *p, PyObject *key)`获取key对应的取值,分别使用其他类型的检测和提取功能获取C部分
+    3. for循环这个key的list长度,使用`PyObject *PyList_GetItem(PyObject *list, Py_ssize_t index)`获取key对象,注意这个接口`PyList_GetItem`获得的是对象的`借入引用`
+    4. 使用`PyObject *PyDict_GetItem(PyObject *p, PyObject *key)`获取key对应的取值,分别使用其他类型的检测和提取功能获取C部分.注意这个接口`PyDict_GetItem`获得的是也是对象的`借入引用`
 
     ```C
     #include <map>
@@ -798,13 +835,13 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
         value = PyDict_GetItem(d, key);
         map_value = PyUnicode_AsUTF8(value);
         result[map_key] = map_value;
-        Py_DECREF(key);
-        Py_DECREF(value);
     }
     ...
     Py_DECREF(keys);
     ...
     ```
+
+如果对象并不是字典而是一些其他满足Map协议的对象,可以使用`int PyMapping_Check(PyObject *o)`替代`PyDict_Check`的功能;用`PyObject *PyObject_GetItem(PyObject *o, PyObject *key)`即python中的`o[key]`操作来获取key的值;用`int PyObject_SetItem(PyObject *o, PyObject *key, PyObject *v)`(注意该函数 不会偷取`v`的引用计数)即python中的`o[key] = v`来做key的赋值操作,用`int PyObject_DelItem(PyObject *o, PyObject *key)`即python中的`del o[key]`来删除key
 
 ##### 列表类型
 
@@ -815,15 +852,17 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
 + 构造: 通常构造的步骤如下
 
     1. 使用`PyObject *PyList_New(Py_ssize_t len)`构造一个指定长度的空list,当`len`大于零时被返回的列表对象项目被设成`NULL`,通常`len`会设成`0`
-    2. 使用`int PyList_Append(PyObject *list, PyObject *item)`将对象一个一个加到list中
+    2. 使用`int PyList_Append(PyObject *list, PyObject *item)`或`void PyList_SET_ITEM(PyObject *list, Py_ssize_t i, PyObject *o)`将对象一个一个加到list中
 
     ```C
     PyObject * x,y,l;
     l = PyList_New(0);
     x = PyUnicode_DecodeFSDefault("12345");
     PyList_Append(l, x)
+    Py_DECREF(x);
     y = PyUnicode_DecodeFSDefault("abcde");
     PyList_Append(l, y)
+    Py_DECREF(y);
     ...
     Py_DECREF(x);
     Py_DECREF(y);
@@ -853,16 +892,56 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
     ...
     ```
 
+如果是其他非列表的序列类型,可以使用`int PySequence_Check(PyObject *o)`替代`PyList_Check`来进行检测,;用`PyObject *PyObject_GetItem(PyObject *o, PyObject *key)`即python中的`o[key]`操作来获取key的值;用`int PyObject_SetItem(PyObject *o, PyObject *key, PyObject *v)`(注意该函数不会偷取`v`的引用计数)即python中的`o[key] = v`来做key的赋值操作;用`int PySequence_Contains(PyObject *o, PyObject *value)`判断元素是否在序列中(在返回`1`,否则返回`0`.出错时返回`-1`);`Py_ssize_t PySequence_Index(PyObject *o, PyObject *value)`获取指定元素在序列中的index(出错返回`-1`).
+
+
 
 ### 访问对象中字段
 
-数据交换中第一种方式是从一个python对象中获取字段.这个对象可以是模块对象,类对象,类的实例对象,具名元组对象等.这些对象都可以用如下接口访问其中的字段
+数据交换中第一种方式是从一个python对象中获取字段.这个对象可以是模块对象,类对象,类的实例对象,具名元组对象等.这些对象都可以用如下接口访问其中的字段.
 
-https://docs.python.org/zh-cn/3/c-api/object.html?highlight=pyobject_getattrstring#c.PyObject_GetAttrString
+#### 判断对象中是否存在字段
 
-PyObject_GetAttrString
+有如下两个接口可以用于判断对象中是否有对应的字段,他们是
+
++ `int PyObject_HasAttr(PyObject *o, PyObject *attr_name)`
++ `int PyObject_HasAttrString(PyObject *o, const char *attr_name)`
+
+这两个函数功能都相当于python中的`hasattr(o, attr_name)`二者区别仅在于一个使用Python的`str`类型作为参数查找,一个是使用C的`char*`类型的UTF-8编码字符串作为参数.
+
+#### 通过字段取值
+
+通过字段取值可以使用如下两个接口:
+
++ `PyObject *PyObject_GetAttr(PyObject *o, PyObject *attr_name)`
++ `PyObject *PyObject_GetAttrString(PyObject *o, const char *attr_name)`
+
+这两个函数功能都相当于python中的`getattr(o, attr_name)`.二者区别仅在于一个使用Python的`str`类型作为参数查找,一个是使用C的`char*`类型的UTF-8编码字符串作为参数.成功返回属性值,失败则返回`NULL`.
+
+#### 设置字段的值
+
+设置字段的值可以使用如下两个接口:
+
++ `int PyObject_SetAttr(PyObject *o, PyObject *attr_name, PyObject *v)` 
++ `int PyObject_SetAttrString(PyObject *o, const char *attr_name, PyObject *v)`
+
+这两个函数功能都相当于python中的`setattr(o, attr_name)`.二者区别仅在于一个使用Python的`str`类型作为参数`attr_name`查找,一个是使用C的`char*`类型的UTF-8编码字符串作为参数.成功返回0,失败则返回`-1`.
+
+注意如果`v`为`NULL`则该字段会被移除
 
 ### 调用可调用对象
+
+Python中可调用对象大致可以分
+
++ 函数
++ 类,调用即实例化
++ 静态方法,类方法
++ 实例方法
+
+他们可以使用`PyObject *PyObject_Call(PyObject *callable, PyObject *args, PyObject *kwargs)`来调用,其中`callable`是可调用对象;`args`必须为一个python的`tuple`对象,表示位置参数;`kwargs`可以为`NULL`或pyhton的`dict`对象,表示关键字参数.这个接口相当于在python中调用`callable(*args,**kwargs)`
+
+而方法则可以使用``
+
 
 
 #### 函数对象的调用

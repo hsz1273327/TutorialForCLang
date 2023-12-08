@@ -109,7 +109,6 @@ int init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod)
 
 int callpy() {
     const char* Module_Name = "hello";
-    const char* Func_Name = "apply";
     const char* FuncCallNumpy_Name = "callnumpy";
     PyObject *pName, *pModule, *pFunc, *pFuncCallNumpy;
     PyObject* pValue;
