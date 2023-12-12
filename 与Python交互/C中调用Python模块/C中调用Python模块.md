@@ -1043,7 +1043,367 @@ Python中可调用对象大致可以分
 
 ### 利用C++进一步优化
 
-上面的例子中虽然我们已经使用了大量的C++特性,但基本框架依然是C的风格,我们可以进一步使用C++库和C++中的异常让我们的代码更加简洁优雅.这个例子可以参考[mainwithmore.cpp]()
+上面的例子中虽然我们已经使用了大量的C++特性,但基本框架依然是C的风格,我们可以进一步使用C++库和C++中的异常让我们的代码更加简洁优雅.这个例子可以参考[mainwithmore.cpp](https://github.com/hsz1273327/TutorialForCLang/blob/master/%E4%B8%8EPython%E4%BA%A4%E4%BA%92/C%E4%B8%AD%E8%B0%83%E7%94%A8Python%E6%A8%A1%E5%9D%97/load_module/mainwithmore.cpp)
+
+我们可以看出之前的代码有如下几个问题:
+
+1. 错误处理通过int类型的状态传递,由于C是单返回,不像go中有对应优化,这种写法很容易造成和真实返回之间的混淆,语义不清.可以改为使用`try{...}catch(...){...}`配合抛出异常来处理
+
+    ```C++
+    #include <exception>
+    ...
+    class AppException : public std::runtime_error{
+    public:
+        AppException(const char* err) : std::runtime_error(err) {}       
+    };
+    ...
+
+    program = Py_DecodeLocale(programname, NULL);
+    if (program == NULL) {
+        throw AppException("Fatal error: cannot decode programname");
+    }
+    ...
+
+    try {
+        // 初始化
+        init_py(argv[0], "env/", NULL, false);
+        // 开始执行python调用
+        callpy();
+    } catch (const AppException& ex) {
+        fprintf(stderr, ex.what());
+        return 1;
+    }
+    ...
+
+    ```
+
+2. 调用Pyhton的CApi需要非常专注于回收引用的所有权,而这些回收工作往往需要在一大段业务代码后面执行,整体呈现一种类似洋葱切面一般的层次结构.
+    ![洋葱切面一般的结构.webp](./imgs/洋葱切面一般的结构.webp)
+    这种写法不符合关注点分离的原则,非常难以维护,我们可以使用`scope guard`写法,利用第三方库[ricab/scope_guard](https://github.com/ricab/scope_guard)实现一个类似`golang`中`defer`语法的操作,在获取到权限的时候就将回收操作推入执行栈,在代码块执行完成后按顺序回收这些资源,如下面的例子:
+
+    ```C++
+    ...
+    #include "scope_guard.hpp"
+    ....
+    auto pModule = init_pymodule(Module_Name);  // 导入模块
+    auto guard_pModule = sg::make_scope_guard([&pModule]() noexcept {
+        Py_XDECREF(pModule);  // 释放pModule
+    });
+    ...
+    ```
+
+    **需要注意**:`scope guard`的作用范围是所在代码块,也就是所在的`{}`范围,而go中的`defer`作用范围是函数,使用上还是很有区别的.
+
+最终我们的代码规整如下:
+
+```C++
+#define PY_SSIZE_T_CLEAN
+#include <Python.h>
+#include <filesystem>
+#include <format>
+#include <exception>
+#include <vector>
+#include "scope_guard.hpp"
+
+class AppException : public std::runtime_error{
+public:
+    AppException(const char* err) : std::runtime_error(err) {}       
+};
+
+void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod) {
+    wchar_t* program;
+    wchar_t* env_dir_name;
+    wchar_t* pymodule_dir_name;
+    program = Py_DecodeLocale(programname, NULL);
+    if (program == NULL) {
+        throw AppException("Fatal error: cannot decode programname");
+    }
+
+    // 初始化python设置
+    PyStatus status;
+    PyConfig config;
+    PyConfig_InitPythonConfig(&config);
+    auto guard = sg::make_scope_guard([&config]() noexcept {
+        PyConfig_Clear(&config);
+        printf("python init config clear\n");
+    });
+
+    // 设置python程序名
+    status = PyConfig_SetString(&config, &config.program_name, program);
+    if (PyStatus_Exception(status)) {
+        throw AppException("Fatal error: InitPythonConfig set program_name get error");
+    }
+    // 加载默认配置
+    status = PyConfig_Read(&config);
+    if (PyStatus_Exception(status)) {
+        throw AppException("Fatal error: PyConfig_Read get error");
+    }
+    // 设置python的sys.path用于查找模块
+    std::filesystem::path pymodule_dir;
+    if (pymodulepath == NULL) {
+        pymodule_dir = std::filesystem::current_path();
+    } else {
+        pymodule_dir = pymodulepath;
+        if (pymodule_dir.is_relative()) {
+            pymodule_dir = std::filesystem::absolute(pymodule_dir);
+        }
+    }
+    auto _pymodule_dir_name = pymodule_dir.string().c_str();
+    pymodule_dir_name = Py_DecodeLocale(_pymodule_dir_name, NULL);
+    if (pymodule_dir_name == NULL) {
+        throw AppException("Fatal error: cannot decode pymodule_dir_name");
+    } else {
+        if (debugmod) {
+            printf("pymodule_dir %s \n", _pymodule_dir_name);
+        }
+    }
+    config.module_search_paths_set = 1;
+    status = PyWideStringList_Append(&config.module_search_paths, pymodule_dir_name);
+    if (PyStatus_Exception(status)) {
+        throw AppException("Fatal error: InitPythonConfig set module_search_paths get error");
+    }
+
+    // 设置虚拟环境
+    if (envpath != NULL) {
+        std::filesystem::path env_dir = envpath;
+        if (env_dir.is_relative()) {
+            env_dir = std::filesystem::absolute(env_dir);
+        }
+        auto _env_dir_name = env_dir.string().c_str();
+        env_dir_name = Py_DecodeLocale(_env_dir_name, NULL);
+        if (env_dir_name == NULL) {
+            throw AppException("Fatal error: cannot decode _env_dir_name");
+        } else {
+            if (debugmod) {
+                printf("use virtual environments %s \n", _env_dir_name);
+            }
+        }
+        status = PyConfig_SetString(&config, &config.prefix, env_dir_name);
+        if (PyStatus_Exception(status)) {
+            throw AppException("Fatal error: InitPythonConfig set prefix get error");
+        }
+        status = PyConfig_SetString(&config, &config.exec_prefix, env_dir_name);
+        if (PyStatus_Exception(status)) {
+            throw AppException("Fatal error: InitPythonConfig set exec_prefix get error");
+        }
+    }
+    status = Py_InitializeFromConfig(&config);
+    if (PyStatus_Exception(status)) {
+        if (PyStatus_IsExit(status)) {
+            // return status.exitcode;
+            throw AppException("Fatal error: PyStatus_IsExit");
+        }
+        // 抛出错误
+        Py_ExitStatusException(status);
+    }
+    PyMem_RawFree(pymodule_dir_name);
+    if (envpath != NULL) {
+        PyMem_RawFree(env_dir_name);
+    }
+    PyMem_RawFree(program);
+    if (debugmod) {
+        PyRun_SimpleString("import sys;print(sys.path);print(sys.prefix)");
+    }
+}
+
+PyObject* init_pymodule(char* Module_Name) {
+    auto pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
+    auto guard = sg::make_scope_guard([&pName]() noexcept {
+        Py_DECREF(pName);  // 释放对象pName的gc计数器
+    });
+    auto pModule = PyImport_Import(pName);  // 导入模块
+    return pModule;
+}
+
+void call_func_example(PyObject* pModule, long longx) {
+    // 在模块中找到函数名为`call_with_params_and_return`的函数,将这个函数对象提出来
+    const char* Func_Name = "call_with_params_and_return";
+    auto pFunc = PyObject_GetAttrString(pModule, Func_Name);
+    auto guard_pFunc = sg::make_scope_guard([&pFunc]() noexcept {
+        Py_XDECREF(pFunc);  // 释放对象pName的gc计数器
+        printf("Py_XDECREF(pFunc) ok\n");
+    });
+    /* pFunc is a new reference */
+    if (pFunc && PyCallable_Check(pFunc)) {
+        // pFunc存在且为可调用对象,则执行调用
+        // 构造参数args
+        auto x = PyLong_FromLong(longx);
+        auto y = PyFloat_FromDouble(0.25);
+        auto args = PyTuple_Pack(2, x, y);
+        auto guard_pFunc_args = sg::make_scope_guard([&args, &x, &y]() noexcept {
+            // 回收args参数
+            Py_DECREF(args);
+            Py_DECREF(x);
+            Py_DECREF(y);
+            printf("Py_DECREF FUNC (args) ok\n");
+        });
+        // 构造kwargs
+        auto kwargs = PyDict_New();
+        auto z = PyList_New(0);
+        std::vector<char*> v = {"item1", "item2", "item3"};
+        for (auto i : v) {
+            auto item = PyUnicode_DecodeFSDefault(i);
+            PyList_Append(z, item);
+            Py_DECREF(item);  //---注意
+        }                     // access by value, the type of i is int
+        PyDict_SetItemString(kwargs, "z", z);
+        auto guard_pFunc_kwargs = sg::make_scope_guard([&kwargs, &z]() noexcept {
+            // 回收kwargs参数
+            Py_DECREF(kwargs);
+            Py_DECREF(z);
+            printf("Py_DECREF FUNC (kwargs) ok\n");
+        });
+        // 调用函数对象
+        auto result = PyObject_Call(pFunc, args, kwargs);
+        auto guard_pFunc_result = sg::make_scope_guard([&result]() noexcept {
+            // 回收kwargs参数
+            Py_XDECREF(result);
+            printf("Py_DECREF FUNC (result) ok\n");
+        });
+
+        // 提取结果数据
+        if (result != NULL) {
+            auto is_tuple = PyTuple_Check(result);
+            if (!is_tuple) {
+                throw AppException(std::format("Call {} get result not tuple", Func_Name).c_str());
+            }
+            auto size = PyTuple_Size(result);
+            if (size != 2) {
+                throw AppException(std::format("Call {} get result len not 2", Func_Name).c_str());
+            }
+            auto result1 = PyTuple_GetItem(result, 0);
+            auto result1_string = PyUnicode_AsUTF8(result1);
+            printf("Result1 of call: %s\n", result1_string);
+            auto result2 = PyTuple_GetItem(result, 1);
+            auto result2_string = PyUnicode_AsUTF8(result2);
+            printf("Result2 of call: %s\n", result2_string);
+        } else {
+            PyErr_Print();
+            throw AppException(std::format("Call {} failed", Func_Name).c_str());
+            
+        }
+    } else {
+        if (PyErr_Occurred()){
+            PyErr_Print(); // 捕获错误,并打印
+        }  
+        throw AppException(std::format("Cannot find function {}", Func_Name).c_str());
+    }
+}
+
+void call_class_example(PyObject* pModule) {
+    // 在模块中找到类名为`PyVector`的类,将这个类对象提出来
+    const char* Claz_Name = "PyVector";
+    auto pClaz = PyObject_GetAttrString(pModule, Claz_Name);
+    auto guard_pClaz = sg::make_scope_guard([&pClaz]() noexcept {
+        Py_XDECREF(pClaz);  // 释放对象pName的gc计数器
+        printf("Py_XDECREF(pClaz) ok\n");
+    });
+    /* pClaz is a new reference */
+    if (pClaz && PyCallable_Check(pClaz)) {
+        // pClaz存在且为可调用的类对象,则执行调用
+        // 构造参数args
+        auto x = PyLong_FromLong(1.5);
+        auto y = PyFloat_FromDouble(0.5);
+        auto args = PyTuple_Pack(2, x, y);
+        auto guard_pClaz_args = sg::make_scope_guard([&args, &x, &y]() noexcept {
+            // 回收args参数
+            Py_DECREF(args);
+            Py_DECREF(x);
+            Py_DECREF(y);
+            printf("Py_DECREF pClaz (args) ok\n");
+        });
+
+        // 调用函数对象
+        auto pObj = PyObject_Call(pClaz, args, NULL);
+        auto guard_pObj = sg::make_scope_guard([&pObj]() noexcept {
+            Py_XDECREF(pObj);  // 释放对象pName的gc计数器
+            printf("Py_XDECREF(pObj) ok\n");
+        });
+        // 提取结果数据
+        if (pObj != NULL) {
+            const char* Method_Name = "calculate_mod";
+            auto pMethod = PyObject_GetAttrString(pObj, Method_Name);
+            auto guard_pMethod = sg::make_scope_guard([&pMethod]() noexcept {
+                Py_XDECREF(pMethod);  // 释放对象pName的gc计数器
+                printf("Py_XDECREF(pMethod) ok\n");
+            });
+
+            if (pMethod && PyCallable_Check(pMethod)) {
+                auto margs = PyTuple_New(0);
+                auto guard_pMethod_args = sg::make_scope_guard([&margs]() noexcept {
+                    // 回收args参数
+                    Py_DECREF(margs);
+                    printf("Py_DECREF pMethod (args) ok\n");
+                });
+                auto result = PyObject_Call(pMethod, margs, NULL);
+                auto guard_pMethod_result = sg::make_scope_guard([&result]() noexcept {
+                    // 回收result参数
+                    Py_XDECREF(result);
+                    printf("Py_DECREF pMethod (result) ok");
+                });
+                if (result != NULL) {
+                    auto result_double = PyFloat_AsDouble(result);
+                    printf("Result of call: %f\n", result_double);
+                } else {
+                    PyErr_Print();
+                    throw AppException(std::format("Call {} . {} failed", Claz_Name, Method_Name).c_str());
+                }
+            } else {
+                if (PyErr_Occurred()) {
+                    PyErr_Print();  // 捕获错误,并打印
+                }
+                throw AppException(std::format("Cannot find method {} . {}", Claz_Name, Method_Name).c_str());
+            }
+        } else {
+            PyErr_Print();
+            throw AppException(std::format("Call {} failed", Claz_Name).c_str());
+        }
+    } else {
+        if (PyErr_Occurred()) {
+            PyErr_Print();  // 捕获错误,并打印
+        }
+        throw AppException(std::format("Cannot find class {}", Claz_Name).c_str());
+    }
+}
+
+void callpy() {
+    char* Module_Name = "hello";
+    auto pModule = init_pymodule(Module_Name);  // 导入模块
+    auto guard_pModule = sg::make_scope_guard([&pModule]() noexcept {
+        Py_XDECREF(pModule);  // 释放pModule
+    });
+    if (pModule != NULL) {
+        call_func_example(pModule, 123);
+        call_class_example(pModule);
+        call_func_example(pModule, -123);
+    } else {
+        PyErr_Print();  // 捕获错误,并打印
+        throw AppException(std::format("Failed to load Module {}", Module_Name).c_str());
+    }
+}
+
+int finalize_py() {
+    if (Py_FinalizeEx() < 0) {
+        return 120;
+    }
+    return 0;
+}
+
+int main(int argc, char* argv[]) {
+    // int status;
+    try {
+        // 初始化
+        init_py(argv[0], "env/", NULL, false);
+        // 开始执行python调用
+        callpy();
+    } catch (const AppException& ex) {
+        fprintf(stderr, ex.what());
+        return 1;
+    }
+    // 回收python解释器
+    return finalize_py();
+}
+```
 
 ## 外部线程和服务化
 
@@ -1051,14 +1411,14 @@ Python中可调用对象大致可以分
 
 我们很多时候就是希望用python快速迭代做算法实现,用C做高性能服务器,要满足这样的需求,就得参考这部分的内容了.
 
-这部分的例子在[](),我们使用[Crow](https://github.com/CrowCpp/Crow)这个库来实现一个简单的http服务.这个库允许我们仅使用一个头文件就像flask一样轻松构造一个简单的http服务.而仅仅只需要装个依赖`asio`(macos下使用`brew install asio`安装)
+这部分的例子在[numpyserv](https://github.com/hsz1273327/TutorialForCLang/tree/master/%E4%B8%8EPython%E4%BA%A4%E4%BA%92/C%E4%B8%AD%E8%B0%83%E7%94%A8Python%E6%A8%A1%E5%9D%97/numpyserv),我们使用[Crow](https://github.com/CrowCpp/Crow)这个库来实现一个简单的http服务.这个库允许我们仅使用一个头文件就像flask一样轻松构造一个简单的http服务.而仅仅只需要装个依赖`asio`(macos下使用`brew install asio`安装)
 
 我们先将项目结构定下:
 
 ```txt
 \---|
     |---env/  # python的虚拟环境
-    |---m.py  # 待加载python模块
+    |---numpyprocess.py  # 待加载python模块
     |---crow_all.h  # crow的头文件,这边简单起见使用的是单文件方式
     |---main.cpp    # 服务源文件
 
@@ -1079,7 +1439,7 @@ g++ -I /Users/mac/micromamba/envs/py3.10/include/python3.10 \
 
 我们的例子实现的是一个返回指定`d`值的元素取值为`0~1`间数据的随机向量,这个`d`的取值范围为`1~20`之间的整数.我们规定参数的校验和转换工作在Cpp端处理.python端仅需要实现功能即可.
 
-+ `m.py`加载的python模块,固定调用`apply(n: int) -> list[float]`这个接口.
++ `numpyprocess.py`加载的python模块,固定调用`apply(n: int) -> list[float]`这个接口.
 
     ```python
     import numpy as np
@@ -1094,11 +1454,7 @@ g++ -I /Users/mac/micromamba/envs/py3.10/include/python3.10 \
 + `main.cpp`入口,这个入口需要管python的生命周期和请求的调用,
 
     ```C++
-    #define PY_SSIZE_T_CLEAN
-    #include <Python.h>
     #include "crow_all.h"
-
-
 
     int main() {
         crow::SimpleApp app;
@@ -1117,4 +1473,282 @@ g++ -I /Users/mac/micromamba/envs/py3.10/include/python3.10 \
     }
     ```
 
+    `crow`会自己拦截系统信号,我们如果有其他要在服务停止后执行的直接卸载后面即可,相当优雅.
+
 ### 外部线程和gil
+
+在整体框架确定后我们将目光转移到引入Python模块的处理上.我们在代码中需要做的是
+
+1. 初始化python解释器
+2. 找到要加载的模块
+3. 在模块中找到要调用的接口函数
+4. 有请求来时调用接口函数,返回其结果
+5. 程序关闭时回收接口函数对象,模块对象,关闭python解释器
+
+这个流程中和我们上面的例子唯一不同的点在于第4步的调用接口,不同点在于请求并非我们主动发起的而是被动接收的,这就存在并发的情况.
+
+对于并发的情况,Python中是要受到GIL限制的,要实现这个我们需要有额外的一些代码来维护
+
+```C++
+...
+auto _save = PyEval_SaveThread();
+auto gstate = PyGILState_Ensure();
+auto guard_gstate = sg::make_scope_guard([&gstate, &_save]() noexcept {
+    PyGILState_Release(gstate);
+    PyEval_RestoreThread(_save);
+    CROW_LOG_INFO << "PyGILState_Release ok";
+});
+CROW_LOG_INFO << "PyGILState_Ensure ok";
+/* Perform Python actions here. */
+auto result = PyObject_Call(P_Func_m, args, NULL);
+...
+```
+
+这里面核心的是两对接口
+
++ `_save = PyEval_SaveThread()`和`PyEval_RestoreThread(_save)`用于维护线程状态,`PyEval_SaveThread`会像python解释器注册一个线程,而`PyEval_RestoreThread`则会把线程的注册给回收.只有在这个范围内我们才可以获得GIL的状态.
+
++ `gstate = PyGILState_Ensure()`和`PyGILState_Release(gstate)`用于维护GIL,`PyGILState_Ensure`会等待GIL空闲后获取GIL,`PyGILState_Release`则会释放GIL.
+
+最终我们的`main.cpp`如下:
+
+```cpp
+#define PY_SSIZE_T_CLEAN
+#include <Python.h>
+#include <exception>
+#include <filesystem>
+#include <format>
+#include <vector>
+#include "crow_all.h"
+#include "scope_guard.hpp"
+
+class AppException : public std::runtime_error {
+   public:
+    AppException(const char* err) : std::runtime_error(err) {}
+};
+
+void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod) {
+    wchar_t* program;
+    wchar_t* env_dir_name;
+    wchar_t* pymodule_dir_name;
+    program = Py_DecodeLocale(programname, NULL);
+    if (program == NULL) {
+        throw AppException("Fatal error: cannot decode programname");
+    }
+
+    // 初始化python设置
+    PyStatus status;
+    PyConfig config;
+    PyConfig_InitPythonConfig(&config);
+    auto guard = sg::make_scope_guard([&config]() noexcept {
+        PyConfig_Clear(&config);
+        printf("python init config clear\n");
+    });
+
+    // 设置python程序名
+    status = PyConfig_SetString(&config, &config.program_name, program);
+    if (PyStatus_Exception(status)) {
+        throw AppException("Fatal error: InitPythonConfig set program_name get error");
+    }
+    // 加载默认配置
+    status = PyConfig_Read(&config);
+    if (PyStatus_Exception(status)) {
+        throw AppException("Fatal error: PyConfig_Read get error");
+    }
+    // 设置python的sys.path用于查找模块
+    std::filesystem::path pymodule_dir;
+    if (pymodulepath == NULL) {
+        pymodule_dir = std::filesystem::current_path();
+    } else {
+        pymodule_dir = pymodulepath;
+        if (pymodule_dir.is_relative()) {
+            pymodule_dir = std::filesystem::absolute(pymodule_dir);
+        }
+    }
+    auto _pymodule_dir_name = pymodule_dir.string().c_str();
+    pymodule_dir_name = Py_DecodeLocale(_pymodule_dir_name, NULL);
+    if (pymodule_dir_name == NULL) {
+        throw AppException("Fatal error: cannot decode pymodule_dir_name");
+    } else {
+        if (debugmod) {
+            printf("pymodule_dir %s \n", _pymodule_dir_name);
+        }
+    }
+    config.module_search_paths_set = 1;
+    status = PyWideStringList_Append(&config.module_search_paths, pymodule_dir_name);
+    if (PyStatus_Exception(status)) {
+        throw AppException("Fatal error: InitPythonConfig set module_search_paths get error");
+    }
+
+    // 设置虚拟环境
+    if (envpath != NULL) {
+        std::filesystem::path env_dir = envpath;
+        if (env_dir.is_relative()) {
+            env_dir = std::filesystem::absolute(env_dir);
+        }
+        auto _env_dir_name = env_dir.string().c_str();
+        env_dir_name = Py_DecodeLocale(_env_dir_name, NULL);
+        if (env_dir_name == NULL) {
+            throw AppException("Fatal error: cannot decode _env_dir_name");
+        } else {
+            if (debugmod) {
+                printf("use virtual environments %s \n", _env_dir_name);
+            }
+        }
+        status = PyConfig_SetString(&config, &config.prefix, env_dir_name);
+        if (PyStatus_Exception(status)) {
+            throw AppException("Fatal error: InitPythonConfig set prefix get error");
+        }
+        status = PyConfig_SetString(&config, &config.exec_prefix, env_dir_name);
+        if (PyStatus_Exception(status)) {
+            throw AppException("Fatal error: InitPythonConfig set exec_prefix get error");
+        }
+    }
+    status = Py_InitializeFromConfig(&config);
+    if (PyStatus_Exception(status)) {
+        if (PyStatus_IsExit(status)) {
+            // return status.exitcode;
+            throw AppException("Fatal error: PyStatus_IsExit");
+        }
+        // 抛出错误
+        Py_ExitStatusException(status);
+    }
+    PyMem_RawFree(pymodule_dir_name);
+    if (envpath != NULL) {
+        PyMem_RawFree(env_dir_name);
+    }
+    PyMem_RawFree(program);
+    if (debugmod) {
+        PyRun_SimpleString("import sys;print(sys.path);print(sys.prefix)");
+    }
+}
+
+int finalize_py(PyObject* P_Module_m, PyObject* P_Func_m) {
+    printf("finalize_py\n");
+    Py_XDECREF(P_Module_m);  // 释放对象pName的gc计数器
+    printf("Py_XDECREF(P_Module_m) ok\n");
+    Py_XDECREF(P_Func_m);  // 释放对象pName的gc计数器
+    printf("Py_XDECREF(P_Func_m) ok\n");
+    if (Py_FinalizeEx() < 0) {
+        return 120;
+    }
+    printf("finalize_py ok\n");
+    return 0;
+}
+
+PyObject* init_pymodule(char* Module_Name) {
+    auto pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
+    auto guard = sg::make_scope_guard([&pName]() noexcept {
+        Py_DECREF(pName);  // 释放对象pName的gc计数器
+    });
+    auto pModule = PyImport_Import(pName);  // 导入模块
+    if (pModule == NULL) {
+        throw AppException(std::format("module {} not found", Module_Name).c_str());
+    }
+    return pModule;
+}
+
+PyObject* init_py_api(PyObject* P_Module_m, char* Func_Name) {
+    auto pFunc = PyObject_GetAttrString(P_Module_m, Func_Name);
+    if (pFunc == NULL) {
+        throw AppException(std::format("Api {} not found", Func_Name).c_str());
+    }
+    if (!PyCallable_Check(pFunc)) {
+        if (PyErr_Occurred())  // 捕获错误,并打印
+            PyErr_Print();
+        throw AppException(std::format("Api {} not Callable", Func_Name).c_str());
+    }
+    return pFunc;
+}
+
+int main(int argc, char* argv[]) {
+    // 初始化python解释器
+    try {
+        init_py(argv[0], "env/", NULL, false);
+    } catch (const AppException& ex) {
+        fprintf(stderr, ex.what());
+        return 1;
+    }
+    PyObject* P_Module_m;
+    PyObject* P_Func_m;
+    try {
+        // 加载模型
+        P_Module_m = init_pymodule("numpyprocess");
+        // 加载接口
+        P_Func_m = init_py_api(P_Module_m, "apply");
+    } catch (const AppException& ex) {
+        fprintf(stderr, ex.what());
+        return 1;
+    }
+    // http接口逻辑
+    crow::SimpleApp app;
+
+    CROW_ROUTE(app, "/random_array")
+    ([&P_Func_m](const crow::request& req) {
+        auto d = req.url_params.get("d");
+        if (!d) {
+            return crow::response(crow::status::BAD_REQUEST);  // same as crow::response(400)
+        }
+        auto dl = atol(d);
+        if (dl < 1) {
+            return crow::response(crow::status::BAD_REQUEST);  // same as crow::response(400)
+        }
+        CROW_LOG_INFO << std::format("Call api get d {}", d);
+        // 开始执行python调用
+        // 构造参数args
+        auto n = PyLong_FromLong(dl);
+        auto args = PyTuple_Pack(1, n);
+        auto guard_pFunc_args = sg::make_scope_guard([&args, &n]() noexcept {
+            // 回收args参数
+            Py_DECREF(args);
+            Py_DECREF(n);
+            printf("Py_DECREF FUNC (args) ok\n");
+        });
+        CROW_LOG_INFO << "Call api params make ok";
+        // // PyGILState_STATE gstate;
+        auto _save = PyEval_SaveThread();
+        auto gstate = PyGILState_Ensure();
+        auto guard_gstate = sg::make_scope_guard([&gstate, &_save]() noexcept {
+            PyGILState_Release(gstate);
+            PyEval_RestoreThread(_save);
+            CROW_LOG_INFO << "PyGILState_Release ok";
+        });
+        CROW_LOG_INFO << "PyGILState_Ensure ok";
+        /* Perform Python actions here. */
+        auto result = PyObject_Call(P_Func_m, args, NULL);
+        CROW_LOG_INFO << "PyObject_Call ok";
+        auto guard_pFunc_result = sg::make_scope_guard([&result]() noexcept {
+            // 回收kwargs参数
+            Py_XDECREF(result);
+            CROW_LOG_INFO << "Py_DECREF FUNC (result) ok";
+        });
+        /* evaluate result or handle exception */
+        if (result != NULL) {
+            auto is_list = PyList_Check(result);
+            if (!is_list) {
+                // throw AppException(std::format("Call {} get result not list", Func_Name).c_str());
+                CROW_LOG_ERROR << "Call api get result not list";
+                return crow::response(crow::status::INTERNAL_SERVER_ERROR);
+            }
+            auto size = PyList_Size(result);
+            std::vector<double> arr = {};
+            Py_ssize_t i;
+            for (i = 0; i < size; i++) {
+                auto item = PyList_GetItem(result, i);
+                arr.push_back(PyFloat_AsDouble(item));
+            }
+            // 结束python调用,转换结果
+            crow::json::wvalue x({{"status", "ok"}});
+            x["result"] = arr;
+            return crow::response(x);
+
+        } else {
+            PyErr_Print();
+            CROW_LOG_ERROR << "Call api failed";
+            return crow::response(crow::status::INTERNAL_SERVER_ERROR);
+        }
+    });
+    app.loglevel(crow::LogLevel::Info).port(18080).multithreaded().run();
+    return finalize_py(P_Module_m, P_Func_m);
+}
+```

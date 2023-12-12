@@ -108,7 +108,7 @@ void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod
 }
 
 PyObject* init_pymodule(char* Module_Name) {
-    auto pName = PyUnicode_DecodeFSDefault("hello");  // 将模块名类型转为python对象字符串
+    auto pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
     auto guard = sg::make_scope_guard([&pName]() noexcept {
         Py_DECREF(pName);  // 释放对象pName的gc计数器
     });
@@ -181,12 +181,12 @@ void call_func_example(PyObject* pModule, long longx) {
         } else {
             PyErr_Print();
             throw AppException(std::format("Call {} failed", Func_Name).c_str());
-            
         }
     } else {
-        if (PyErr_Occurred())  // 捕获错误,并打印
-            PyErr_Print();
-        fprintf(stderr, "Cannot find function \"%s\"\n", Func_Name);
+        if (PyErr_Occurred()){
+            PyErr_Print(); // 捕获错误,并打印
+        }  
+        throw AppException(std::format("Cannot find function {}", Func_Name).c_str());
     }
 }
 
@@ -267,11 +267,6 @@ void call_class_example(PyObject* pModule) {
 }
 
 void callpy() {
-    // const char* Class_Name = "PyVector";
-    // const char* Method_Name = "calculate_mod";
-    // const char* Attr_X_Name = "x";
-    // const char* Attr_Y_Name = "Y";
-    // const char* Property_Name = "mod";
     char* Module_Name = "hello";
     auto pModule = init_pymodule(Module_Name);  // 导入模块
     auto guard_pModule = sg::make_scope_guard([&pModule]() noexcept {
@@ -279,18 +274,8 @@ void callpy() {
     });
     if (pModule != NULL) {
         call_func_example(pModule, 123);
-        // auto res_call_func_example = call_func_example(pModule, 123);
-        // if (res_call_func_example) {
-        //     printf("res_call_func_example > 0");
-        //     return res_call_func_example;
-        // }
         call_class_example(pModule);
         call_func_example(pModule, -123);
-        // auto res_call_func_example_withexception = call_func_example(pModule, -123);
-        // if (res_call_func_example_withexception) {
-        //     printf("res_call_func_example > 0");
-        //     return res_call_func_example;
-        // }
     } else {
         PyErr_Print();  // 捕获错误,并打印
         throw AppException(std::format("Failed to load Module {}", Module_Name).c_str());
@@ -315,7 +300,6 @@ int main(int argc, char* argv[]) {
         fprintf(stderr, ex.what());
         return 1;
     }
-
     // 回收python解释器
     return finalize_py();
 }

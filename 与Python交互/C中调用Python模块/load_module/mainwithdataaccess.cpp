@@ -134,7 +134,6 @@ int call_func_example(PyObject* pModule,long longx) {
             Py_DECREF(item);  //---注意
         }                     // access by value, the type of i is int
         PyDict_SetItemString(kwargs, "z", z);
-        // Py_INCREF(z);
 
         // 调用函数对象
         auto result = PyObject_Call(pFunc, args, kwargs);
@@ -159,15 +158,9 @@ int call_func_example(PyObject* pModule,long longx) {
             auto result1 = PyTuple_GetItem(result, 0);
             auto result1_string = PyUnicode_AsUTF8(result1);
             printf("Result1 of call: %s\n", result1_string);
-            // Py_DECREF(result1);
-            // printf("Py_DECREF(result1)\n");
             auto result2 = PyTuple_GetItem(result, 1);
             auto result2_string = PyUnicode_AsUTF8(result2);
             printf("Result2 of call: %s\n", result2_string);
-            // Py_DECREF(result2);
-            // printf("Py_DECREF(result2)");
-            // Py_DECREF(result);
-            // printf("Py_DECREF(result)");
         } else {
             PyErr_Print();
             fprintf(stderr, "Call %s failed\n", Func_Name);
@@ -239,11 +232,6 @@ int call_class_example(PyObject* pModule) {
 }
 
 int callpy() {
-    // const char* Class_Name = "PyVector";
-    // const char* Method_Name = "calculate_mod";
-    // const char* Attr_X_Name = "x";
-    // const char* Attr_Y_Name = "Y";
-    // const char* Property_Name = "mod";
     const char* Module_Name = "hello";
     auto pName = PyUnicode_DecodeFSDefault("hello");  // 将模块名类型转为python对象字符串
     auto pModule = PyImport_Import(pName);            // 导入模块
