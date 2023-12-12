@@ -12,6 +12,8 @@ def callnumpy():
 
 
 def call_with_params_and_return(x: int, y: float, z: List[str] = []) -> Tuple[str, str]:
+    if x < 0:
+        raise AttributeError("get x < 0")
     _z: str = ", ".join(z)
     return f"get x {x},y {y}, and z: {_z}", "something else"
 
@@ -27,9 +29,3 @@ class PyVector:
 
     def calculate_mod(self) -> float:
         return math.sqrt(self.x**2+self.y**2)
-
-    @property
-    def mod(self) -> float:
-        if self._mod is None:
-            self._mod = self.calculate_mod()
-        return self._mod

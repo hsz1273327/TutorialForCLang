@@ -5,3 +5,6 @@ g++ -I /Users/mac/micromamba/envs/py3.10/include/python3.10 -L/Users/mac/microma
 
 
 g++ -I /Users/mac/micromamba/envs/py3.10/include/python3.10 -L/Users/mac/micromamba/envs/py3.10/lib -lpython3.10 -o mainwithdataaccess -std=c++17 -Wwrite-strings mainwithdataaccess.cpp
+
+
+g++ -I /Users/mac/micromamba/envs/py3.10/include/python3.10 -L/Users/mac/micromamba/envs/py3.10/lib -lpython3.10 -o mainwithmore -std=c++20 -Wwrite-strings -Wunused-result mainwithmore.cpp

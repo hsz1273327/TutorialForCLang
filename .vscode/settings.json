@@ -91,6 +91,15 @@
         "format": "cpp",
         "stop_token": "cpp",
         "thread": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "__std_stream": "cpp",
+        "any": "cpp",
+        "csignal": "cpp",
+        "coroutine": "cpp",
+        "future": "cpp",
+        "strstream": "cpp",
+        "typeindex": "cpp",
+        "source_location": "cpp",
+        "shared_mutex": "cpp"
     }
 }

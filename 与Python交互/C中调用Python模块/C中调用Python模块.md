@@ -590,11 +590,41 @@ Python对象的所有权相关的描述在[官网有介绍](https://docs.python.
 
 多数Python的CAPI函数中以`PyObject *`为类型的参数都是借入引用,也就是说你的代码调用这些函数时并不会失去传入对象的引用所有权,你依然需要手工回收他们,当然也有特例,就是`void PyList_SET_ITEM(PyObject *list, Py_ssize_t i, PyObject *o)`和`int PyTuple_SetItem(PyObject *p, Py_ssize_t pos, PyObject *o)`中的`o`,他们会偷走`o`的所有权,这也就意味着你不需要处理这两个函数中`o`参数的引用计数回收的工作了.
 
-而多数Python的CAPI函数中以`PyObject *`为类型的返回值都是强引用,也就是说我们需要手动控制这些对象引用的回收.当然也有例外,容器的`GetItem`接口即`PyTuple_GetItem()`,`PyList_GetItem()`, `PyDict_GetItem()`和`PyDict_GetItemString()`这四个接口,获取对象属性接口即`PyObject_GetAttrString()`以及`PyImport_AddModule()`和`PyImport_AddModuleObject()`接口都是返回的`借入引用`,也就是说我们通常不需要手工释放其引用计数,当然如果有必要,也可以调用`Py_INCREF()`来获取自己的引用所有权,但记得这样就得自己用`Py_DECREF()`释放了
+而多数Python的CAPI函数中以`PyObject *`为类型的返回值都是强引用,也就是说我们需要手动控制这些对象引用的回收.当然也有例外,容器的`GetItem`接口即`PyTuple_GetItem()`,`PyList_GetItem()`, `PyDict_GetItem()`和`PyDict_GetItemString()`这四个接口都是返回的`借入引用`,也就是说我们通常不需要手工释放其引用计数,当然如果有必要,也可以调用`Py_INCREF()`来获取自己的引用所有权,但记得这样就得自己用`Py_DECREF()`释放了
 
 我们需要额外小心容器类型和有属性的对象的操作,因为不同容器内的元素有的是强引用(`偷走所有权`)有的是`借入引用`,需要查询接口文档才可以确认.
 
-当我们处理容器或有属性的对象中的元素时,如果涉及到多个元素间的使用或比较复杂的逻辑时,建议使用`Py_INCREF()`获得的元素所有权后再使用,这可以避免很多问题.
+当我们处理容器或有属性的对象中的元素时,如果涉及到多个元素间的使用或比较复杂的逻辑时,建议使用`Py_INCREF()`获得的元素所有权后再使用,这可以避免很多问题.官方给出过一个这样的例子:
+
+```C
+void
+bug(PyObject *list)
+{
+    PyObject *item = PyList_GetItem(list, 0);
+
+    PyList_SetItem(list, 1, PyLong_FromLong(0L));
+    PyObject_Print(item, stdout, 0); /* BUG! */
+}
+```
+
+上面这个代码初看没啥问题,但实际不能这样写,会有风险.应该改成:
+
+```C
+void
+no_bug(PyObject *list)
+{
+    PyObject *item = PyList_GetItem(list, 0);
+
+    Py_INCREF(item); //增加的
+    PyList_SetItem(list, 1, PyLong_FromLong(0L));
+    PyObject_Print(item, stdout, 0);
+    Py_DECREF(item); //增加的
+}
+```
+
+为什么呢?因为`PyList_SetItem(list, 1, PyLong_FromLong(0L));`这一句会触发`list[1]`元素的替换,这种替换在原始元素对象没有别的引用时会触发删除操作调用`__del__`方法.如果刚好这个对象的的`__del__`方法中有对`list[0]`元素的删除操作,由于`PyList_GetItem`返回的是`借入引用`,只要别处没有这个元素的引用了,那在执行完`PyList_SetItem(list, 1, PyLong_FromLong(0L));`后`item`就没了.
+
+也就是说处理借入引用最稳妥的办法是借入后就申请所有权,用完再释放所有权.
 
 ### 数据类型转换
 
@@ -852,7 +882,7 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
 + 构造: 通常构造的步骤如下
 
     1. 使用`PyObject *PyList_New(Py_ssize_t len)`构造一个指定长度的空list,当`len`大于零时被返回的列表对象项目被设成`NULL`,通常`len`会设成`0`
-    2. 使用`int PyList_Append(PyObject *list, PyObject *item)`或`void PyList_SET_ITEM(PyObject *list, Py_ssize_t i, PyObject *o)`将对象一个一个加到list中
+    2. 使用`int PyList_Append(PyObject *list, PyObject *item)`或`void PyList_SET_ITEM(PyObject *list, Py_ssize_t i, PyObject *o)`将对象一个一个加到list中.需要注意`PyList_SET_ITEM`会`偷走传入对象o的所有权`,而`PyList_Append`不会.
 
     ```C
     PyObject * x,y,l;
@@ -872,7 +902,7 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
 + 提取元素: 通常是如下步骤
 
     1. 使用`Py_ssize_t PyList_Size(PyObject *list)`获得list长度
-    2. for循环list长度,使用`PyObject *PyList_GetItem(PyObject *list, Py_ssize_t index)`获取对应位置的元素
+    2. for循环list长度,使用`PyObject *PyList_GetItem(PyObject *list, Py_ssize_t index)`获取对应位置的元素,注意`PyList_GetItem`返回的是`借入引用`.
     3. 分别使用其他类型的检测和提取功能获取C部分
 
     ```C
@@ -887,14 +917,11 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
         item = PyList_GetItem(l, i);
         PyUnicode_AsUTF8(item)
         result.push_back(PyUnicode_AsUTF8(item));
-        Py_DECREF(item);
     }
     ...
     ```
 
 如果是其他非列表的序列类型,可以使用`int PySequence_Check(PyObject *o)`替代`PyList_Check`来进行检测,;用`PyObject *PyObject_GetItem(PyObject *o, PyObject *key)`即python中的`o[key]`操作来获取key的值;用`int PyObject_SetItem(PyObject *o, PyObject *key, PyObject *v)`(注意该函数不会偷取`v`的引用计数)即python中的`o[key] = v`来做key的赋值操作;用`int PySequence_Contains(PyObject *o, PyObject *value)`判断元素是否在序列中(在返回`1`,否则返回`0`.出错时返回`-1`);`Py_ssize_t PySequence_Index(PyObject *o, PyObject *value)`获取指定元素在序列中的index(出错返回`-1`).
-
-
 
 ### 访问对象中字段
 
@@ -916,18 +943,18 @@ python中的字符串和C中对应的东西在称呼上是这样对应的
 + `PyObject *PyObject_GetAttr(PyObject *o, PyObject *attr_name)`
 + `PyObject *PyObject_GetAttrString(PyObject *o, const char *attr_name)`
 
-这两个函数功能都相当于python中的`getattr(o, attr_name)`.二者区别仅在于一个使用Python的`str`类型作为参数查找,一个是使用C的`char*`类型的UTF-8编码字符串作为参数.成功返回属性值,失败则返回`NULL`.
+这两个函数功能都相当于python中的`getattr(o, attr_name)`.二者区别仅在于一个使用Python的`str`类型作为参数查找,一个是使用C的`char*`类型的UTF-8编码字符串作为参数.成功返回属性值,失败则返回`NULL`.需要注意这两个接口返回的都是`强引用`
 
 #### 设置字段的值
 
 设置字段的值可以使用如下两个接口:
 
-+ `int PyObject_SetAttr(PyObject *o, PyObject *attr_name, PyObject *v)` 
++ `int PyObject_SetAttr(PyObject *o, PyObject *attr_name, PyObject *v)`
 + `int PyObject_SetAttrString(PyObject *o, const char *attr_name, PyObject *v)`
 
 这两个函数功能都相当于python中的`setattr(o, attr_name)`.二者区别仅在于一个使用Python的`str`类型作为参数`attr_name`查找,一个是使用C的`char*`类型的UTF-8编码字符串作为参数.成功返回0,失败则返回`-1`.
 
-注意如果`v`为`NULL`则该字段会被移除
+注意如果`v`为`NULL`则该字段会被移除.接口不会头灶传入的`v`的所有权.
 
 ### 调用可调用对象
 
@@ -938,18 +965,156 @@ Python中可调用对象大致可以分
 + 静态方法,类方法
 + 实例方法
 
-他们可以使用`PyObject *PyObject_Call(PyObject *callable, PyObject *args, PyObject *kwargs)`来调用,其中`callable`是可调用对象;`args`必须为一个python的`tuple`对象,表示位置参数;`kwargs`可以为`NULL`或pyhton的`dict`对象,表示关键字参数.这个接口相当于在python中调用`callable(*args,**kwargs)`
+他们可以使用`PyObject *PyObject_Call(PyObject *callable, PyObject *args, PyObject *kwargs)`来调用,其中`callable`是可调用对象;`args`必须为一个python的`tuple`对象,表示位置参数;`kwargs`可以为`NULL`或pyhton的`dict`对象,表示关键字参数.这个接口相当于在python中调用`callable(*args,**kwargs)`,十分通用.
 
-而方法则可以使用``
+用法大致流程如下:
 
+1. 检查是否是可执行对象,不是就报错
 
+    ```C
 
-#### 函数对象的调用
+    if (PyCallable_Check(pFunc)){
+        ....
+    }else{
+        fprintf(stderr, "pFunc not callable");
+        ...
+    }
+    ```
 
-#### 类实例化调用
+2. 如果是可执行对象则先构造参数
 
-#### 方法调用
+    ```C
+    // 构造参数args
+    auto x = PyLong_FromLong(longx);
+    auto y = PyFloat_FromDouble(0.25);
+    auto args = PyTuple_Pack(2, x, y);
+
+    // 构造kwargs
+    auto kwargs = PyDict_New();
+    auto z = PyList_New(0);
+    std::vector<char*> v = {"item1", "item2", "item3"};
+    for (auto i : v) {
+        auto item = PyUnicode_DecodeFSDefault(i);
+        PyList_Append(z, item);
+        Py_DECREF(item);  //---注意
+    }                     // access by value, the type of i is int
+    PyDict_SetItemString(kwargs, "z", z);
+
+    ...
+
+    // 参数gc计数器回收
+    Py_DECREF(args);
+    Py_DECREF(kwargs);
+    Py_DECREF(x);
+    Py_DECREF(y);
+    Py_DECREF(z);
+    ```
+
+    需要注意:
+    1. 第一个参数固定为python的`tuple`类型,相当于`*args`,不可以为`NULL`,如果没参数就传入一个`PyTuple_New(0);`
+    2. 第二个参数固定为pyhton的`dict`类型,相当于`*kwargs`,可以为`NULL`
+    3. 记得调用完成后回收这些参数和构造参数所用到对象的引用所有权.
+
+3. 执行函数调用
+
+    ```C
+    ...
+    // 调用函数对象
+    auto result = PyObject_Call(pFunc, args, kwargs);
+    ...
+    ```
+
+4. 处理调用返回对象和调用中触发的异常
+
+    ```Cpp
+    ...
+    if (result != NULL) {
+        auto result_double = PyFloat_AsDouble(result);
+        printf("Result of call: %f\n", result_double);
+    } else {
+        PyErr_Print(); // 处理异常
+        fprintf(stderr, "Call %s failed\n", Claz_Name);
+    }
+    Py_XDECREF(result); //回收返回值的引用所有权
+    ...
+    ```
+
+至此C中对Python模块的简单调用算是告一段落了,有了以上知识就已经可以用C简单地调用Python模块了.
+
+### 利用C++进一步优化
+
+上面的例子中虽然我们已经使用了大量的C++特性,但基本框架依然是C的风格,我们可以进一步使用C++库和C++中的异常让我们的代码更加简洁优雅.这个例子可以参考[mainwithmore.cpp]()
 
 ## 外部线程和服务化
+
+继续我们的介绍.C中简单调用Python模块适用于那种单一进程单一线程的简单程序,必须是在单线程中才不会有问题.如果涉及到多线程,那么由于gc的存在,调用会出问题.
+
+我们很多时候就是希望用python快速迭代做算法实现,用C做高性能服务器,要满足这样的需求,就得参考这部分的内容了.
+
+这部分的例子在[](),我们使用[Crow](https://github.com/CrowCpp/Crow)这个库来实现一个简单的http服务.这个库允许我们仅使用一个头文件就像flask一样轻松构造一个简单的http服务.而仅仅只需要装个依赖`asio`(macos下使用`brew install asio`安装)
+
+我们先将项目结构定下:
+
+```txt
+\---|
+    |---env/  # python的虚拟环境
+    |---m.py  # 待加载python模块
+    |---crow_all.h  # crow的头文件,这边简单起见使用的是单文件方式
+    |---main.cpp    # 服务源文件
+
+```
+
+然后通过如下命令编译,注意这是在我的mac上进行的,请作为参考自行修改编译命令
+
+```bash
+g++ -I /Users/mac/micromamba/envs/py3.10/include/python3.10 \
+    -I /usr/local/include \
+    -L/Users/mac/micromamba/envs/py3.10/lib \
+    -lpython3.10 \
+    -o numpyserv \
+    -std=c++17 \
+    -Wwrite-strings \
+    main.cpp
+```
+
+我们的例子实现的是一个返回指定`d`值的元素取值为`0~1`间数据的随机向量,这个`d`的取值范围为`1~20`之间的整数.我们规定参数的校验和转换工作在Cpp端处理.python端仅需要实现功能即可.
+
++ `m.py`加载的python模块,固定调用`apply(n: int) -> list[float]`这个接口.
+
+    ```python
+    import numpy as np
+
+
+    def apply(n: int) -> list[float]:
+        arr = np.random.random(n).tolist()
+        return arr
+
+    ```
+
++ `main.cpp`入口,这个入口需要管python的生命周期和请求的调用,
+
+    ```C++
+    #define PY_SSIZE_T_CLEAN
+    #include <Python.h>
+    #include "crow_all.h"
+
+
+
+    int main() {
+        crow::SimpleApp app;
+
+        CROW_ROUTE(app, "/random_array")
+        ([](const crow::request& req) {
+            auto d = req.url_params.get("d");
+            if (!d) {
+                return crow::response(crow::status::BAD_REQUEST);  // same as crow::response(400)
+            }
+            crow::json::wvalue x({{"message", "Hello, World!"}});
+            x["d"] = d;
+            return crow::response(x);
+        });
+        app.port(18080).multithreaded().run();
+    }
+    ```
 
 ### 外部线程和gil
