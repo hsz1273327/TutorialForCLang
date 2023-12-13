@@ -80,11 +80,7 @@ void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod
             pymodule_dir = std::filesystem::absolute(pymodule_dir);
         }
     }
-    const char* _pymodule_dir_name  = nullptr;
-    {
-        auto _pymodule_dir_name_str = pymodule_dir.string();
-        _pymodule_dir_name = _pymodule_dir_name_str.c_str();
-    }
+    auto _pymodule_dir_name = pymodule_dir.string().c_str();
     pymodule_dir_name = Py_DecodeLocale(_pymodule_dir_name, NULL);
     if (pymodule_dir_name == NULL) {
         throw AppException("Fatal error: cannot decode pymodule_dir_name");
@@ -105,11 +101,7 @@ void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod
         if (env_dir.is_relative()) {
             env_dir = std::filesystem::absolute(env_dir);
         }
-        const char* _env_dir_name = nullptr;
-        {
-            auto _env_dir_name_str = env_dir.string();
-            _env_dir_name = _env_dir_name_str.c_str();
-        }
+        auto _env_dir_name = env_dir.string().c_str();
         env_dir_name = Py_DecodeLocale(_env_dir_name, NULL);
         if (env_dir_name == NULL) {
             throw AppException("Fatal error: cannot decode _env_dir_name");
@@ -161,12 +153,12 @@ int finalize_py() {
 int main(int argc, char* argv[]) {
     // 初始化python解释器
     try {
-        init_py(argv[0], (char*)"env/", NULL, false);
+        init_py(argv[0], "env/", NULL, false);
         PyRun_SimpleString("import emb;print('Number of arguments', emb.numargs())");
         PyRun_SimpleString("emb.setnumargs(20);print('Number of arguments', emb.numargs())");
         printf("get numargs now is %d\n", numargs);
     } catch (const AppException& ex) {
-        fprintf(stderr, "%s", ex.what());
+        fprintf(stderr, ex.what());
         return 1;
     }
     return finalize_py();
