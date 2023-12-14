@@ -2,6 +2,7 @@
 #include <Python.h>
 #include <exception>
 #include <filesystem>
+#include <map>
 #include "scope_guard.hpp"
 
 // 模块的部分
@@ -42,7 +43,26 @@ class AppException : public std::runtime_error {
     AppException(const char* err) : std::runtime_error(err) {}
 };
 
-void init_py(char* programname, char* envpath, char* pymodulepath, char* pyhomepath, bool isolated, bool debugmod) {
+/**
+ * @fn BINARY_VECTOR_P VEC_init(float,float)
+ * @brief 相对通用的初始化python解释器函数
+ * @param[programname]  应用名.
+ * @param[envpath]  虚拟环境路径.为NULL则不使用虚拟环境;为相对路径则从应用所在文件夹开始查找
+ * @param[pymodulepath]  python模块的额外查找路径.为NULL则将当前应用所在文件夹加入;为相对路径则从应用所在文件夹开始查找
+ * @param[pyhomepath]  设置python_home.为相对路径则从应用所在文件夹开始查找.如果`isolated`为true则不能为NULL
+ * @param[tabs] 需要预先加载的模块名模块初始化函数信息
+ * @param[isolated]  是否使用隔离配置初始化python解释器
+ * @param[debugmod]  是否打印debug用的文本
+ * @return void
+ * @exception <AppException> { 应用级别异常 }
+ */
+void init_py(char* programname,
+             char* envpath,
+             char* pymodulepath,
+             char* pyhomepath,
+             const std::map<std::string, PyObject* (*)(void)>* tabs,
+             bool isolated,
+             bool debugmod) {
     // 参数校验变量赋值
     if (programname == NULL) {
         throw AppException("Fatal error: programname must set");
@@ -195,9 +215,13 @@ void init_py(char* programname, char* envpath, char* pymodulepath, char* pyhomep
     }
 
     // 提前初始化模块`emb`
-    numargs = 10;
-    PyImport_AppendInittab("emb", &PyInit_emb);
+    if (tabs != NULL) {
+        for (const auto& [key, value] : *tabs) {
+            PyImport_AppendInittab(key.c_str(), value);
+        }
+    }
 
+    // 初始化python解释器
     status = Py_InitializeFromConfig(&config);
     if (PyStatus_Exception(status)) {
         if (PyStatus_IsExit(status)) {
@@ -223,7 +247,10 @@ int finalize_py() {
 int main(int argc, char* argv[]) {
     // 初始化python解释器
     try {
-        init_py(argv[0], (char*)"env", NULL, (char*)"/Users/mac/micromamba/envs/py3.10", true, true);
+        numargs = 10;
+        std::map<std::string, PyObject* (*)(void)> tabs{{"emb", PyInit_emb}};
+        // init_py(argv[0], (char*)"env", NULL, (char*)"/Users/mac/micromamba/envs/py3.10", NULL, true, true);
+        init_py(argv[0], (char*)"env", NULL, (char*)"/Users/mac/micromamba/envs/py3.10", &tabs, true, true);
         PyRun_SimpleString("import emb;print('Number of arguments', emb.numargs())");
         PyRun_SimpleString("emb.setnumargs(20);print('Number of arguments', emb.numargs())");
         printf("get numargs now is %d\n", numargs);

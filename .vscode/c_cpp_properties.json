@@ -4,16 +4,17 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
+                "/Users/mac/micromamba/envs/py3.10/include/python3.10",
                 "/Users/huangsizhe/micromamba/envs/py3.10/include/python3.10",
-                "/Users/mac/micromamba/envs/py3.10/include/python3.10"
+                "/usr/local/include"
             ],
             "defines": [],
             "macFrameworkPath": [
                 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
             ],
             "compilerPath": "/usr/local/bin/g++-13",
-            "cStandard": "c17",
-            "cppStandard": "c++20",
+            "cStandard": "c23",
+            "cppStandard": "c++23",
             "intelliSenseMode": "macos-gcc-x64",
             "compilerArgs": [
                 "-std=c++20"
