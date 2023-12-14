@@ -42,23 +42,20 @@ class AppException : public std::runtime_error {
     AppException(const char* err) : std::runtime_error(err) {}
 };
 
-void init_py(char* programname,char* envpath, char* pymodulepath, char* pyhomepath, bool isolated, bool debugmod) {
+void init_py(char* programname, char* envpath, char* pymodulepath, char* pyhomepath, bool isolated, bool debugmod) {
     // 参数校验变量赋值
-    if (programname == NULL){
+    if (programname == NULL) {
         throw AppException("Fatal error: programname must set");
     }
     wchar_t* program;
-    auto guard_program = sg::make_scope_guard([&program]() noexcept {
-        PyMem_RawFree(program);
-    });
+    auto guard_program = sg::make_scope_guard([&program]() noexcept { PyMem_RawFree(program); });
     program = Py_DecodeLocale(programname, NULL);
     if (program == NULL) {
         throw AppException("Fatal error: cannot decode programname");
     }
-    
-    
-    //初始化
-    if (isolated){
+
+    // 初始化
+    if (isolated) {
         // 预设置
         PyStatus statusp;
         PyPreConfig preconfig;
@@ -69,16 +66,16 @@ void init_py(char* programname,char* envpath, char* pymodulepath, char* pyhomepa
             Py_ExitStatusException(statusp);
         }
     }
-    //基本设置
-    // 隔离模式
+    // 基本设置
+    //  隔离模式
     PyStatus status;
     PyConfig config;
-    if (isolated){
+    if (isolated) {
         PyConfig_InitIsolatedConfig(&config);
-    }else{
+    } else {
         PyConfig_InitPythonConfig(&config);
     }
-    auto guard = sg::make_scope_guard([&config]() noexcept {
+    auto guard_config = sg::make_scope_guard([&config]() noexcept {
         PyConfig_Clear(&config);
         printf("python init config clear\n");
     });
@@ -89,24 +86,40 @@ void init_py(char* programname,char* envpath, char* pymodulepath, char* pyhomepa
     }
 
     // 设置python_home
-    
-    if (pyhomepath != NULL){
-        wchar_t* pyhome;
-        pyhome = Py_DecodeLocale(pyhomepath, NULL);
+    wchar_t* pyhome;
+    auto guard_pyhome = sg::make_scope_guard([&pyhome, &pyhomepath]() noexcept {
+        if (pyhomepath != NULL) {
+            PyMem_RawFree(pyhome);
+        }
+    });
+    if (pyhomepath != NULL) {
+        std::filesystem::path pyhome_dir = pyhomepath;
+        if (pyhome_dir.is_relative()) {
+            pyhome_dir = std::filesystem::absolute(pyhome_dir);
+        }
+        const char* _pyhome_dir_name = nullptr;
+        {
+            auto _pyhome_dir_name_str = pyhome_dir.string();
+            _pyhome_dir_name = _pyhome_dir_name_str.c_str();
+        }
+
+        pyhome = Py_DecodeLocale(_pyhome_dir_name, NULL);
         if (pyhome == NULL) {
             throw AppException("Fatal error: cannot decode pyhome");
+        } else {
+            if (debugmod) {
+                printf("use python_home %s \n", pyhome);
+            }
         }
         status = PyConfig_SetString(&config, &config.home, pyhome);
         if (PyStatus_Exception(status)) {
-            throw AppException("Fatal error: InitPythonConfig set program_name get error");
+            throw AppException("Fatal error: InitPythonConfig set home get error");
         }
-    }else{
-        if (isolated){
+    } else {
+        if (isolated) {
             throw AppException("Fatal error: isolated config must set pyhomepath");
-        }  
+        }
     }
-
-
 
     // 加载默认配置
     status = PyConfig_Read(&config);
@@ -116,9 +129,7 @@ void init_py(char* programname,char* envpath, char* pymodulepath, char* pyhomepa
 
     // 设置python的sys.path用于查找模块
     wchar_t* pymodule_dir_name;
-    auto guard_pymodule_dir_name = sg::make_scope_guard([&pymodule_dir_name]() noexcept {
-        PyMem_RawFree(pymodule_dir_name);
-    });
+    auto guard_pymodule_dir_name = sg::make_scope_guard([&pymodule_dir_name]() noexcept { PyMem_RawFree(pymodule_dir_name); });
     std::filesystem::path pymodule_dir;
     if (pymodulepath == NULL) {
         pymodule_dir = std::filesystem::current_path();
@@ -128,12 +139,12 @@ void init_py(char* programname,char* envpath, char* pymodulepath, char* pyhomepa
             pymodule_dir = std::filesystem::absolute(pymodule_dir);
         }
     }
-    const char * _pymodule_dir_name =nullptr;
+    const char* _pymodule_dir_name = nullptr;
     {
         auto _pymodule_dir_name_str = pymodule_dir.string();
         _pymodule_dir_name = _pymodule_dir_name_str.c_str();
     }
-    
+
     pymodule_dir_name = Py_DecodeLocale(_pymodule_dir_name, NULL);
     if (pymodule_dir_name == NULL) {
         throw AppException("Fatal error: cannot decode pymodule_dir_name");
@@ -149,9 +160,9 @@ void init_py(char* programname,char* envpath, char* pymodulepath, char* pyhomepa
     }
     // 设置虚拟环境
     wchar_t* env_dir_name;
-    auto guard_pymodule_dir_name = sg::make_scope_guard([&env_dir_name,&envpath]() noexcept {
-        if (envpath != NULL){
-           PyMem_RawFree(env_dir_name);
+    auto guard_env_dir_name = sg::make_scope_guard([&env_dir_name, &envpath]() noexcept {
+        if (envpath != NULL) {
+            PyMem_RawFree(env_dir_name);
         }
     });
     if (envpath != NULL) {
@@ -159,12 +170,12 @@ void init_py(char* programname,char* envpath, char* pymodulepath, char* pyhomepa
         if (env_dir.is_relative()) {
             env_dir = std::filesystem::absolute(env_dir);
         }
-        const char * _env_dir_name =nullptr;
+        const char* _env_dir_name = nullptr;
         {
             auto _env_dir_name_str = env_dir.string();
             _env_dir_name = _env_dir_name_str.c_str();
         }
-        
+
         env_dir_name = Py_DecodeLocale(_env_dir_name, NULL);
         if (env_dir_name == NULL) {
             throw AppException("Fatal error: cannot decode _env_dir_name");
@@ -212,12 +223,12 @@ int finalize_py() {
 int main(int argc, char* argv[]) {
     // 初始化python解释器
     try {
-        init_py(argv[0],(char *)"env", NULL,(char *)"/Users/mac/micromamba/envs/py3.10",true, true);
+        init_py(argv[0], (char*)"env", NULL, (char*)"/Users/mac/micromamba/envs/py3.10", true, true);
         PyRun_SimpleString("import emb;print('Number of arguments', emb.numargs())");
         PyRun_SimpleString("emb.setnumargs(20);print('Number of arguments', emb.numargs())");
         printf("get numargs now is %d\n", numargs);
     } catch (const AppException& ex) {
-        fprintf(stderr, "%s",ex.what());
+        fprintf(stderr, "%s", ex.what());
         return 1;
     }
     return finalize_py();

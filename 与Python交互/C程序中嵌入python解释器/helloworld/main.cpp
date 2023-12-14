@@ -43,19 +43,21 @@ class AppException : public std::runtime_error {
 };
 
 void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod) {
+    // 参数校验变量赋值
+    if (programname == NULL) {
+        throw AppException("Fatal error: programname must set");
+    }
     wchar_t* program;
-    wchar_t* env_dir_name;
-    wchar_t* pymodule_dir_name;
+    auto guard_program = sg::make_scope_guard([&program]() noexcept { PyMem_RawFree(program); });
     program = Py_DecodeLocale(programname, NULL);
     if (program == NULL) {
         throw AppException("Fatal error: cannot decode programname");
     }
-
     // 初始化python设置
     PyStatus status;
     PyConfig config;
     PyConfig_InitPythonConfig(&config);
-    auto guard = sg::make_scope_guard([&config]() noexcept {
+    auto guard_config = sg::make_scope_guard([&config]() noexcept {
         PyConfig_Clear(&config);
         printf("python init config clear\n");
     });
@@ -71,6 +73,8 @@ void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod
         throw AppException("Fatal error: PyConfig_Read get error");
     }
     // 设置python的sys.path用于查找模块
+    wchar_t* pymodule_dir_name;
+    auto guard_pymodule_dir_name = sg::make_scope_guard([&pymodule_dir_name]() noexcept { PyMem_RawFree(pymodule_dir_name); });
     std::filesystem::path pymodule_dir;
     if (pymodulepath == NULL) {
         pymodule_dir = std::filesystem::current_path();
@@ -80,7 +84,7 @@ void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod
             pymodule_dir = std::filesystem::absolute(pymodule_dir);
         }
     }
-    const char* _pymodule_dir_name  = nullptr;
+    const char* _pymodule_dir_name = nullptr;
     {
         auto _pymodule_dir_name_str = pymodule_dir.string();
         _pymodule_dir_name = _pymodule_dir_name_str.c_str();
@@ -100,6 +104,12 @@ void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod
     }
 
     // 设置虚拟环境
+    wchar_t* env_dir_name;
+    auto guard_env_dir_name = sg::make_scope_guard([&env_dir_name, &envpath]() noexcept {
+        if (envpath != NULL) {
+            PyMem_RawFree(env_dir_name);
+        }
+    });
     if (envpath != NULL) {
         std::filesystem::path env_dir = envpath;
         if (env_dir.is_relative()) {
@@ -140,11 +150,6 @@ void init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod
         // 抛出错误
         Py_ExitStatusException(status);
     }
-    PyMem_RawFree(pymodule_dir_name);
-    if (envpath != NULL) {
-        PyMem_RawFree(env_dir_name);
-    }
-    PyMem_RawFree(program);
     if (debugmod) {
         PyRun_SimpleString("import sys;print(sys.path);print(sys.prefix)");
     }
