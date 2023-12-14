@@ -149,7 +149,7 @@ int finalize_py(){
 
 int main(int argc, char* argv[]) {
     int status;
-    status = init_py(argv[0], "env/", NULL, true);
+    status = init_py(argv[0], (char *)"env/", NULL, true);
     if (status != 0) {
         return status;
     }

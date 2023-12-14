@@ -112,7 +112,7 @@ int init_py(char* programname, char* envpath, char* pymodulepath, bool debugmod)
     return 0;
 }
 
-int call_func_example(PyObject* pModule,long longx) {
+int call_func_example(PyObject* pModule, long longx) {
     // 在模块中找到函数名为`call_with_params_and_return`的函数,将这个函数对象提出来
     const char* Func_Name = "call_with_params_and_return";
     auto pFunc = PyObject_GetAttrString(pModule, Func_Name);
@@ -127,7 +127,7 @@ int call_func_example(PyObject* pModule,long longx) {
         // 构造kwargs
         auto kwargs = PyDict_New();
         auto z = PyList_New(0);
-        std::vector<char*> v = {"item1", "item2", "item3"};
+        std::vector<char*> v = {(char*)"item1", (char*)"item2", (char*)"item3"};
         for (auto i : v) {
             auto item = PyUnicode_DecodeFSDefault(i);
             PyList_Append(z, item);
@@ -237,7 +237,7 @@ int callpy() {
     auto pModule = PyImport_Import(pName);            // 导入模块
     Py_DECREF(pName);                                 // 释放对象pName的gc计数器
     if (pModule != NULL) {
-        auto res_call_func_example = call_func_example(pModule,123);
+        auto res_call_func_example = call_func_example(pModule, 123);
         if (res_call_func_example) {
             printf("res_call_func_example > 0");
             Py_XDECREF(pModule);
@@ -249,7 +249,7 @@ int callpy() {
             Py_XDECREF(pModule);
             return res_call_class_example;
         }
-        auto res_call_func_example_withexception = call_func_example(pModule,-123);
+        auto res_call_func_example_withexception = call_func_example(pModule, -123);
         if (res_call_func_example_withexception) {
             printf("res_call_func_example > 0");
             Py_XDECREF(pModule);
@@ -274,7 +274,7 @@ int finalize_py() {
 
 int main(int argc, char* argv[]) {
     int status;
-    status = init_py(argv[0], "env/", NULL, false);
+    status = init_py(argv[0], (char*)"env/", NULL, false);
     if (status != 0) {
         return status;
     }
