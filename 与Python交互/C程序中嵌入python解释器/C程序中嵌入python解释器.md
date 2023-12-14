@@ -466,8 +466,41 @@ PyObject * result = PyObject_CallObject(my_call, arglist);
 
 虽然一来本系列是介绍C/C++的的文章不是介绍python的文章;二来这块相对简单,讲的人也多;三来用Cython写这种扩展更加简单,这个技术用的真不算多的,就没啥在这里讲的必要.但毕竟已经写到这里了不讲似乎又缺点啥,这边就简单用一个例子作为额外的非重点内容介绍下吧.
 
-我们的这个例子是上面`helloworld`中的代码拆出来构造的.
+我们的这个例子是上面`helloworld`中的代码拆出来构造的,在[emb](https://github.com/hsz1273327/TutorialForCLang/tree/master/%E4%B8%8EPython%E4%BA%A4%E4%BA%92/C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%B5%8C%E5%85%A5python%E8%A7%A3%E9%87%8A%E5%99%A8/emb)中
 
+核心的有如下几点:
+
++ 模块的初始化函数的返回值需要将`PyObject*`改为宏`PyMODINIT_FUNC`
+
+    ```C++
+    ...
+    // 初始化模块的函数
+    PyMODINIT_FUNC PyInit_emb(void) {
+        return PyModule_Create(&EmbModule);
+    }
+    ...
+    ```
+
++ 必须要有`setup.py`,在`setup.py`中要用`ext_modules`参数指定扩展的编译信息
+
+    ```python
+    setup(
+        ext_modules=[
+            Extension(
+                name="emb",  
+                sources=["emb/emb.cpp"],
+                # include_dirs=[
+                #     "/Users/mac/micromamba/envs/py3.10/include/python3.10"],
+                # library_dirs=["/Users/mac/micromamba/envs/py3.10/lib"],
+                # libraries=["python3.10"],
+                extra_compile_args=["-std=c++20"],
+                language="c++"
+            ),
+        ]
+    )
+    ```
+
+    注意不需要指定python相关的include和lib配置,编译时会使用运行`setup.py`的python使用的环境.
 
 ## 提前加载模型
 

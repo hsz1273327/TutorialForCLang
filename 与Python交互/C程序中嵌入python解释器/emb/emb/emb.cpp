@@ -1,6 +1,7 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
-#include "embc.h"
+
+int numargs = 0;
 
 // 包装为模块
 // python模块中获取numargs的值
