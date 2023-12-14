@@ -1,6 +1,6 @@
 # 与Python交互
 
-python原生提供了[C语言的API],让它成了一门非常方便的胶水语言.很多程序都将它嵌入其中,将python作为内置脚本语言.
+python原生提供了[C语言的API](https://docs.python.org/zh-cn/3/c-api/index.html),让它成了一门非常方便的胶水语言.很多程序都将它嵌入其中,将python作为内置脚本语言.
 
 C程序中调用python一般被称为`嵌入Python(Embedding Python)`可以分为两种:
 
@@ -8,4 +8,4 @@ C程序中调用python一般被称为`嵌入Python(Embedding Python)`可以分�
 
 2. 在C程序中嵌入python解释器,让python脚本可以从外部传入改变C程序中的对象.这通常在大型项目中才会用到,相当于让python作为程序的内置脚本,通常还需要提供几个内置对象供python处理.
 
-这部分是相当麻烦的,因此是扩展内容.但对于打算用Cython的读者建议先看下有个概念.
+这部分是相当麻烦的,因此是扩展内容.但对于打算[用Cython](https://blog.hszofficial.site/TutorialForCython/)的读者建议先看下有个概念.
