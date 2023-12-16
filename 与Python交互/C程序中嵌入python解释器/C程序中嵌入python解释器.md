@@ -39,7 +39,7 @@ static PyMethodDef EmbMethods[] = {{"numargs", emb_numargs, METH_VARARGS, "Retur
 // 构造python模块
 static PyModuleDef EmbModule = {PyModuleDef_HEAD_INIT, "emb", NULL, -1, EmbMethods, NULL, NULL, NULL, NULL};
 // 初始化模块的函数
-PyObject* PyInit_emb(void) {
+PyMODINIT_FUNC PyInit_emb(void) {
     return PyModule_Create(&EmbModule);
 }
 
@@ -255,13 +255,13 @@ int main(int argc, char* argv[]) {
     ```C++
     ...
     // 初始化模块的函数
-    PyObject* PyInit_emb(void) {
+    PyMODINIT_FUNC PyInit_emb(void) {
         return PyModule_Create(&EmbModule);
     }
     ...
     ```
 
-    这个函数通常命名为`PyInit_{模块名}`,用于在初始化python解释器前初始化模块使用.个人建议不要将它设置为静态.它干的事就是调用[PyModule_Create](https://docs.python.org/zh-cn/3/c-api/module.html?highlight=pymodule_create#c.PyModule_Create)并返回创建出的模块对象.
+    这个函数通常命名为`PyInit_{模块名}`,用于在初始化python解释器前初始化模块使用.个人建议不要将它设置为静态.它干的事就是调用[PyModule_Create](https://docs.python.org/zh-cn/3/c-api/module.html?highlight=pymodule_create#c.PyModule_Create)并返回创建出的模块对象.我们习惯上用宏`PyMODINIT_FUNC`作为返回,它本质上核心就是`PyObject*`
 
 ### 参数解析
 
@@ -468,20 +468,9 @@ PyObject * result = PyObject_CallObject(my_call, arglist);
 
 我们的这个例子是上面`helloworld`中的代码拆出来构造的,在[emb](https://github.com/hsz1273327/TutorialForCLang/tree/master/%E4%B8%8EPython%E4%BA%A4%E4%BA%92/C%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%B5%8C%E5%85%A5python%E8%A7%A3%E9%87%8A%E5%99%A8/emb)中
 
-核心的有如下几点:
+我们把定义模块的部分都抽出来,剩下的就是写好`setup.py`并执行`build`操作了
 
-+ 模块的初始化函数的返回值需要将`PyObject*`改为宏`PyMODINIT_FUNC`
-
-    ```C++
-    ...
-    // 初始化模块的函数
-    PyMODINIT_FUNC PyInit_emb(void) {
-        return PyModule_Create(&EmbModule);
-    }
-    ...
-    ```
-
-+ 必须要有`setup.py`,在`setup.py`中要用`ext_modules`参数指定扩展的编译信息
++ `setup.py`,在`setup.py`中要用`ext_modules`参数指定扩展的编译信息
 
     ```python
     setup(
@@ -502,6 +491,8 @@ PyObject * result = PyObject_CallObject(my_call, arglist);
 
     注意不需要指定python相关的include和lib配置,编译时会使用运行`setup.py`的python使用的环境.
 
++ build操作,本机就是简单的`python -m build --wheel`,当然了我们也可以借助`github action`和`cibuildwheel`做多平台build.
+
 ## 提前加载模型
 
 有构造模块的初始化函数,我们只要在初始化Python解释器前调用`PyImport_AppendInittab(模块名, &初始化函数);`即可.
@@ -516,6 +507,29 @@ status = Py_InitializeFromConfig(&config);
 ```
 
 [`int PyImport_AppendInittab(const char *name, PyObject *(*initfunc)(void))`](https://docs.python.org/zh-cn/3/c-api/import.html?highlight=pyimport_appendinittab#c.PyImport_AppendInittab)接口用于将一个模块注册为内置模块.这样就可以直接`import`使用而不需要再去查找了.
+
+这边建议在初始化好python解释器后第一时间先`import`我们初始化的模型
+
+```C++
+PyMODINIT_FUNC init_pymodule(char* Module_Name) {
+    auto pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
+    auto guard = sg::make_scope_guard([&pName]() noexcept {
+        Py_DECREF(pName);  // 释放对象pName的gc计数器
+    });
+    auto pModule = PyImport_Import(pName);  // 导入模块
+    return pModule;
+}
+
+...
+
+auto pModule = init_pymodule((char *)"emb");
+auto guard_pModule = sg::make_scope_guard([&pModule]() noexcept {
+    Py_XDECREF(pModule);  // 释放pModule
+});
+...
+```
+
+这样下次代码中再出现`import`这个模型的操作时就不用额外加载了
 
 ### 隔离配置
 
@@ -1053,17 +1067,32 @@ int finalize_py() {
     return 0;
 }
 
+PyMODINIT_FUNC init_pymodule(char* Module_Name) {
+    auto pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
+    auto guard = sg::make_scope_guard([&pName]() noexcept {
+        Py_DECREF(pName);  // 释放对象pName的gc计数器
+    });
+    auto pModule = PyImport_Import(pName);  // 导入模块
+    return pModule;
+}
+
 int main(int argc, char* argv[]) {
     // 初始化python解释器
+    numargs = 10;
+    std::map<std::string, PyObject* (*)(void)> tabs{{"emb", PyInit_emb}};
     try {
-        numargs = 10;
-        std::map<std::string, PyObject* (*)(void)> tabs{{"emb", PyInit_emb}};
         // init_py(argv[0], (char*)"env", NULL, (char*)"/Users/mac/micromamba/envs/py3.10", NULL, true, true);
         init_py(argv[0], NULL, NULL, (char*)"/Users/mac/micromamba/envs/py3.10", &tabs, true, true);
     } catch (const AppException& ex) {
         fprintf(stderr, ex.what());
         return 1;
     }
+
+    auto pModule = init_pymodule((char *)"emb");
+    auto guard_pModule = sg::make_scope_guard([&pModule]() noexcept {
+        Py_XDECREF(pModule);  // 释放pModule
+    });
+
     // http接口逻辑
     crow::SimpleApp app;
     CROW_ROUTE(app, "/api")
@@ -1075,16 +1104,13 @@ int main(int argc, char* argv[]) {
     });
 
     CROW_ROUTE(app, "/submit").methods("POST"_method)([](const crow::request& req) {
-        const char* code = nullptr;
-        try {
-            auto x = crow::json::load(req.body);
-            CROW_LOG_INFO << std::format("submit body {}", req.body);
-            auto code_str = std::string(x["code"]);
-            code = code_str.c_str();
-            CROW_LOG_INFO << std::format("submit code {}", code);
-        } catch (const std::exception& e) {
+
+        crow::multipart::message msg(req);
+        std::string code_str = msg.get_part_by_name("script").body;
+        if (code_str.empty()){
             return crow::response(crow::status::BAD_REQUEST);  // same as crow::response(400)
         }
+        auto code = code_str.c_str();
         // 开始执行python调用
         // // PyGILState_STATE gstate;
         auto _save = PyEval_SaveThread();
@@ -1096,6 +1122,7 @@ int main(int argc, char* argv[]) {
         });
         CROW_LOG_INFO << "PyGILState_Ensure ok";
         /* Perform Python actions here. */
+        CROW_LOG_INFO << std::format("submit code {}", code);
         int res = PyRun_SimpleString(code);
         if (res == 0){
             CROW_LOG_INFO << "PyRun_SimpleString ok";

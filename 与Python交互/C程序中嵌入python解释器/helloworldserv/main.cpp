@@ -246,17 +246,32 @@ int finalize_py() {
     return 0;
 }
 
+PyMODINIT_FUNC init_pymodule(char* Module_Name) {
+    auto pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
+    auto guard = sg::make_scope_guard([&pName]() noexcept {
+        Py_DECREF(pName);  // 释放对象pName的gc计数器
+    });
+    auto pModule = PyImport_Import(pName);  // 导入模块
+    return pModule;
+}
+
 int main(int argc, char* argv[]) {
     // 初始化python解释器
+    numargs = 10;
+    std::map<std::string, PyObject* (*)(void)> tabs{{"emb", PyInit_emb}};
     try {
-        numargs = 10;
-        std::map<std::string, PyObject* (*)(void)> tabs{{"emb", PyInit_emb}};
         // init_py(argv[0], (char*)"env", NULL, (char*)"/Users/mac/micromamba/envs/py3.10", NULL, true, true);
         init_py(argv[0], NULL, NULL, (char*)"/Users/mac/micromamba/envs/py3.10", &tabs, true, true);
     } catch (const AppException& ex) {
         fprintf(stderr, ex.what());
         return 1;
     }
+
+    auto pModule = init_pymodule((char *)"emb");
+    auto guard_pModule = sg::make_scope_guard([&pModule]() noexcept {
+        Py_XDECREF(pModule);  // 释放pModule
+    });
+
     // http接口逻辑
     crow::SimpleApp app;
     CROW_ROUTE(app, "/api")
@@ -268,16 +283,13 @@ int main(int argc, char* argv[]) {
     });
 
     CROW_ROUTE(app, "/submit").methods("POST"_method)([](const crow::request& req) {
-        const char* code = nullptr;
-        try {
-            auto x = crow::json::load(req.body);
-            CROW_LOG_INFO << std::format("submit body {}", req.body);
-            auto code_str = std::string(x["code"]);
-            code = code_str.c_str();
-            CROW_LOG_INFO << std::format("submit code {}", code);
-        } catch (const std::exception& e) {
+
+        crow::multipart::message msg(req);
+        std::string code_str = msg.get_part_by_name("script").body;
+        if (code_str.empty()){
             return crow::response(crow::status::BAD_REQUEST);  // same as crow::response(400)
         }
+        auto code = code_str.c_str();
         // 开始执行python调用
         // // PyGILState_STATE gstate;
         auto _save = PyEval_SaveThread();
@@ -289,6 +301,7 @@ int main(int argc, char* argv[]) {
         });
         CROW_LOG_INFO << "PyGILState_Ensure ok";
         /* Perform Python actions here. */
+        CROW_LOG_INFO << std::format("submit code {}", code);
         int res = PyRun_SimpleString(code);
         if (res == 0){
             CROW_LOG_INFO << "PyRun_SimpleString ok";
