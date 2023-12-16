@@ -856,7 +856,7 @@ static PyMethodDef EmbMethods[] = {{"numargs", emb_numargs, METH_VARARGS, "Retur
 // 构造python模块
 static PyModuleDef EmbModule = {PyModuleDef_HEAD_INIT, "emb", NULL, -1, EmbMethods, NULL, NULL, NULL, NULL};
 // 初始化模块的函数
-PyObject* PyInit_emb(void) {
+PyMODINIT_FUNC PyInit_emb(void) {
     return PyModule_Create(&EmbModule);
 }
 
@@ -1067,7 +1067,7 @@ int finalize_py() {
     return 0;
 }
 
-PyMODINIT_FUNC init_pymodule(char* Module_Name) {
+PyObject* init_pymodule(char* Module_Name) {
     auto pName = PyUnicode_DecodeFSDefault(Module_Name);  // 将模块名类型转为python对象字符串
     auto guard = sg::make_scope_guard([&pName]() noexcept {
         Py_DECREF(pName);  // 释放对象pName的gc计数器
@@ -1104,7 +1104,6 @@ int main(int argc, char* argv[]) {
     });
 
     CROW_ROUTE(app, "/submit").methods("POST"_method)([](const crow::request& req) {
-
         crow::multipart::message msg(req);
         std::string code_str = msg.get_part_by_name("script").body;
         if (code_str.empty()){
