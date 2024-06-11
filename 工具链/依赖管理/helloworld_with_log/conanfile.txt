@@ -1,5 +1,6 @@
 [requires]
-spdlog/1.9.0
+spdlog/1.14.1
 
 [generators]
-cmake
+CMakeDeps
+CMakeToolchain
